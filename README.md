@@ -35,7 +35,6 @@ After a storm, the copilot reads the crew's indicators in context and prompts a 
 - `docs/concept-note.md`: the concept in one page
 - `docs/implementation-plan.md`: how we will build it at the hackathon
 - `docs/product-spec.md`: screens, features, data sources and logic
-- `docs/presentation-script.md`: our spoken script for the 240-second video
 - `docs/Storm-Shield-Pitch-Deck.pptx` and `.pdf`: the pitch deck
 - `data/`: saved space weather samples (to be added)
 - `src/`: application code (to be added at the hackathon)
