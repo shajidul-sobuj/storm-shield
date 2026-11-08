@@ -1,0 +1,125 @@
+{
+  "id": "cardio-scare",
+  "title": "Scenario A: Acute Chest Discomfort & Cardiovascular Assessment",
+  "category": "Cardiovascular",
+  "trigger": "Chest tightness, radiating arm/jaw discomfort, tachycardia, or severe hypertension",
+  "reviewedBy": "Y.M.",
+  "firstResponse": [
+    {
+      "text": "Immediately halt all physical tasks and exercise countermeasures.",
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Position the astronaut in a semi-upright or comfortable seated position with head elevated to reduce cephalad venous return.",
+      "source": "nasa-hrp-cardio",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Loosen any restrictive harness, collar, or pressure garment.",
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "triage": [
+    {
+      "id": "t1",
+      "question": "Is the astronaut experiencing crushing substernal chest pressure or pain radiating to the left arm/jaw?",
+      "yes": "t2",
+      "no": "t3"
+    },
+    {
+      "id": "t2",
+      "question": "Is systolic blood pressure >= 90 mmHg and heart rate >= 50 bpm?",
+      "yes": "step-nitro-candidate",
+      "no": "step-hypotension-alert"
+    },
+    {
+      "id": "t3",
+      "question": "Is there severe shortness of breath or altered mental alertness?",
+      "yes": "step-oxygen-urgent",
+      "no": "step-monitoring-protocol"
+    }
+  ],
+  "capture": ["systolicBP", "diastolicBP", "heartRate", "symptomOnsetMinutes"],
+  "rules": [
+    {
+      "condition": "systolicBP >= 140 || heartRate >= 100",
+      "status": "act",
+      "why": "Marked acute deviation from astronaut cardiovascular baseline under mission stress.",
+      "source": "nasa-hrp-cardio",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "condition": "systolicBP < 90",
+      "status": "act",
+      "why": "Hypotension detected; vasodilators strictly contraindicated.",
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-rest",
+      "title": "Mandatory Physical Rest & Reassurance",
+      "text": "Instruct astronaut to maintain complete physical rest. Minimize sensory stimulation and vocal exertion.",
+      "needsKit": [],
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-oxygen",
+      "title": "Supplemental Oxygen Administration",
+      "text": "Apply oxygen delivery mask at 4 L/min if SpO2 is below 94% or severe dyspnea is observed.",
+      "needsKit": ["oxygen-kit"],
+      "source": "nasa-cds-2022",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-aspirin-check",
+      "title": "Antiplatelet Evaluation (Allergy Restricted)",
+      "text": "Verify crew medical profile for aspirin/NSAID allergies. If negative, administer 325 mg chewable aspirin. If allergic, DO NOT ADMINISTER.",
+      "needsKit": ["aspirin"],
+      "cautionIfAllergicTo": ["aspirin", "nsaids"],
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-nitro",
+      "title": "Nitroglycerin Sublingual Spray (Hemodynamic Guarded)",
+      "text": "Only if systolic BP is confirmed >= 90 mmHg: administer 1 metered sublingual spray (0.4 mg). Re-check BP within 5 minutes.",
+      "needsKit": ["nitroglycerin"],
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "doNot": [
+    {
+      "text": "Do NOT administer nitroglycerin if systolic BP is under 90 mmHg or heart rate is under 50 bpm.",
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Do NOT administer aspirin to any astronaut with documented aspirin/salicylate hypersensitivity.",
+      "source": "nih-heart-firstaid",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Do NOT permit the astronaut to return to EVA preparations or high-exertion resistive exercise.",
+      "source": "nasa-hrp-cardio",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "recheckMinutes": 10,
+  "worseningSigns": [
+    "Systolic blood pressure dropping below 90 mmHg",
+    "Irregular heart rhythm or rapid palpitations > 120 bpm",
+    "Loss of consciousness, syncope, or grey-out",
+    "Cyanosis (bluish tint around lips or fingernails)"
+  ],
+  "holdPlan": [
+    "Continue quiet supine or semi-recumbent posture",
+    "Record serial automated BP/HR every 10 minutes",
+    "Queue packet for ground flight surgeon review upon ground-link restoration"
+  ]
+}

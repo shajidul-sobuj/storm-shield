@@ -1,0 +1,90 @@
+[
+  {
+    "id": "aspirin",
+    "name": "Chewable Aspirin (325 mg)",
+    "category": "Cardiovascular / Antiplatelet",
+    "quantity": 30,
+    "unit": "tablets",
+    "cautions": "Strictly contraindicated if allergic to aspirin/NSAIDs or if active internal bleeding suspected.",
+    "allergens": ["aspirin", "nsaids"],
+    "source": "nih-heart-firstaid",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "nitroglycerin",
+    "name": "Sublingual Nitroglycerin (0.4 mg spray)",
+    "category": "Cardiovascular / Vasodilator",
+    "quantity": 2,
+    "unit": "canisters",
+    "cautions": "Do NOT administer if systolic blood pressure is below 90 mmHg or if heart rate is below 50 bpm.",
+    "allergens": [],
+    "source": "nih-heart-firstaid",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "oxygen-kit",
+    "name": "Emergency Medical O2 Delivery Mask",
+    "category": "Airway / Respiratory",
+    "quantity": 2,
+    "unit": "masks & regulator",
+    "cautions": "Confirm high-flow seal; monitor habitat ambient O2 levels to avoid hyperoxic flammability risk.",
+    "allergens": [],
+    "source": "nasa-cds-2022",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "ondansetron",
+    "name": "Ondansetron (4 mg ODT)",
+    "category": "Antiemetic / Radiation Prodrome",
+    "quantity": 18,
+    "unit": "orally disintegrating tablets",
+    "cautions": "Effective for solar storm radiation-induced nausea; screen for cardiac QT interval lengthening.",
+    "allergens": [],
+    "source": "cdc-ars-clinicians",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "oral-rehydration",
+    "name": "WHO Oral Electrolyte Rehydration Salts",
+    "category": "Hydration / Fluid Resuscitation",
+    "quantity": 24,
+    "unit": "packets",
+    "cautions": "Dissolve in 500 mL sterile potable water. Essential for fluid loss during acute nausea or heat stress.",
+    "allergens": [],
+    "source": "cdc-ars-clinicians",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "epinephrine",
+    "name": "Epinephrine Auto-Injector (0.3 mg)",
+    "category": "Emergency / Anaphylaxis",
+    "quantity": 4,
+    "unit": "auto-injectors",
+    "cautions": "For acute anaphylactic shock or severe airway compromise.",
+    "allergens": [],
+    "source": "who-primary-survey",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "paracetamol",
+    "name": "Acetaminophen / Paracetamol (500 mg)",
+    "category": "Analgesic / Antipyretic",
+    "quantity": 40,
+    "unit": "tablets",
+    "cautions": "Safe first-line analgesic for patients allergic to aspirin or NSAIDs.",
+    "allergens": [],
+    "source": "nasa-cds-2022",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "dosimeter-personal",
+    "name": "Active Electronic Personal Dosimeter (EPD)",
+    "category": "Radiation Diagnostics",
+    "quantity": 6,
+    "unit": "units",
+    "cautions": "Verify calibration status and clip to torso under flight suit.",
+    "allergens": [],
+    "source": "artemis1-radiation",
+    "provenance": "REAL"
+  }
+]

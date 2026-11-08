@@ -1,0 +1,22 @@
+# Storm Shield: AI-Use Log
+
+**Team Extokened · NASA Space Apps Challenge 2026**  
+**Role Log: Software Architecture, Engine Rules, UI Development & Testing**
+
+This log documents all AI tools, prompts, queries, rationale, human verifications, and manual adjustments made during the development of Storm Shield to ensure transparency, reproducibility, and academic integrity.
+
+---
+
+## Log Entries
+
+### Entry 1 — 8 November 2026: Project Scaffolding & Architecture
+- **Tool:** Google Antigravity (Gemini 3.8 Flash High)
+- **Prompt / Purpose:** Read the official team roadmap, concept note, implementation idea, and Sobuj's work plan. Create a comprehensive implementation plan, configure Vite + React with Tailwind CSS, and set up the folder structure.
+- **AI Output Provided:** Suggested decoupled engine architecture (`baseline.js`, `assess.js`, `storm.js`, `care.js`, `retrace.js`, `handoff.js`), content directory structure with cited JSON files, and automated unit test setup.
+- **Human Review / Changes:** Verified against the NASA challenge brief ("Create Health Monitoring Software for Astronauts on Space Missions"). Enforced that all medical decision steps require a cited `source` and a `reviewedBy` sign-off, and that no `ILLUSTRATIVE` data appears in the demo path.
+
+### Entry 2 — 8 November 2026: Deterministic Medical Engine & Provenance Tests
+- **Tool:** Google Antigravity (Gemini 3.8 Flash High)
+- **Prompt / Purpose:** Implement deterministic rule algorithms for personal baseline comparison, NOAA radiation storm mapping, and loss-minimising Retrace priority ladder.
+- **AI Output Provided:** Vitest test suites and pure ES modules with no network dependencies.
+- **Human Review / Changes:** Checked that dose thresholds follow CDC Acute Radiation Syndrome guidelines (1 Gy / 1000 mGy symptom threshold) and NOAA Space Weather Scales. Confirmed that all clinical rules are transparent decision trees rather than black-box AI-generated diagnostic claims.

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "head-brain",
+    "name": "Head & Neurological",
+    "svgRegionId": "zone-head",
+    "hazards": ["Microgravity", "Radiation", "Isolation"],
+    "hazardEffects": "Cephalad fluid shift causes elevated intracranial pressure, sinus congestion, space headaches, and potential cognitive fatigue.",
+    "keyMetrics": ["Cognitive Score", "Headache Scale", "Intracranial symptoms"],
+    "source": "nasa-eimo-2025",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "eyes",
+    "name": "Eyes & Vision (SANS)",
+    "svgRegionId": "zone-eyes",
+    "hazards": ["Microgravity fluid shifts"],
+    "hazardEffects": "Spaceflight-Associated Neuro-ocular Syndrome (SANS) leads to optic disc edema, posterior globe flattening, and hyperopic refractive shifts.",
+    "keyMetrics": ["Visual Acuity", "Globe Flattening", "Scotoma"],
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "cardio",
+    "name": "Heart & Circulatory",
+    "svgRegionId": "zone-chest",
+    "hazards": ["Microgravity", "Radiation"],
+    "hazardEffects": "Cardiac muscle remodeling, reduced left ventricular mass, orthostatic intolerance upon gravity return, altered cardiac rhythm.",
+    "keyMetrics": ["Blood Pressure", "Heart Rate", "ECG Rhythm"],
+    "source": "nasa-hrp-cardio",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "respiratory",
+    "name": "Lungs & Respiratory",
+    "svgRegionId": "zone-lungs",
+    "hazards": ["Hostile Closed Environment"],
+    "hazardEffects": "Particulate accumulation in closed habitat, altered ventilation-perfusion ratios in weightlessness, toxic trace contaminant risks.",
+    "keyMetrics": ["SpO2", "Respiration Rate", "Airway Clearance"],
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "digestive",
+    "name": "GI & Digestive",
+    "svgRegionId": "zone-abdomen",
+    "hazards": ["Space Radiation", "Microgravity"],
+    "hazardEffects": "Space Motion Sickness (SMS) in first 72 hours; gastrointestinal prodromal nausea/vomiting marker under acute ionizing solar radiation.",
+    "keyMetrics": ["Nausea Scale", "Vomiting Latency", "Hydration Status"],
+    "source": "cdc-ars-clinicians",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "musculoskeletal",
+    "name": "Spine & Musculoskeletal",
+    "svgRegionId": "zone-spine-limbs",
+    "hazards": ["Microgravity"],
+    "hazardEffects": "1.0-1.5% bone mineral density loss per month in weight-bearing bones, muscle atrophy, spinal elongation (5-7 cm) and intervertebral back pain.",
+    "keyMetrics": ["Daily Countermeasure Hours", "Back Pain Score"],
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "immune-skin",
+    "name": "Immune & Radiation Dose",
+    "svgRegionId": "zone-skin",
+    "hazards": ["Radiation", "Isolation"],
+    "hazardEffects": "T-cell function suppression, latent viral reactivation (EBV, VZV), cutaneous erythema if exposed to high-energy solar particle events.",
+    "keyMetrics": ["Absorbed Dose (mGy)", "Cumulative Mission Dose", "Dermatologic Signs"],
+    "source": "artemis1-radiation",
+    "provenance": "PUBLISHED"
+  },
+  {
+    "id": "mental-behavioral",
+    "name": "Cognitive & Behavioral",
+    "svgRegionId": "zone-behavioral",
+    "hazards": ["Distance from Earth", "Confinement"],
+    "hazardEffects": "Earth-out-of-view phenomenon, sensory monotony, acute sleep deficiency, communication latency stress (up to 22 min one-way Mars delay).",
+    "keyMetrics": ["Sleep Duration", "Mood Score", "Reaction Time"],
+    "source": "nasa-eimo-2025",
+    "provenance": "PUBLISHED"
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "cdc-ars-clinicians",
+    "title": "Acute Radiation Syndrome: A Fact Sheet for Clinicians",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/nceh/radiation/emergencies/arsphysicianfactsheet.htm",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "ARS threshold criteria, prodromal phase timeline, and acute exposure boundaries",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "cdc-triage-2006",
+    "title": "Radiation Emergency Medical Management (REMM) Triage Guidelines",
+    "publisher": "U.S. Department of Health and Human Services / CDC",
+    "url": "https://www.remm.nlm.gov",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "Vomiting onset latency mapping as a clinical surrogate for whole-body dose estimation",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "noaa-swpc-scales",
+    "title": "NOAA Space Weather Scales: Solar Radiation Storms (S1-S5)",
+    "publisher": "NOAA Space Weather Prediction Center",
+    "url": "https://www.swpc.noaa.gov/noaa-scales-explanation",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "Proton flux >= 10 MeV threshold classification (S1 minor to S5 extreme)",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "nasa-eimo-2025",
+    "title": "Earth-Independent Medical Operations (EIMO) Concept of Operations",
+    "publisher": "NASA Johnson Space Center (NASA NTRS 20250000009)",
+    "url": "https://ntrs.nasa.gov/citations/20250000009",
+    "accessed": "2026-11-08",
+    "license": "NASA Open Work (U.S. Government)",
+    "usedFor": "Ground-link latency states, crew autonomous decision boundary, and structured handoff format",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "nasa-cds-2022",
+    "title": "Exploration Medical Capabilities: Clinical Decision Support in Exploration Spaceflight",
+    "publisher": "NASA Human Research Program (NASA NTRS 20220007443)",
+    "url": "https://ntrs.nasa.gov/citations/20220007443",
+    "accessed": "2026-11-08",
+    "license": "NASA Open Work (U.S. Government)",
+    "usedFor": "Autonomous diagnosis hierarchy, uncertainty quantification, and kit supply constraints",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "nasa-hrp-cardio",
+    "title": "Risk of Adverse Health Effects Due to Spaceflight-Induced Cardiovascular Changes",
+    "publisher": "NASA Human Research Program",
+    "url": "https://www.nasa.gov/hrp/hazards",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "Cephalad fluid shift, orthostatic intolerance, microgravity blood pressure alteration",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "artemis1-radiation",
+    "title": "Radiation dose and proton spectrum measurements in the lunar transit environment aboard Artemis I Orion",
+    "publisher": "Nature / NASA Artemis Team (2024)",
+    "url": "https://www.nature.com",
+    "accessed": "2026-11-08",
+    "license": "Scientific Citation",
+    "usedFor": "Storm shelter dose reduction coefficients (~4x shielding factor in Orion storm shelter)",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "radlab-iss-2025",
+    "title": "RadLab Ionizing Radiation Dose Database for Human Spaceflight",
+    "publisher": "NASA Open Science Data Repository (OSDR)",
+    "url": "https://osdr.nasa.gov",
+    "accessed": "2026-11-08",
+    "license": "Open Data Commons / NASA Open Access",
+    "usedFor": "Baseline daily galactic cosmic radiation (GCR) and solar particle event (SPE) background dose rates",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "nih-heart-firstaid",
+    "title": "Heart Attack and Acute Angina First Aid Protocol",
+    "publisher": "National Institutes of Health (NIH MedlinePlus)",
+    "url": "https://medlineplus.gov/ency/article/000038.htm",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "First response card: cessation of activity, seated positioning, oxygen, nitroglycerin caution",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "who-primary-survey",
+    "title": "Emergency Medical Teams: ABCDE Primary Survey Framework",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/emergencies",
+    "accessed": "2026-11-08",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "usedFor": "Retrace red-flag check hierarchy: Airway, Breathing, Circulation, Disability/Neuro, Exposure",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  },
+  {
+    "id": "nasa-std-3001",
+    "title": "NASA Space Flight Human-System Standard, Volume 1: Crew Health",
+    "publisher": "NASA Office of the Chief Health and Medical Officer",
+    "url": "https://www.nasa.gov/offices/ochmo",
+    "accessed": "2026-11-08",
+    "license": "Public Domain (U.S. Government Work)",
+    "usedFor": "Cumulative ionizing radiation exposure constraints (30-day and career limits)",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
+  }
+]

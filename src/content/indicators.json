@@ -1,0 +1,94 @@
+[
+  {
+    "id": "bp",
+    "name": "Blood Pressure",
+    "unit": "mmHg",
+    "type": "compound",
+    "fields": [
+      {
+        "key": "systolic",
+        "label": "Systolic",
+        "standardMin": 90,
+        "standardMax": 120,
+        "criticalHigh": 160,
+        "criticalLow": 80
+      },
+      {
+        "key": "diastolic",
+        "label": "Diastolic",
+        "standardMin": 60,
+        "standardMax": 80,
+        "criticalHigh": 100,
+        "criticalLow": 50
+      }
+    ],
+    "source": "nasa-hrp-cardio",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Fluid cephalad shift increases central arterial pressure initially, followed by baroreflex resets."
+  },
+  {
+    "id": "hr",
+    "name": "Heart Rate",
+    "unit": "bpm",
+    "type": "scalar",
+    "standardMin": 60,
+    "standardMax": 100,
+    "criticalHigh": 130,
+    "criticalLow": 45,
+    "source": "nasa-hrp-cardio",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Cardiovascular deconditioning and autonomic alterations can trigger sinus tachycardia or arrhythmias."
+  },
+  {
+    "id": "glucose",
+    "name": "Blood Glucose",
+    "unit": "mg/dL",
+    "type": "scalar",
+    "standardMin": 70,
+    "standardMax": 110,
+    "criticalHigh": 180,
+    "criticalLow": 55,
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Microgravity insulin resistance alterations and metabolic shifts under chronic mission stress."
+  },
+  {
+    "id": "temp",
+    "name": "Body Temperature",
+    "unit": "°C",
+    "type": "scalar",
+    "standardMin": 36.1,
+    "standardMax": 37.5,
+    "criticalHigh": 38.8,
+    "criticalLow": 35.0,
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Spaceflight-associated core temperature elevation ('space fever') during exercise and resting cycles."
+  },
+  {
+    "id": "sleep",
+    "name": "Sleep Duration",
+    "unit": "hours",
+    "type": "scalar",
+    "standardMin": 6.5,
+    "standardMax": 8.5,
+    "criticalLow": 4.0,
+    "criticalHigh": 12.0,
+    "source": "nasa-std-3001",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Circadian desynchrony due to 90-minute orbital lighting cycles or deep-space confinement."
+  },
+  {
+    "id": "mood",
+    "name": "Cognitive & Mood Score",
+    "unit": "1-5 Scale",
+    "type": "scalar",
+    "standardMin": 3,
+    "standardMax": 5,
+    "criticalLow": 2,
+    "criticalHigh": 5,
+    "source": "nasa-eimo-2025",
+    "provenance": "PUBLISHED",
+    "spaceEffect": "Sensory deprivation, isolation from Earth, high workload, and mission communication delays."
+  }
+]

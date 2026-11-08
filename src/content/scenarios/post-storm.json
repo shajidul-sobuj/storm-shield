@@ -1,0 +1,154 @@
+{
+  "id": "post-storm-illness",
+  "title": "Scenario B: Post-Storm Nausea & Acute Radiation Dose Evaluation",
+  "category": "Space Radiation / GI",
+  "trigger": "Nausea, vomiting, headache, or acute fatigue following a Solar Particle Event (SPE)",
+  "reviewedBy": "Y.M.",
+  "doseVerification": {
+    "required": true,
+    "arsThresholdMgy": 700,
+    "arsThresholdDescription": "CDC clinical guidance: Acute Radiation Syndrome (ARS) prodromal nausea/vomiting requires a whole-body absorbed dose >= 700-1000 mGy (0.7-1.0 Gy). Doses below 200 mGy make acute ARS clinically improbable.",
+    "source": "cdc-ars-clinicians",
+    "reviewedBy": "Y.M."
+  },
+  "otherCausesToRuleOut": [
+    {
+      "cause": "Space Motion Sickness (SMS)",
+      "indicator": "Onset during initial 72 hours of microgravity; exacerbated by rapid head movements.",
+      "source": "nasa-std-3001"
+    },
+    {
+      "cause": "Habitat Carbon Dioxide (CO2) Elevation",
+      "indicator": "Check ECLSS ambient PCO2 > 3.0 mmHg; accompanied by frontal headache and lethargy.",
+      "source": "nasa-std-3001"
+    },
+    {
+      "cause": "Foodborne or Waterborne Gastroenteritis",
+      "indicator": "Absence of elevated dosimeter reading; localized abdominal cramping or fever.",
+      "source": "cdc-ars-clinicians"
+    }
+  ],
+  "firstResponse": [
+    {
+      "text": "Verify storm status: if solar particle event is ongoing, ensure crew is inside the storm shelter (water wall / logistics shielding).",
+      "source": "artemis1-radiation",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Immediately read and record personal electronic dosimeters (EPD) for all crew members.",
+      "source": "artemis1-radiation",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Ensure sick bags and emesis bags with sealable ziplocks are readily accessible to prevent floating particulate hazards.",
+      "source": "nasa-std-3001",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "triage": [
+    {
+      "id": "t1",
+      "question": "Did active personal dosimeters record an absorbed dose >= 700 mGy during the storm?",
+      "yes": "t2",
+      "no": "t-low-dose"
+    },
+    {
+      "id": "t2",
+      "question": "Has repeated vomiting occurred within 2 hours of peak storm exposure?",
+      "yes": "step-severe-ars-protocol",
+      "no": "step-moderate-ars-protocol"
+    },
+    {
+      "id": "t-low-dose",
+      "question": "Is the dosimeter reading under 200 mGy with symptoms limited to mild vestibular nausea?",
+      "yes": "step-low-risk-hydration",
+      "no": "step-investigate-other-causes"
+    }
+  ],
+  "capture": [
+    "stormStartTime",
+    "symptomStartTime",
+    "vomitingStartTime",
+    "personalDoseMgy",
+    "ambientFluxLevel"
+  ],
+  "rules": [
+    {
+      "condition": "personalDoseMgy >= 700 && vomitingWithinHours <= 2",
+      "status": "act",
+      "why": "Early vomiting onset within 2 hours of significant dose is a documented marker of high-tier radiation prodrome.",
+      "source": "cdc-triage-2006",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "condition": "personalDoseMgy < 200",
+      "status": "watch",
+      "why": "Absorbed dose is well below the CDC threshold for acute radiation syndrome; evaluate vestibular or environmental causes.",
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-epd-read",
+      "title": "Radiation Dose Assessment",
+      "text": "Record EPD absorbed dose (mGy) and compare with habitat core dosimeters.",
+      "needsKit": ["dosimeter-personal"],
+      "source": "artemis1-radiation",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-oral-hydration",
+      "title": "Electrolyte Fluid Replacement",
+      "text": "Sip 250-500 mL of oral electrolyte rehydration solution slowly over 30 minutes to counteract fluid and mineral shifts.",
+      "needsKit": ["oral-rehydration"],
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-antiemetic",
+      "title": "Antiemetic Administration",
+      "text": "Administer Ondansetron 4 mg orally disintegrating tablet (ODT) placed on the tongue. Allow to dissolve without swallowing whole.",
+      "needsKit": ["ondansetron"],
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "id": "step-temp-monitoring",
+      "title": "Serial Temperature & Infection Vigilance",
+      "text": "Monitor body temperature every 2 hours to screen for early immune compromise or concurrent infection.",
+      "needsKit": [],
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "doNot": [
+    {
+      "text": "Do NOT assume nausea is radiation sickness without verifying personal dosimeters and ruling out space motion sickness.",
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Do NOT leave emesis bags unsealed or unsecured in microgravity.",
+      "source": "nasa-std-3001",
+      "reviewedBy": "Y.M."
+    },
+    {
+      "text": "Do NOT administer antibiotics proactively during the prodromal phase without confirmed fever or clinical infection.",
+      "source": "cdc-ars-clinicians",
+      "reviewedBy": "Y.M."
+    }
+  ],
+  "recheckMinutes": 15,
+  "worseningSigns": [
+    "Vomiting occurring within 60 minutes of exposure (high-dose indicator)",
+    "Inability to tolerate oral liquids, leading to dehydration",
+    "Fever > 38.0°C within 12-24 hours",
+    "Hypotension (systolic BP < 90 mmHg) or extreme lethargy"
+  ],
+  "holdPlan": [
+    "Maintain hydration through small, frequent sips of electrolyte solution",
+    "Continue personal dosimetry logging every 60 minutes",
+    "Log time of all emesis episodes for biological dosimetry handoff to Earth"
+  ]
+}

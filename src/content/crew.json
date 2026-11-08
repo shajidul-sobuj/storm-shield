@@ -1,0 +1,89 @@
+[
+  {
+    "id": "crew-1",
+    "name": "Dr. Maya Lin",
+    "role": "Mission Commander / CMO",
+    "callsign": "Ares-Lead",
+    "age": 42,
+    "bloodType": "O+",
+    "allergies": [],
+    "flightDay": 142,
+    "baseline": {
+      "bp": { "systolic": 112, "diastolic": 72, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 64, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 88, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 36.6, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 7.4, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 4.5, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "radiationDose": { "value": 68.4, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
+    },
+    "current": {
+      "bp": { "systolic": 115, "diastolic": 74, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 68, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 92, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 36.7, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 7.0, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 4.0, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "symptoms": [],
+      "status": "nominal"
+    }
+  },
+  {
+    "id": "crew-2",
+    "name": "Alex Vance",
+    "role": "Mission Pilot & Systems Officer",
+    "callsign": "Vanguard-2",
+    "age": 38,
+    "bloodType": "A-",
+    "allergies": ["aspirin", "nsaids"],
+    "flightDay": 142,
+    "baseline": {
+      "bp": { "systolic": 118, "diastolic": 76, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 58, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 94, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 36.8, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 7.1, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 4.2, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "radiationDose": { "value": 71.2, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
+    },
+    "current": {
+      "bp": { "systolic": 148, "diastolic": 96, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 104, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 118, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 37.1, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 5.2, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 2.5, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "symptoms": ["chest-discomfort", "shortness-of-breath"],
+      "status": "act"
+    }
+  },
+  {
+    "id": "crew-3",
+    "name": "Sofia Rossi",
+    "role": "EVA Specialist & Geochemist",
+    "callsign": "Terra-3",
+    "age": 34,
+    "bloodType": "B+",
+    "allergies": ["penicillin"],
+    "flightDay": 142,
+    "baseline": {
+      "bp": { "systolic": 108, "diastolic": 68, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 62, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 85, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 36.5, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 7.8, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 4.8, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "radiationDose": { "value": 66.8, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
+    },
+    "current": {
+      "bp": { "systolic": 110, "diastolic": 70, "unit": "mmHg", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "hr": { "value": 82, "unit": "bpm", "provenance": "ANCHORED", "source": "nasa-hrp-cardio" },
+      "glucose": { "value": 90, "unit": "mg/dL", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "temp": { "value": 37.3, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "sleep": { "value": 6.0, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
+      "mood": { "value": 3.4, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "symptoms": ["nausea"],
+      "status": "watch"
+    }
+  }
+]

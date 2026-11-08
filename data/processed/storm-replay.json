@@ -1,0 +1,19 @@
+{
+  "eventId": "spe-2024-05-11",
+  "title": "Solar Particle Event (May 2024 Historic Solar Superstorm Replay)",
+  "source": "noaa-swpc-scales",
+  "provenance": "REAL",
+  "description": "GOES-16 satellite proton detector measurements for solar protons >= 10 MeV (pfu = particles/cm²·s·sr).",
+  "timeline": [
+    { "offsetHours": -4, "fluxPfu": 0.8, "level": "S0", "label": "Quiet", "advisory": "Normal interplanetary background. Routine monitoring." },
+    { "offsetHours": -2, "fluxPfu": 8.5, "level": "S0", "label": "Quiet", "advisory": "Elevated precursor flux detected. Standby." },
+    { "offsetHours": 0, "fluxPfu": 38.0, "level": "S1", "label": "Watch", "advisory": "S1 Minor Radiation Storm. Cancel non-essential EVAs. Check dosimeters." },
+    { "offsetHours": 1, "fluxPfu": 280.0, "level": "S2", "label": "Warning", "advisory": "S2 Moderate Radiation Storm. Abort all EVAs immediately. Prepare storm shelter." },
+    { "offsetHours": 2.5, "fluxPfu": 1850.0, "level": "S3", "label": "Shelter Now", "advisory": "S3 Strong Radiation Storm! ALL CREW RETREAT TO STORM SHELTER IMMEDIATELY. Deploy water walls." },
+    { "offsetHours": 4, "fluxPfu": 4200.0, "level": "S3", "label": "Shelter Now", "advisory": "S3 Peak Solar Particle Flux. Maintain shelter position. Minimize movement." },
+    { "offsetHours": 8, "fluxPfu": 1600.0, "level": "S3", "label": "Shelter Now", "advisory": "Sustained high energetic proton flux. Remain in shielded core." },
+    { "offsetHours": 14, "fluxPfu": 350.0, "level": "S2", "label": "Warning", "advisory": "Flux diminishing into S2. Shelter status maintained pending steady decline." },
+    { "offsetHours": 20, "fluxPfu": 85.0, "level": "S1", "label": "Watch", "advisory": "S1 Watch. Radiation levels dropping. Prepare for post-storm egress and survey." },
+    { "offsetHours": 30, "fluxPfu": 6.8, "level": "S0", "label": "Quiet", "advisory": "Storm passed. Flux returned to nominal background. MANDATORY CREW BODY CHECK INITIATED." }
+  ]
+}
