@@ -14,7 +14,15 @@ import HandoffScreen from './ui/HandoffScreen.jsx';
 import SourcesScreen from './ui/SourcesScreen.jsx';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('overview');
+  const getInitialTab = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('tab') || 'overview';
+    } catch {
+      return 'overview';
+    }
+  };
+  const [currentTab, setCurrentTab] = useState(getInitialTab);
   const [crewList, setCrewList] = useState(initialCrew);
   // Default to Alex Vance (crew-2) who illustrates the active cardiovascular scare & allergy check
   const [selectedCrewId, setSelectedCrewId] = useState('crew-2');
@@ -34,6 +42,15 @@ export default function App() {
   ]);
 
   const selectedCrew = crewList.find(c => c.id === selectedCrewId) || crewList[0];
+
+  const setTab = (newTab) => {
+    setCurrentTab(newTab);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', newTab);
+      window.history.replaceState({}, '', url.toString());
+    } catch {}
+  };
 
   // Handler to update vitals
   const handleUpdateVitals = (crewId, newVitals) => {
@@ -58,12 +75,12 @@ export default function App() {
   // Launch Care Mode with specific scenario
   const handleLaunchCare = (scenarioId = 'cardio-scare') => {
     setActiveCareScenario(scenarioId);
-    setCurrentTab('care-mode');
+    setTab('care-mode');
   };
 
   // Launch Retrace
   const handleLaunchRetrace = () => {
-    setCurrentTab('retrace');
+    setTab('retrace');
   };
 
   // Add Care Log
@@ -76,15 +93,15 @@ export default function App() {
     if (drillType === 'cardio') {
       setSelectedCrewId('crew-2');
       setActiveCareScenario('cardio-scare');
-      setCurrentTab('care-mode');
+      setTab('care-mode');
     } else if (drillType === 'storm') {
       setStormStatus(mapFluxToLevel(4200));
-      setCurrentTab('storm-monitor');
+      setTab('storm-monitor');
     } else if (drillType === 'retrace') {
       setSelectedCrewId('crew-2');
-      setCurrentTab('retrace');
+      setTab('retrace');
     } else if (drillType === 'handoff') {
-      setCurrentTab('handoff');
+      setTab('handoff');
     }
   };
 
@@ -94,7 +111,7 @@ export default function App() {
       {/* Primary Mission HUD Header */}
       <Header
         currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
+        setCurrentTab={setTab}
         crewList={crewList}
         selectedCrewId={selectedCrewId}
         setSelectedCrewId={setSelectedCrewId}
