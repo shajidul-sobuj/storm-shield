@@ -71,6 +71,23 @@ export default function App() {
     setCareLogs(prev => [logEntry, ...prev]);
   };
 
+  // Judge Demo Tour Quick Launcher
+  const handleTriggerDrill = (drillType) => {
+    if (drillType === 'cardio') {
+      setSelectedCrewId('crew-2');
+      setActiveCareScenario('cardio-scare');
+      setCurrentTab('care-mode');
+    } else if (drillType === 'storm') {
+      setStormStatus(mapFluxToLevel(4200));
+      setCurrentTab('storm-monitor');
+    } else if (drillType === 'retrace') {
+      setSelectedCrewId('crew-2');
+      setCurrentTab('retrace');
+    } else if (drillType === 'handoff') {
+      setCurrentTab('handoff');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-space-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
       
@@ -85,6 +102,7 @@ export default function App() {
         setGroundLink={setGroundLink}
         stormStatus={stormStatus}
         onOpenStormModal={() => setCurrentTab('storm-monitor')}
+        onTriggerDrill={handleTriggerDrill}
       />
 
       {/* Main Mission Content Container */}
