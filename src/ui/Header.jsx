@@ -12,8 +12,7 @@ import {
   Box, 
   FileText, 
   BookOpen,
-  Sparkles,
-  Layers
+  Sparkles
 } from 'lucide-react';
 
 export default function Header({ 
@@ -34,26 +33,26 @@ export default function Header({
     switch (stormStatus.severity) {
       case 'shelter':
         return {
-          bg: 'bg-rose-600 hover:bg-rose-500 text-white animate-pulse',
+          bg: 'bg-rose-600 hover:bg-rose-700 text-white animate-pulse shadow-sm',
           label: `${stormStatus.level} SHELTER NOW`,
           flux: `${stormStatus.flux} pfu`
         };
       case 'warning':
         return {
-          bg: 'bg-amber-600 hover:bg-amber-500 text-black font-bold',
+          bg: 'bg-amber-500 hover:bg-amber-600 text-white font-bold shadow-sm',
           label: `${stormStatus.level} WARNING`,
           flux: `${stormStatus.flux} pfu`
         };
       case 'watch':
         return {
-          bg: 'bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-600',
+          bg: 'bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300',
           label: `${stormStatus.level} WATCH`,
           flux: `${stormStatus.flux} pfu`
         };
       case 'quiet':
       default:
         return {
-          bg: 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700',
+          bg: 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300',
           label: 'S0 QUIET',
           flux: `${stormStatus.flux} pfu`
         };
@@ -75,62 +74,64 @@ export default function Header({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-space-950/95 backdrop-blur-md border-b border-slate-800/80 shadow-2xl">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
       
-      {/* Judge Rapid Demo Tour Bar */}
-      <div className="bg-gradient-to-r from-cyan-950 via-space-900 to-indigo-950 px-4 py-1.5 border-b border-cyan-800/40 text-xs flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 text-cyan-300 font-mono font-semibold text-[11px]">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-          <span>JUDGE DEMO DRILLS:</span>
+      {/* Rapid Presentation Tour Bar for Judges */}
+      <div className="bg-slate-100 border-b border-slate-200 px-4 py-1.5 text-xs flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-1.5 text-sky-800 font-mono font-bold text-[11px]">
+          <Sparkles className="w-3.5 h-3.5 text-sky-600" />
+          <span>JUDGE PRESENTATION TOUR:</span>
         </div>
         <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
           <button
             onClick={() => onTriggerDrill('cardio')}
-            className="px-2 py-0.5 rounded bg-space-900/90 hover:bg-rose-950 hover:text-rose-200 text-slate-300 border border-slate-700 hover:border-rose-500 transition-colors cursor-pointer"
+            className="px-2.5 py-0.5 rounded-full bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-700 border border-slate-300 hover:border-rose-300 transition-colors shadow-2xs cursor-pointer font-medium"
           >
             1. Cardio Alert (Alex Vance)
           </button>
           <button
             onClick={() => onTriggerDrill('storm')}
-            className="px-2 py-0.5 rounded bg-space-900/90 hover:bg-amber-950 hover:text-amber-200 text-slate-300 border border-slate-700 hover:border-amber-500 transition-colors cursor-pointer"
+            className="px-2.5 py-0.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-700 border border-slate-300 hover:border-amber-300 transition-colors shadow-2xs cursor-pointer font-medium"
           >
-            2. Solar Superstorm & Shelter
+            2. Solar Storm & Shelter
           </button>
           <button
             onClick={() => onTriggerDrill('retrace')}
-            className="px-2 py-0.5 rounded bg-space-900/90 hover:bg-indigo-950 hover:text-indigo-200 text-slate-300 border border-slate-700 hover:border-indigo-500 transition-colors cursor-pointer"
+            className="px-2.5 py-0.5 rounded-full bg-white hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 border border-slate-300 hover:border-indigo-300 transition-colors shadow-2xs cursor-pointer font-medium"
           >
-            3. Unexpected Event Retrace
+            3. Retrace Unexpected Event
           </button>
           <button
             onClick={() => onTriggerDrill('handoff')}
-            className="px-2 py-0.5 rounded bg-space-900/90 hover:bg-emerald-950 hover:text-emerald-200 text-slate-300 border border-slate-700 hover:border-emerald-500 transition-colors cursor-pointer"
+            className="px-2.5 py-0.5 rounded-full bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-300 hover:border-emerald-300 transition-colors shadow-2xs cursor-pointer font-medium"
           >
-            4. Flight Surgeon Handoff
+            4. 30s Doctor Handoff
           </button>
         </div>
       </div>
 
-      {/* Top telemetry bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+      {/* Main Top Telemetry Bar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
         
-        {/* Brand & Mission Clock */}
+        {/* Brand & Mission Status */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-md bg-cyan-950 border border-cyan-500/40 text-cyan-400">
-              <ShieldAlert className="w-5 h-5 text-cyan-400" />
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-lg bg-sky-50 border border-sky-200 text-sky-600">
+              <ShieldAlert className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold tracking-wider text-slate-100 flex items-center gap-2">
+              <div className="font-bold tracking-wide text-slate-900 flex items-center gap-2 text-sm">
                 <span>STORM SHIELD</span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-400 border border-cyan-800 font-mono">EIMO v3</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-sky-100 text-sky-800 border border-sky-300 font-mono font-semibold">
+                  EIMO v3
+                </span>
               </div>
-              <div className="text-[10px] text-slate-400">Earth-Independent Medical Operations</div>
+              <div className="text-[11px] text-slate-500 font-medium">Earth-Independent Medical Operations</div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded bg-space-900 border border-slate-800 text-slate-400 font-mono">
-            <Clock className="w-3.5 h-3.5 text-cyan-500" />
+          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-600 font-mono text-[11px]">
+            <Clock className="w-3.5 h-3.5 text-sky-600" />
             <span>MET 142:08:44:12</span>
           </div>
         </div>
@@ -140,7 +141,7 @@ export default function Header({
           {/* Storm Alert Button */}
           <button
             onClick={onOpenStormModal}
-            className={`flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-mono font-semibold transition-all hover:scale-105 cursor-pointer shadow-md ${stormBadge.bg}`}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all hover:scale-105 cursor-pointer shadow-xs ${stormBadge.bg}`}
           >
             <Zap className="w-3.5 h-3.5" />
             <span>{stormBadge.label}</span>
@@ -148,20 +149,20 @@ export default function Header({
           </button>
 
           {/* Ground Link Switch */}
-          <div className="flex items-center gap-1 p-0.5 rounded-lg bg-space-900 border border-slate-800 font-mono">
+          <div className="flex items-center gap-1 p-0.5 rounded-lg bg-slate-100 border border-slate-200 font-mono">
             <Radio className="w-3.5 h-3.5 ml-1.5 text-slate-400" />
             {['Available', 'Delayed', 'Unavailable'].map((mode) => (
               <button
                 key={mode}
                 onClick={() => setGroundLink(mode)}
-                className={`px-2 py-0.5 rounded text-[11px] transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-md text-[11px] transition-all cursor-pointer ${
                   groundLink === mode
                     ? mode === 'Available'
-                      ? 'bg-emerald-600 text-white font-semibold shadow'
+                      ? 'bg-emerald-600 text-white font-bold shadow-xs'
                       : mode === 'Delayed'
-                      ? 'bg-amber-600 text-black font-semibold shadow'
-                      : 'bg-rose-700 text-white font-semibold shadow'
-                    : 'text-slate-400 hover:text-slate-200'
+                      ? 'bg-amber-500 text-white font-bold shadow-xs'
+                      : 'bg-rose-600 text-white font-bold shadow-xs'
+                    : 'text-slate-500 hover:text-slate-800 font-medium'
                 }`}
                 title={`Switch Ground Link Mode to ${mode}`}
               >
@@ -173,12 +174,10 @@ export default function Header({
 
       </div>
 
-      {/* Crew Selector & Primary Nav */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800/50">
-        
-        {/* Crew Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
-          <span className="text-[11px] text-slate-400 font-mono mr-1">CREW:</span>
+      {/* Crew Switcher Tabs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100">
+        <div className="flex items-center gap-2 overflow-x-auto py-0.5">
+          <span className="text-[11px] text-slate-400 font-mono font-bold mr-1">CREW:</span>
           {crewList.map((astronaut) => {
             const isSelected = astronaut.id === selectedCrewId;
             const status = astronaut.current?.status || 'nominal';
@@ -187,10 +186,10 @@ export default function Header({
               <button
                 key={astronaut.id}
                 onClick={() => setSelectedCrewId(astronaut.id)}
-                className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md text-xs font-sans transition-all cursor-pointer ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-sans transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-space-800 text-cyan-300 border border-cyan-500/50 shadow-sm font-semibold'
-                    : 'bg-space-900/60 text-slate-400 hover:bg-space-800 hover:text-slate-200 border border-transparent'
+                    ? 'bg-sky-50 text-sky-900 border border-sky-300 shadow-xs font-bold'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 font-medium'
                 }`}
               >
                 <span className={`w-2 h-2 rounded-full ${
@@ -208,21 +207,20 @@ export default function Header({
         </div>
 
         {/* Selected Astronaut Quick Status Pill */}
-        <div className="hidden xl:flex items-center gap-3 text-xs font-mono">
-          <div className="text-slate-400">
-            Role: <span className="text-slate-200 font-medium">{selectedCrew.role}</span>
+        <div className="hidden xl:flex items-center gap-4 text-xs font-mono">
+          <div className="text-slate-500">
+            Role: <span className="text-slate-800 font-medium">{selectedCrew.role}</span>
           </div>
-          <div className="text-slate-400">
-            Allergies: <span className={selectedCrew.allergies.length > 0 ? 'text-amber-400 font-bold' : 'text-slate-200'}>
+          <div className="text-slate-500">
+            Allergies: <span className={selectedCrew.allergies.length > 0 ? 'text-amber-600 font-bold' : 'text-slate-800 font-medium'}>
               {selectedCrew.allergies.length > 0 ? selectedCrew.allergies.join(', ').toUpperCase() : 'NONE (NKDA)'}
             </span>
           </div>
         </div>
-
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 overflow-x-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200 overflow-x-auto">
         <nav className="flex space-x-1 py-1.5">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -231,13 +229,13 @@ export default function Header({
               <button
                 key={item.id}
                 onClick={() => setCurrentTab(item.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
                   active
-                    ? 'bg-cyan-950/70 text-cyan-400 border border-cyan-800/60 font-semibold shadow-inner'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-space-900'
+                    ? 'bg-sky-50 text-sky-700 border border-sky-300 font-bold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-transparent'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-cyan-400' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${active ? 'text-sky-600' : 'text-slate-400'}`} />
                 <span>{item.label}</span>
               </button>
             );

@@ -13,5 +13,5 @@ describe('nasaApi.js - NASA DONKI Space Weather Service', () => {
     expect(result).toHaveProperty('success');
     expect(result).toHaveProperty('live');
     expect(typeof result.live).toBe('boolean');
-  });
+  }, 12000);
 });

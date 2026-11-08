@@ -89,7 +89,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-space-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-sky-600 selection:text-white">
       
       {/* Primary Mission HUD Header */}
       <Header
@@ -175,13 +175,13 @@ export default function App() {
       </main>
 
       {/* Spaceflight Footer */}
-      <footer className="bg-space-950 border-t border-slate-800/80 py-4 text-xs font-mono text-slate-400">
+      <footer className="bg-white border-t border-slate-200 py-4 text-xs font-mono text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span>STORM SHIELD · TEAM EXTOKENED (NASA SPACE APPS CHALLENGE 2026)</span>
+            <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+            <span className="font-semibold text-slate-700">STORM SHIELD · TEAM EXTOKENED (NASA SPACE APPS CHALLENGE 2026)</span>
           </div>
-          <div className="text-[11px] text-slate-400">
+          <div className="text-[11px] text-slate-500">
             Student Decision Support Prototype · Not clinically validated · Powered by CDC, NASA HRP & NOAA SWPC
           </div>
         </div>
