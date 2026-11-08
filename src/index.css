@@ -43,3 +43,35 @@
 .animate-heartbeat {
   animation: heartBeat 1.2s ease-in-out infinite;
 }
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radarSweep 10s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes ecgDraw {
+  0% { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-ecg-line {
+  stroke-dasharray: 400;
+  animation: ecgDraw 2.4s linear infinite;
+}
+
+@keyframes scanBeam {
+  0% { transform: translateY(-10px); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(400px); opacity: 0; }
+}
+
+.animate-scan-beam {
+  animation: scanBeam 4s ease-in-out infinite;
+}
+

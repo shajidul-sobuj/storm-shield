@@ -20,7 +20,7 @@ export default function RegionDrawer({ region, astronaut, onClose, onLaunchCare,
   const statusInfo = getRegionStatus();
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+    <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between border-b border-slate-100 pb-3.5">
         <div>
