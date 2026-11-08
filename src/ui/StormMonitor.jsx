@@ -10,16 +10,25 @@ import {
   CheckSquare, 
   ArrowRight,
   TrendingUp,
-  Radiation
+  Radiation,
+  Radio,
+  Key,
+  RefreshCw,
+  Wifi,
+  WifiOff
 } from 'lucide-react';
 import stormReplayData from '../../data/processed/storm-replay.json';
 import { mapFluxToLevel, estimateStormDoseRate } from '../engine/storm.js';
+import { fetchNasaSpaceWeather, DEFAULT_NASA_KEY } from '../engine/nasaApi.js';
 import ProvenanceBadge from './ProvenanceBadge.jsx';
 
 export default function StormMonitor({ onSelectStormLevel, onLaunchCare, onLaunchVitals }) {
   const [timelineIndex, setTimelineIndex] = useState(4); // Default at peak (S3 4200 pfu)
-  const [isPlaying, setIsPlaying] = useState(false);
   const [showWhyModal, setShowWhyModal] = useState(false);
+  const [showKeyModal, setShowKeyModal] = useState(false);
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('nasa_api_key') || DEFAULT_NASA_KEY);
+  const [nasaLiveStatus, setNasaLiveStatus] = useState({ state: 'idle', message: 'Bundled Replay Mode' });
+  const [liveNotifications, setLiveNotifications] = useState([]);
 
   const currentStep = stormReplayData.timeline[timelineIndex] || stormReplayData.timeline[0];
   const stormLevel = mapFluxToLevel(currentStep.fluxPfu);
@@ -46,36 +55,157 @@ export default function StormMonitor({ onSelectStormLevel, onLaunchCare, onLaunc
     onSelectStormLevel(mapFluxToLevel(stormReplayData.timeline[0].fluxPfu));
   };
 
+  // Test / Fetch Live NASA DONKI Feed
+  const handleFetchNasaLive = async () => {
+    setNasaLiveStatus({ state: 'loading', message: 'Connecting to NASA DONKI gateway...' });
+    const res = await fetchNasaSpaceWeather(apiKey);
+
+    if (res.success && res.notifications.length > 0) {
+      setLiveNotifications(res.notifications.slice(0, 3));
+      setNasaLiveStatus({
+        state: 'live',
+        message: `Live NASA DONKI stream active (${res.notifications.length} alerts received)`
+      });
+    } else {
+      setNasaLiveStatus({
+        state: 'fallback',
+        message: res.error || 'NASA API unreachable. Gracefully fallen back to bundled May 2024 SPE dataset.'
+      });
+    }
+  };
+
+  const handleSaveKey = (e) => {
+    e.preventDefault();
+    localStorage.setItem('nasa_api_key', apiKey);
+    setShowKeyModal(false);
+    handleFetchNasaLive();
+  };
+
   const isPostStorm = timelineIndex === stormReplayData.timeline.length - 1;
 
   return (
     <div className="space-y-6">
       
       {/* Top Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-space-900 border border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-space-900 border border-slate-800 shadow-xl">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-lg bg-amber-950 border border-amber-600/50 text-amber-400">
             <Zap className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
-              <span>Solar Radiation Storm Monitor & Replay</span>
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-100">
+                Solar Radiation Storm Monitor & Replay
+              </h2>
               <ProvenanceBadge provenance="REAL" sourceId="noaa-swpc-scales" />
-            </h2>
-            <p className="text-xs text-slate-400">
+            </div>
+            <p className="text-xs text-slate-400 mt-0.5">
               {stormReplayData.title} · GOES-16 satellite energetic proton telemetry.
             </p>
           </div>
         </div>
 
-        <button
-          onClick={() => setShowWhyModal(!showWhyModal)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-space-800 hover:bg-space-700 text-cyan-400 border border-slate-700 text-xs font-mono transition-colors cursor-pointer"
-        >
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>Why this alert?</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {/* NASA API Key & Live Stream Controls */}
+          <button
+            onClick={() => setShowKeyModal(!showKeyModal)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-space-950 hover:bg-space-800 text-cyan-400 border border-cyan-800/80 text-xs font-mono transition-colors cursor-pointer"
+            title="Configure NASA API Key"
+          >
+            <Key className="w-3.5 h-3.5" />
+            <span>NASA Key Config</span>
+          </button>
+
+          <button
+            onClick={handleFetchNasaLive}
+            disabled={nasaLiveStatus.state === 'loading'}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-black font-semibold text-xs font-mono transition-colors cursor-pointer disabled:opacity-50"
+          >
+            <Radio className="w-3.5 h-3.5" />
+            <span>{nasaLiveStatus.state === 'loading' ? 'Connecting...' : 'Fetch Live NASA DONKI'}</span>
+          </button>
+
+          <button
+            onClick={() => setShowWhyModal(!showWhyModal)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-space-800 hover:bg-space-700 text-slate-300 border border-slate-700 text-xs font-mono transition-colors cursor-pointer"
+          >
+            <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Why this alert?</span>
+          </button>
+        </div>
       </div>
+
+      {/* NASA API Key Modal */}
+      {showKeyModal && (
+        <form onSubmit={handleSaveKey} className="p-4 rounded-xl bg-space-950 border border-cyan-700 space-y-3 animate-fade-in text-xs">
+          <div className="flex justify-between items-center text-cyan-300 font-bold border-b border-slate-800 pb-1.5">
+            <span className="flex items-center gap-1.5">
+              <Key className="w-4 h-4 text-cyan-400" />
+              <span>NASA API KEY CONFIGURATION (OFFICIAL NASA DATA ACCESS)</span>
+            </span>
+            <ProvenanceBadge provenance="PUBLISHED" sourceId="nasa-eimo-2025" compact />
+          </div>
+          <p className="text-slate-300 leading-relaxed font-sans">
+            Enter your personal NASA API Key to query live Solar Particle Events (SEP), Solar Flares (FLR), and space weather alerts directly from NASA's DONKI service.
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="Enter NASA API Key"
+              className="flex-1 px-3 py-2 rounded bg-space-900 border border-slate-700 text-slate-100 font-mono text-xs focus:outline-none focus:border-cyan-500"
+              required
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500 text-black font-bold font-mono transition-colors cursor-pointer"
+            >
+              Save Key & Fetch
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* Live NASA Feed Status Banner */}
+      {nasaLiveStatus.state !== 'idle' && (
+        <div className={`p-3.5 rounded-xl border text-xs flex items-center justify-between gap-3 font-mono ${
+          nasaLiveStatus.state === 'live'
+            ? 'bg-emerald-950/80 border-emerald-600 text-emerald-200'
+            : nasaLiveStatus.state === 'loading'
+            ? 'bg-space-900 border-cyan-800 text-cyan-300'
+            : 'bg-amber-950/80 border-amber-600 text-amber-200'
+        }`}>
+          <div className="flex items-center gap-2">
+            {nasaLiveStatus.state === 'live' ? (
+              <Wifi className="w-4 h-4 text-emerald-400 animate-pulse shrink-0" />
+            ) : (
+              <WifiOff className="w-4 h-4 text-amber-400 shrink-0" />
+            )}
+            <span>{nasaLiveStatus.message}</span>
+          </div>
+          <span className="text-[10px] px-2 py-0.5 rounded bg-space-950 text-slate-300 border border-slate-800">
+            {nasaLiveStatus.state === 'live' ? 'CONNECTED: api.nasa.gov' : 'OFFLINE-SAFE FALLBACK'}
+          </span>
+        </div>
+      )}
+
+      {/* Live Notifications Card (if available) */}
+      {liveNotifications.length > 0 && (
+        <div className="p-4 rounded-xl bg-space-900 border border-emerald-800/60 space-y-2 text-xs">
+          <div className="font-mono text-emerald-400 font-bold uppercase text-[11px]">
+            Live NASA DONKI Space Weather Notifications:
+          </div>
+          <div className="space-y-1.5">
+            {liveNotifications.map((n, idx) => (
+              <div key={idx} className="p-2.5 rounded bg-space-950 border border-slate-800 flex justify-between items-center font-sans text-slate-300">
+                <span className="font-medium text-slate-100">{n.messageType || 'DONKI Alert'}</span>
+                <span className="text-[11px] font-mono text-cyan-400">{n.messageIssueTime?.split('T')[0]}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* "Why this alert?" Explanation Panel */}
       {showWhyModal && (
