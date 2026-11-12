@@ -119,5 +119,16 @@
     "usedFor": "Cumulative ionizing radiation exposure constraints (30-day and career limits)",
     "paraphrased": true,
     "checkedBy": "Yarin"
+  },
+  {
+    "id": "csa-biomonitor",
+    "title": "Bio-Monitor: Keeping an eye on astronauts' vital signs",
+    "publisher": "Canadian Space Agency (CSA-ASC)",
+    "url": "https://www.asc-csa.gc.ca/eng/iss/bio-monitor.asp",
+    "accessed": "2026-11-10",
+    "license": "Crown Copyright / Educational Use",
+    "usedFor": "Wearable sensor parameters: pulse, ECG, blood pressure estimate, breathing rate, skin temp, SpO2, and activity",
+    "paraphrased": true,
+    "checkedBy": "Yarin"
   }
 ]

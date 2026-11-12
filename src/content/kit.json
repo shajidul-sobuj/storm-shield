@@ -8,7 +8,8 @@
     "cautions": "Strictly contraindicated if allergic to aspirin/NSAIDs or if active internal bleeding suspected.",
     "allergens": ["aspirin", "nsaids"],
     "source": "nih-heart-firstaid",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A1", "status": "pending" }
   },
   {
     "id": "nitroglycerin",
@@ -19,7 +20,8 @@
     "cautions": "Do NOT administer if systolic blood pressure is below 90 mmHg or if heart rate is below 50 bpm.",
     "allergens": [],
     "source": "nih-heart-firstaid",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A1", "status": "pending" }
   },
   {
     "id": "oxygen-kit",
@@ -30,7 +32,8 @@
     "cautions": "Confirm high-flow seal; monitor habitat ambient O2 levels to avoid hyperoxic flammability risk.",
     "allergens": [],
     "source": "nasa-cds-2022",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A1", "status": "pending" }
   },
   {
     "id": "ondansetron",
@@ -41,7 +44,8 @@
     "cautions": "Effective for solar storm radiation-induced nausea; screen for cardiac QT interval lengthening.",
     "allergens": [],
     "source": "cdc-ars-clinicians",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A2", "status": "pending" }
   },
   {
     "id": "oral-rehydration",
@@ -52,7 +56,8 @@
     "cautions": "Dissolve in 500 mL sterile potable water. Essential for fluid loss during acute nausea or heat stress.",
     "allergens": [],
     "source": "cdc-ars-clinicians",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A2", "status": "pending" }
   },
   {
     "id": "epinephrine",
@@ -63,7 +68,8 @@
     "cautions": "For acute anaphylactic shock or severe airway compromise.",
     "allergens": [],
     "source": "who-primary-survey",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A1", "status": "pending" }
   },
   {
     "id": "paracetamol",
@@ -74,7 +80,8 @@
     "cautions": "Safe first-line analgesic for patients allergic to aspirin or NSAIDs.",
     "allergens": [],
     "source": "nasa-cds-2022",
-    "provenance": "PUBLISHED"
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A1", "status": "pending" }
   },
   {
     "id": "dosimeter-personal",
@@ -85,6 +92,7 @@
     "cautions": "Verify calibration status and clip to torso under flight suit.",
     "allergens": [],
     "source": "artemis1-radiation",
-    "provenance": "REAL"
+    "provenance": "REAL",
+    "approval": { "id": "A2", "status": "pending" }
   }
 ]

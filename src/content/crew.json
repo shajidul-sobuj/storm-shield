@@ -15,6 +15,8 @@
       "temp": { "value": 36.6, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 7.4, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 4.5, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 98, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 14, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "radiationDose": { "value": 68.4, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
     },
     "current": {
@@ -24,6 +26,8 @@
       "temp": { "value": 36.7, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 7.0, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 4.0, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 98, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 15, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "symptoms": [],
       "status": "nominal"
     }
@@ -44,6 +48,8 @@
       "temp": { "value": 36.8, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 7.1, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 4.2, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 98, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 14, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "radiationDose": { "value": 71.2, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
     },
     "current": {
@@ -53,6 +59,8 @@
       "temp": { "value": 37.1, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 5.2, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 2.5, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 92, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 24, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "symptoms": ["chest-discomfort", "shortness-of-breath"],
       "status": "act"
     }
@@ -73,6 +81,8 @@
       "temp": { "value": 36.5, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 7.8, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 4.8, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 99, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 13, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "radiationDose": { "value": 66.8, "unit": "mGy", "provenance": "REAL", "source": "radlab-iss-2025" }
     },
     "current": {
@@ -82,6 +92,8 @@
       "temp": { "value": 37.3, "unit": "°C", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "sleep": { "value": 6.0, "unit": "hours", "provenance": "ANCHORED", "source": "nasa-std-3001" },
       "mood": { "value": 3.4, "unit": "1-5", "provenance": "ANCHORED", "source": "nasa-eimo-2025" },
+      "spo2": { "value": 97, "unit": "%", "provenance": "ANCHORED", "source": "csa-biomonitor" },
+      "rr": { "value": 16, "unit": "brpm", "provenance": "ANCHORED", "source": "csa-biomonitor" },
       "symptoms": ["nausea"],
       "status": "watch"
     }

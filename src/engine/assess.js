@@ -78,7 +78,27 @@ export function assessAstronaut(current = {}, baseline = {}, indicatorDefs = [])
     }
   }
 
-  // 5. Sleep & Cognitive Fatigue Check
+  // 5. Blood Oxygen (SpO2) Check
+  if (current.spo2 !== undefined) {
+    const spo2Val = typeof current.spo2 === 'object' ? current.spo2.value : current.spo2;
+    if (spo2Val < 90) {
+      escalate('act', `Hypoxemia alert: SpO2 ${spo2Val}% (critical < 90%)`);
+    } else if (spo2Val <= 94) {
+      escalate('watch', `Borderline oxygen saturation: SpO2 ${spo2Val}%`);
+    }
+  }
+
+  // 6. Respiration Rate (RR) Check
+  if (current.rr !== undefined) {
+    const rrVal = typeof current.rr === 'object' ? current.rr.value : current.rr;
+    if (rrVal >= 28 || rrVal <= 8) {
+      escalate('act', `Severe respiratory rate abnormality: ${rrVal} brpm`);
+    } else if (rrVal >= 22 || rrVal <= 10) {
+      escalate('watch', `Altered respiratory rate: ${rrVal} brpm`);
+    }
+  }
+
+  // 7. Sleep & Cognitive Fatigue Check
   if (current.sleep !== undefined) {
     const sVal = typeof current.sleep === 'object' ? current.sleep.value : current.sleep;
     if (sVal < 4.5) {

@@ -69,6 +69,18 @@ export function generateFlightSurgeonHandoff({
         provenance: 'ANCHORED'
       },
       {
+        vital: 'Blood Oxygen (SpO2)',
+        baseline: `${patient.baseline?.spo2?.value || 98} %`,
+        current: `${patient.current?.spo2?.value || patient.current?.spo2 || 98} %`,
+        provenance: 'ANCHORED'
+      },
+      {
+        vital: 'Breathing Rate (RR)',
+        baseline: `${patient.baseline?.rr?.value || 14} brpm`,
+        current: `${patient.current?.rr?.value || patient.current?.rr || 15} brpm`,
+        provenance: 'ANCHORED'
+      },
+      {
         vital: 'Body Temperature',
         baseline: `${patient.baseline?.temp?.value || 36.6} °C`,
         current: `${patient.current?.temp?.value || patient.current?.temp || 36.6} °C`,

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "q-aspirin",
+    "question": "Can I give aspirin for chest discomfort?",
+    "keywords": ["aspirin", "chest pain", "chest discomfort", "medicine", "pill", "blood thinner", "nsaid", "allergy"],
+    "answer": "Check astronaut allergies immediately! For Alex Vance or any crew member with documented Aspirin/NSAID allergy, DO NOT administer aspirin. In confirmed non-allergic crew presenting with acute ischemic chest pain, protocol advises chewing one adult non-enteric aspirin (325 mg) after checking vitals.",
+    "source": "nih-heart-firstaid",
+    "approval": {
+      "id": "A1",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-semi-recumbent",
+    "question": "Why use semi-recumbent positioning for chest distress?",
+    "keywords": ["semi-recumbent", "position", "sitting", "rest", "posture", "lie down"],
+    "answer": "In microgravity, fluid shifts toward the head increase cardiac preload. Placing the astronaut in a semi-recumbent (seated at 45 degrees) position with knees slightly bent reduces cardiac workload, lowers venous return, and aids respiratory mechanics.",
+    "source": "nasa-hrp-cardio",
+    "approval": {
+      "id": "A1",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-ars-symptoms",
+    "question": "How do I recognize Acute Radiation Sickness (ARS)?",
+    "keywords": ["ars", "radiation sickness", "vomiting", "nausea", "headache", "solar storm illness"],
+    "answer": "ARS prodrome begins with nausea, vomiting, fatigue, and weakness. The key clinical metric is vomiting latency: vomiting within 1 to 2 hours of exposure indicates a high whole-body dose (>3 to 4 Gy), requiring immediate antiemetics (ondansetron), heavy hydration, and storm shelter isolation.",
+    "source": "cdc-ars-clinicians",
+    "approval": {
+      "id": "A2",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-storm-shelter",
+    "question": "What is the shelter protocol during an S3 or higher solar storm?",
+    "keywords": ["storm shelter", "s3", "s4", "proton flux", "spe", "water wall", "radiation shelter"],
+    "answer": "Upon an S3 (Strong) or greater SPE alert, crew must immediately abort EVA, retreat to the central radiation shelter surrounded by water tanks and food stowage (~4x dose attenuation), power down non-essential electronics, and log hourly dosimeter readings.",
+    "source": "noaa-swpc-scales",
+    "approval": {
+      "id": "A2",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-skin-temp",
+    "question": "Is wearable skin temperature the same as core body temperature?",
+    "keywords": ["skin temp", "temperature", "core temp", "fever", "thermometer", "accuracy"],
+    "answer": "No. The Bio-Monitor wearable sensor measures peripheral skin temperature, which fluctuates with cabin ambient airflow and microgravity vasodilation. A skin temperature reading is not equivalent to core body temperature. Confirm suspected hypothermia or space fever using a calibrated oral/tympanic probe.",
+    "source": "csa-biomonitor",
+    "approval": {
+      "id": "A3",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-biomonitor-bp",
+    "question": "How reliable is wearable blood pressure telemetry?",
+    "keywords": ["blood pressure estimate", "wearable blood pressure", "blood pressure", "bp", "wearable bp", "cuff", "accuracy", "pulse transit", "reliable"],
+    "answer": "Bio-Monitor wearable blood pressure is an indirect physiological estimate derived from pulse transit time and photoplethysmography. It is labelled 'ESTIMATE' in Storm Shield. In an acute emergency or medication decision, verify with a manual pneumatic cuff.",
+    "source": "csa-biomonitor",
+    "approval": {
+      "id": "A3",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-spo2-low",
+    "question": "What should I do if blood oxygen (SpO2) falls below 90%?",
+    "keywords": ["spo2", "oxygen", "hypoxia", "low oxygen", "cyanosis", "pulse oximeter"],
+    "answer": "An SpO2 below 90% signals potential hypoxemia. Check sensor placement and signal quality first. If verified, immediately provide supplemental oxygen via mask (2 to 4 L/min), verify cabin pO2 levels, elevate astronaut torso, and trigger a Crew Alert.",
+    "source": "csa-biomonitor",
+    "approval": {
+      "id": "A3",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-respiratory-rate",
+    "question": "What are the safe limits for breathing rate (RR)?",
+    "keywords": ["breathing rate", "respiratory rate", "rr", "tachypnea", "hyperventilation", "brp"],
+    "answer": "Normal resting adult breathing rate is 12 to 20 breaths per minute. A rate >26 brpm suggests tachypnea, pain, or CO2 pocketing. A rate <8 brpm indicates central respiratory depression requiring immediate physical stimulation and airway assessment.",
+    "source": "csa-biomonitor",
+    "approval": {
+      "id": "A3",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-checkin-timer",
+    "question": "How does the dead-man check-in timer work?",
+    "keywords": ["check-in timer", "dead man", "escalate", "timer", "unresponsive", "patient timer"],
+    "answer": "During Self-Support mode or an active emergency, the patient must tap 'I'm OK' or say 'OK' at configured intervals (e.g., 60 seconds, or 10 seconds in demo mode). If silence persists beyond the timer, Storm Shield escalates the alert to an urgent siren on all crew consoles.",
+    "source": "nasa-eimo-2025",
+    "approval": {
+      "id": "A7",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-persistence-rule",
+    "question": "Why did the wearable alert not trigger on a single high reading?",
+    "keywords": ["persistence rule", "false alarm", "spike", "anomaly rule", "consecutive"],
+    "answer": "To prevent false alarms from transient sensor noise or astronaut motion artifacts, Storm Shield enforces a statistical persistence rule (Approval A7): an Act alert is only raised after N (3) consecutive samples outside safe limits.",
+    "source": "csa-biomonitor",
+    "approval": {
+      "id": "A7",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-retrace-purpose",
+    "question": "When should I use Retrace mode?",
+    "keywords": ["retrace", "unplanned", "unknown event", "timeline", "loss ladder", "low confidence"],
+    "answer": "Use Retrace whenever an incident falls outside the predefined clinical scenarios or after spontaneous actions have already occurred. Retrace performs a reverse timeline reconstruction and primary survey check. All Retrace suggestions are explicitly labelled LOW CONFIDENCE.",
+    "source": "who-primary-survey",
+    "approval": {
+      "id": "A4",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  },
+  {
+    "id": "q-autonomy-level",
+    "question": "What is Storm Shield's autonomy level?",
+    "keywords": ["autonomy", "autonomy level", "ai treatment", "human acts", "medical device"],
+    "answer": "Storm Shield operates at Autonomy Ladder Level 2: Decision Support. The software visualizes, calculates deltas, alerts the crew, and speaks guidance. The human acts. The software never sends commands to a medical device or a human body.",
+    "source": "nasa-eimo-2025",
+    "approval": {
+      "id": "A5",
+      "status": "pending",
+      "by": "Dr. Sarah Jenkins (Flight Medicine Consultant)"
+    }
+  }
+]

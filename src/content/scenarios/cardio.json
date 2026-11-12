@@ -4,6 +4,7 @@
   "category": "Cardiovascular",
   "trigger": "Chest tightness, radiating arm/jaw discomfort, tachycardia, or severe hypertension",
   "reviewedBy": "Y.M.",
+  "approval": { "id": "A1", "status": "pending", "reviewer": "Dr. Sarah Jenkins" },
   "firstResponse": [
     {
       "text": "Immediately halt all physical tasks and exercise countermeasures.",

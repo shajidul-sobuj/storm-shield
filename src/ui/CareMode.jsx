@@ -4,6 +4,7 @@ import postStormScenario from '../content/scenarios/post-storm.json';
 import kitInventory from '../content/kit.json';
 import { checkKitAvailability, verifyAllergySafety, createCareLogEntry } from '../engine/care.js';
 import ProvenanceBadge from './ProvenanceBadge.jsx';
+import { speakText } from '../assistant/speak.js';
 import { 
   ShieldAlert, 
   Heart, 
@@ -86,8 +87,8 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
             <span className="text-xs text-slate-500 font-mono">
               Patient: <strong className="text-slate-900">{astronaut.name}</strong> ({astronaut.callsign})
             </span>
-            <span className="text-xs text-slate-500 font-mono">
-              Medical Reviewer: <strong className="text-emerald-700 font-semibold">{scenario.reviewedBy}</strong>
+            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">
+              {selectedScenarioId === 'cardio-scare' ? '[Approval A1: Pending Medical Review]' : '[Approval A2: Pending Medical Review]'}
             </span>
           </div>
           <h2 className="text-lg font-bold text-slate-900 mt-1">
@@ -244,6 +245,14 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
                         <div className="flex items-center gap-2">
                           <h4 className="text-sm font-bold text-slate-900">{step.title}</h4>
                           <ProvenanceBadge provenance="PUBLISHED" sourceId={step.source} compact />
+                          <button
+                            type="button"
+                            onClick={() => speakText(`${step.title}. ${step.text}`)}
+                            title="Read this step aloud"
+                            className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-mono transition flex items-center gap-1"
+                          >
+                            <span>🔊 Read</span>
+                          </button>
                         </div>
                         <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                           {step.text}

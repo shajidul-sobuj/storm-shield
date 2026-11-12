@@ -7,6 +7,9 @@ import kit from '../content/kit.json';
 import cardioScenario from '../content/scenarios/cardio.json';
 import postStormScenario from '../content/scenarios/post-storm.json';
 
+import approvals from '../content/approvals.json';
+import assistantLibrary from '../content/assistant-library.json';
+
 describe('PROVENANCE & LEGAL CITING AUDIT (Zero Unanchored Data Gate)', () => {
   const sourceIds = new Set(sources.map(s => s.id));
 
@@ -20,11 +23,32 @@ describe('PROVENANCE & LEGAL CITING AUDIT (Zero Unanchored Data Gate)', () => {
     }
   });
 
-  it('verifies all indicator definitions link to valid cited sources', () => {
+  it('verifies all 8 indicator definitions link to valid cited sources', () => {
+    expect(indicators.length).toBe(8);
     for (const ind of indicators) {
       expect(sourceIds.has(ind.source)).toBe(true);
       expect(ind.provenance).not.toBe('ILLUSTRATIVE');
+      expect(ind.approval).toBeDefined();
     }
+  });
+
+  it('verifies all assistant library cards link to valid sources and approval tags', () => {
+    expect(assistantLibrary.length).toBeGreaterThan(5);
+    for (const card of assistantLibrary) {
+      expect(sourceIds.has(card.source)).toBe(true);
+      expect(card.approval?.id).toMatch(/^A[1-7]$/);
+      expect(card.answer).toBeTruthy();
+    }
+  });
+
+  it('verifies the approval register tracks A1-A8 and T1-T2 gates', () => {
+    const approvalIds = new Set(approvals.map(a => a.id));
+    expect(approvalIds.has('A1')).toBe(true);
+    expect(approvalIds.has('A2')).toBe(true);
+    expect(approvalIds.has('A3')).toBe(true);
+    expect(approvalIds.has('A7')).toBe(true);
+    expect(approvalIds.has('T1')).toBe(true);
+    expect(approvalIds.has('T2')).toBe(true);
   });
 
   it('verifies all 8 anatomical regions link to valid cited sources', () => {

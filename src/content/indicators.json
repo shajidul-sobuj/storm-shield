@@ -4,6 +4,8 @@
     "name": "Blood Pressure",
     "unit": "mmHg",
     "type": "compound",
+    "accuracyNote": "Wearable blood pressure is a calibrated physiological estimate. Use pneumatic cuff for definitive confirmation.",
+    "isEstimate": true,
     "fields": [
       {
         "key": "systolic",
@@ -24,11 +26,12 @@
     ],
     "source": "nasa-hrp-cardio",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Fluid cephalad shift increases central arterial pressure initially, followed by baroreflex resets."
   },
   {
     "id": "hr",
-    "name": "Heart Rate",
+    "name": "Heart Rate & Rhythm",
     "unit": "bpm",
     "type": "scalar",
     "standardMin": 60,
@@ -37,6 +40,7 @@
     "criticalLow": 45,
     "source": "nasa-hrp-cardio",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Cardiovascular deconditioning and autonomic alterations can trigger sinus tachycardia or arrhythmias."
   },
   {
@@ -44,12 +48,15 @@
     "name": "Blood Glucose",
     "unit": "mg/dL",
     "type": "scalar",
+    "accuracyNote": "Manual strip assay required. Bio-Monitor wearable does not measure blood glucose.",
+    "isManualOnly": true,
     "standardMin": 70,
     "standardMax": 110,
     "criticalHigh": 180,
     "criticalLow": 55,
     "source": "nasa-std-3001",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Microgravity insulin resistance alterations and metabolic shifts under chronic mission stress."
   },
   {
@@ -57,12 +64,15 @@
     "name": "Body Temperature",
     "unit": "°C",
     "type": "scalar",
+    "accuracyNote": "Wearable telemetry measures peripheral skin temperature. Skin temperature is not core temperature.",
+    "isSkinTemp": true,
     "standardMin": 36.1,
     "standardMax": 37.5,
     "criticalHigh": 38.8,
     "criticalLow": 35.0,
     "source": "nasa-std-3001",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Spaceflight-associated core temperature elevation ('space fever') during exercise and resting cycles."
   },
   {
@@ -76,6 +86,7 @@
     "criticalHigh": 12.0,
     "source": "nasa-std-3001",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Circadian desynchrony due to 90-minute orbital lighting cycles or deep-space confinement."
   },
   {
@@ -89,6 +100,37 @@
     "criticalHigh": 5,
     "source": "nasa-eimo-2025",
     "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
     "spaceEffect": "Sensory deprivation, isolation from Earth, high workload, and mission communication delays."
+  },
+  {
+    "id": "spo2",
+    "name": "Blood Oxygen (SpO2)",
+    "unit": "%",
+    "type": "scalar",
+    "accuracyNote": "Continuous photoplethysmography via Bio-Monitor finger/torso sensor.",
+    "standardMin": 95,
+    "standardMax": 100,
+    "criticalLow": 90,
+    "criticalHigh": 100,
+    "source": "csa-biomonitor",
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
+    "spaceEffect": "Alveolar diffusion gradients and ventilation-perfusion matching shift in microgravity."
+  },
+  {
+    "id": "rr",
+    "name": "Breathing Rate (RR)",
+    "unit": "brpm",
+    "type": "scalar",
+    "accuracyNote": "Thoracic impedance respiratory telemetry from Bio-Monitor smart vest.",
+    "standardMin": 12,
+    "standardMax": 20,
+    "criticalLow": 8,
+    "criticalHigh": 28,
+    "source": "csa-biomonitor",
+    "provenance": "PUBLISHED",
+    "approval": { "id": "A3", "status": "pending" },
+    "spaceEffect": "Resting respiratory mechanics adapt to absence of hydrostatic gravity gradients on diaphragm."
   }
 ]

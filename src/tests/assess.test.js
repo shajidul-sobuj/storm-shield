@@ -54,4 +54,19 @@ describe('assess.js - Multi-factor Health Status Assessor', () => {
     const assessment = assessAstronaut(current, nominalBaseline);
     expect(assessment.status).toBe('watch');
   });
+
+  it('escalates to act for acute hypoxemia (SpO2 < 90%) and tachypnea', () => {
+    const current = {
+      bp: { systolic: 115, diastolic: 74 },
+      hr: { value: 72 },
+      spo2: { value: 88 },
+      rr: { value: 29 },
+      symptoms: []
+    };
+
+    const assessment = assessAstronaut(current, nominalBaseline);
+    expect(assessment.status).toBe('act');
+    expect(assessment.reasons.some(r => r.includes('Hypoxemia'))).toBe(true);
+    expect(assessment.reasons.some(r => r.includes('respiratory rate'))).toBe(true);
+  });
 });

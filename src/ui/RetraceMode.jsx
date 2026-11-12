@@ -73,9 +73,12 @@ export default function RetraceMode({ astronaut, onSwitchToScenario }) {
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold">
                 LOSS-MINIMISING PROTOCOL
               </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 font-bold">
+                [Approval A4: Pending Medical Review]
+              </span>
             </div>
             <p className="text-xs text-slate-500">
-              For unplanned events or actions outside pre-computed scenarios. Rebuilds the timeline and protects life functions.
+              For unplanned events or actions outside pre-computed scenarios. Rebuilds the timeline and protects life functions. Always labelled LOW CONFIDENCE.
             </p>
           </div>
         </div>

@@ -4,6 +4,7 @@
   "category": "Space Radiation / GI",
   "trigger": "Nausea, vomiting, headache, or acute fatigue following a Solar Particle Event (SPE)",
   "reviewedBy": "Y.M.",
+  "approval": { "id": "A2", "status": "pending", "reviewer": "Dr. Sarah Jenkins" },
   "doseVerification": {
     "required": true,
     "arsThresholdMgy": 700,

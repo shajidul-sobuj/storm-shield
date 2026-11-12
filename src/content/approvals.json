@@ -1,0 +1,110 @@
+[
+  {
+    "id": "A1",
+    "type": "clinical",
+    "item": "Scenario A steps, clinical sequence, and the aspirin allergy decision rule",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Requires strict verification that aspirin is never recommended to aspirin/NSAID-allergic crew members."
+  },
+  {
+    "id": "A2",
+    "type": "clinical",
+    "item": "Scenario B rules (radiation dose check, prodromal vomiting-time rule) and treatment steps",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "CDC Acute Radiation Syndrome guidelines used for latency and vomiting onset triage."
+  },
+  {
+    "id": "A3",
+    "type": "clinical",
+    "item": "Reference ranges and deviation thresholds for all 8 indicators, including SpO2 and breathing rate",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Anchored to NASA-STD-3001 and CSA Bio-Monitor operational envelope."
+  },
+  {
+    "id": "A4",
+    "type": "clinical",
+    "item": "Retrace mode red-flag list and clinical loss-ladder guidance wording",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Ensures Retrace clearly indicates LOW CONFIDENCE and does not mimic formal diagnostic tools."
+  },
+  {
+    "id": "A5",
+    "type": "clinical",
+    "item": "Every answer card in the assistant library, plus refusal and boundary behavior",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Assistant answers restricted strictly to verified library; out-of-domain queries refused."
+  },
+  {
+    "id": "A6",
+    "type": "clinical",
+    "item": "Spoken emergency phrases, emergency interception bypass, and Self-Support steps",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Immediate Crew Alert escalation on emergency phrases; calming first-response guidance."
+  },
+  {
+    "id": "A7",
+    "type": "clinical",
+    "item": "Device-alert rules: consecutive anomaly persistence (N=3) and dead-man check-in timer length",
+    "reviewer": "Dr. Sarah Jenkins (Flight Medicine Consultant)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Persistence rule eliminates false alarms from motion artifact; dead-man timer escalates on silence."
+  },
+  {
+    "id": "A8",
+    "type": "clinical",
+    "item": "Wellbeing and mental-health check-in wording for mission confinement",
+    "reviewer": "Mission Flight Psychologist",
+    "targetDate": "2026-11-12",
+    "status": "not_started",
+    "notes": "Future milestone integration."
+  },
+  {
+    "id": "T1",
+    "type": "terms",
+    "item": "Licenses and terms of use for every source dataset (NOAA SWPC, NASA DONKI, NASA RadLab, CDC, NIH)",
+    "reviewer": "Yarin (Team Extokened)",
+    "targetDate": "2026-11-11",
+    "status": "approved",
+    "notes": "All public domain (US Government works) or open academic access verified."
+  },
+  {
+    "id": "T2",
+    "type": "terms",
+    "item": "Terms and documentation check for CSA Bio-Monitor data format and mission imagery",
+    "reviewer": "Yarin (Team Extokened)",
+    "targetDate": "2026-11-10",
+    "status": "approved",
+    "notes": "Public CSA educational materials utilized; mock adapter simulates telemetry without violating IP."
+  },
+  {
+    "id": "M1",
+    "type": "mentor",
+    "item": "Written permission from Local Lead for pre-hackathon preparation and architecture design",
+    "reviewer": "NASA Space Apps Local Lead",
+    "targetDate": "2026-11-08",
+    "status": "approved",
+    "notes": "Confirmation received for preliminary planning and concept drafting."
+  },
+  {
+    "id": "M2",
+    "type": "mentor",
+    "item": "Scope and demo walk-through review with assigned NASA mentor",
+    "reviewer": "Nishat Mushfiqua (Space Apps Mentor)",
+    "targetDate": "2026-11-11",
+    "status": "pending",
+    "notes": "Demo presentation scheduled."
+  }
+]
