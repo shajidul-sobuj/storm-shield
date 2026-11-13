@@ -4,6 +4,7 @@ import { assessAstronaut } from './engine/assess.js';
 import { mapFluxToLevel } from './engine/storm.js';
 import { alertSystem } from './engine/alerts.js';
 import { mockBioMonitor } from './device/mockBioMonitor.js';
+import { fetchUnifiedLiveSpaceWeather } from './engine/nasaApi.js';
 
 import Header from './ui/Header.jsx';
 import Overview from './ui/Overview.jsx';
@@ -34,7 +35,9 @@ export default function App() {
   // Default to Alex Vance (crew-2) who illustrates the active cardiovascular scare & allergy check
   const [selectedCrewId, setSelectedCrewId] = useState('crew-2');
   const [groundLink, setGroundLink] = useState('Unavailable');
-  const [stormStatus, setStormStatus] = useState(mapFluxToLevel(4200)); // Default S3 storm peak
+  // Initialize to live nominal background (S0 Quiet: 0.30 pfu)
+  const [stormStatus, setStormStatus] = useState(() => mapFluxToLevel(0.30));
+  const [stormDrillRequested, setStormDrillRequested] = useState(false);
   const [activeCareScenario, setActiveCareScenario] = useState('cardio-scare');
   const [isAssistantOpen, setIsAssistantOpen] = useState(() => {
     try {
@@ -62,6 +65,17 @@ export default function App() {
   useEffect(() => {
     return alertSystem.subscribe((state) => {
       setActiveAlert(state.activeAlert);
+    });
+  }, []);
+
+  // Synchronize with real-time NOAA SWPC GOES satellite & NASA DONKI on mount
+  useEffect(() => {
+    fetchUnifiedLiveSpaceWeather().then(result => {
+      if (result && result.stormLevel) {
+        setStormStatus(result.stormLevel);
+      }
+    }).catch(err => {
+      console.warn('Initial space weather sync error:', err);
     });
   }, []);
 
@@ -168,7 +182,8 @@ export default function App() {
       setActiveCareScenario('cardio-scare');
       setTab('care-mode');
     } else if (drillType === 'storm') {
-      setStormStatus(mapFluxToLevel(4200));
+      setStormStatus(mapFluxToLevel(1850));
+      setStormDrillRequested(true);
       setTab('storm-monitor');
     } else if (drillType === 'retrace') {
       setSelectedCrewId('crew-2');
@@ -259,6 +274,7 @@ export default function App() {
             onSelectStormLevel={(newLevel) => setStormStatus(newLevel)}
             onLaunchCare={handleLaunchCare}
             onLaunchVitals={() => setTab('vitals-entry')}
+            initialMode={stormDrillRequested ? 'drill' : 'live'}
           />
         )}
 

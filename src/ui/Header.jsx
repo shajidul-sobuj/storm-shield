@@ -67,7 +67,7 @@ export default function Header({
       default:
         return {
           bg: 'bg-slate-900/80 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30',
-          label: 'S0 QUIET',
+          label: `${stormStatus.level || 'S0'} LIVE`,
           flux: `${stormStatus.flux} pfu`
         };
     }
@@ -194,6 +194,19 @@ export default function Header({
               <span>Assistant</span>
             </button>
           )}
+
+          {/* Live NASA/NOAA Satellite Feed Indicator */}
+          <div 
+            onClick={onOpenStormModal}
+            className="hidden xl:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 font-mono text-[11px] text-emerald-400 cursor-pointer hover:bg-emerald-950/60 transition shadow-inner"
+            title="Real-time NOAA GOES-18 and NASA DONKI satellite stream active"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>NASA DONKI · LIVE</span>
+          </div>
 
           {/* Storm Alert Button */}
           <button
