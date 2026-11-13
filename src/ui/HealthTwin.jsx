@@ -70,9 +70,9 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
       if (symptoms.includes('chest-discomfort') || currHr >= 120 || currSbp >= 160 || currDbp >= 100) {
         return {
           status: 'act',
-          color: '#ef4444',
+          color: '#f43f5e',
           label: 'ACT REQUIRED',
-          border: 'border-rose-400 bg-rose-50 text-rose-800'
+          border: 'border-rose-500/50 bg-rose-950/60 text-rose-300'
         };
       }
       if (currHr >= 100 || currSbp >= 140 || currDbp >= 90) {
@@ -80,23 +80,23 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
           status: 'watch',
           color: '#f59e0b',
           label: 'WATCH',
-          border: 'border-amber-400 bg-amber-50 text-amber-800'
+          border: 'border-amber-500/50 bg-amber-950/60 text-amber-300'
         };
       }
       return {
         status: 'nominal',
-        color: '#0284c7',
+        color: '#06b6d4',
         label: 'NOMINAL',
-        border: 'border-sky-300 bg-sky-50 text-sky-800'
+        border: 'border-cyan-500/40 bg-cyan-950/50 text-cyan-300'
       };
     }
     if (regionId === 'respiratory') {
       if (symptoms.includes('shortness-of-breath') || currSpo2 < 90 || currRr >= 28) {
         return {
           status: 'act',
-          color: '#ef4444',
+          color: '#f43f5e',
           label: 'ACT REQUIRED',
-          border: 'border-rose-400 bg-rose-50 text-rose-800'
+          border: 'border-rose-500/50 bg-rose-950/60 text-rose-300'
         };
       }
       if (currSpo2 <= 94 || currRr >= 22) {
@@ -104,23 +104,23 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
           status: 'watch',
           color: '#f59e0b',
           label: 'WATCH',
-          border: 'border-amber-400 bg-amber-50 text-amber-800'
+          border: 'border-amber-500/50 bg-amber-950/60 text-amber-300'
         };
       }
       return {
         status: 'nominal',
-        color: '#0284c7',
+        color: '#10b981',
         label: 'HEALTHY',
-        border: 'border-emerald-300 bg-emerald-50 text-emerald-800'
+        border: 'border-emerald-500/40 bg-emerald-950/50 text-emerald-300'
       };
     }
     if (regionId === 'digestive') {
       if (symptoms.includes('repeated-vomiting')) {
         return {
           status: 'act',
-          color: '#ef4444',
+          color: '#f43f5e',
           label: 'ACT REQUIRED',
-          border: 'border-rose-400 bg-rose-50 text-rose-800'
+          border: 'border-rose-500/50 bg-rose-950/60 text-rose-300'
         };
       }
       if (symptoms.includes('nausea') || symptoms.includes('vomiting')) {
@@ -128,23 +128,23 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
           status: 'watch',
           color: '#f59e0b',
           label: 'WATCH / PRODROME',
-          border: 'border-amber-400 bg-amber-50 text-amber-800'
+          border: 'border-amber-500/50 bg-amber-950/60 text-amber-300'
         };
       }
       return {
         status: 'nominal',
-        color: '#0284c7',
+        color: '#06b6d4',
         label: 'NOMINAL',
-        border: 'border-sky-300 bg-sky-50 text-sky-800'
+        border: 'border-cyan-500/40 bg-cyan-950/50 text-cyan-300'
       };
     }
     if (regionId === 'radiation') {
       if (currTemp >= 38.3) {
         return {
           status: 'act',
-          color: '#ef4444',
+          color: '#f43f5e',
           label: 'ACT REQUIRED',
-          border: 'border-rose-400 bg-rose-50 text-rose-800'
+          border: 'border-rose-500/50 bg-rose-950/60 text-rose-300'
         };
       }
       if (currTemp >= 37.6) {
@@ -152,21 +152,21 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
           status: 'watch',
           color: '#f59e0b',
           label: 'WATCH',
-          border: 'border-amber-400 bg-amber-50 text-amber-800'
+          border: 'border-amber-500/50 bg-amber-950/60 text-amber-300'
         };
       }
       return {
         status: 'nominal',
-        color: '#0284c7',
+        color: '#06b6d4',
         label: 'MONITORING',
-        border: 'border-sky-300 bg-sky-50 text-sky-800'
+        border: 'border-cyan-500/40 bg-cyan-950/50 text-cyan-300'
       };
     }
     return {
       status: 'nominal',
-      color: '#0284c7',
+      color: '#06b6d4',
       label: 'NOMINAL',
-      border: 'border-sky-300 bg-sky-50 text-sky-800'
+      border: 'border-cyan-500/40 bg-cyan-950/50 text-cyan-300'
     };
   };
 
@@ -191,22 +191,24 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
   return (
     <div className="space-y-4">
       
-      {/* Sleek Unified Telemetry HUD Toolbar */}
-      <div className="p-2.5 px-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-wrap lg:flex-nowrap items-center justify-between gap-3">
+      {/* Sleek Unified Aerospace Telemetry HUD Toolbar */}
+      <div className="p-3 px-4 rounded-2xl glass-panel shadow-xl flex flex-wrap lg:flex-nowrap items-center justify-between gap-3">
         {/* Left: Crew & Mission context */}
         <div className="flex items-center gap-2.5 shrink-0">
-          <div className="p-1.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-700 shadow-2xs">
+          <div className="p-1.5 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-400 shadow-sm">
             <User className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-slate-900 tracking-tight">
-                3D Bio-Scan // {astronaut.name}
+              <h2 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                <span>3D Bio-Scan</span>
+                <span className="text-slate-500">//</span>
+                <span className="text-cyan-300">{astronaut.name}</span>
               </h2>
-              <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
+              <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-950/70 text-cyan-300 border border-cyan-500/40">
                 {astronaut.callsign}
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold hidden md:inline-block">
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60 font-semibold hidden md:inline-block">
                 SOL {astronaut.flightDay}
               </span>
               <ProvenanceBadge provenance="REAL" sourceId="radlab-iss-2025" compact />
@@ -229,8 +231,8 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
               onClick={() => setActiveLayer(layer.id)}
               className={`px-2.5 py-1 rounded-lg text-[11px] whitespace-nowrap transition-all cursor-pointer ${
                 activeLayer === layer.id
-                  ? 'bg-sky-600 text-white font-bold shadow-xs'
-                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/20'
+                  : 'bg-slate-850/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700/60'
               }`}
             >
               {layer.label}
@@ -240,7 +242,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
         {/* Right: 3D Views & Absorbed Dose */}
         <div className="flex items-center gap-2 text-xs font-mono shrink-0">
-          <div className="flex items-center p-0.5 rounded-lg bg-slate-100 border border-slate-200">
+          <div className="flex items-center p-0.5 rounded-lg bg-slate-950/80 border border-slate-800">
             {[
               { id: 'front', label: '0°' },
               { id: 'profile', label: '90°' },
@@ -250,7 +252,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                 key={view.id}
                 onClick={() => setViewAngle(view.id)}
                 className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                  viewAngle === view.id ? 'bg-white text-sky-700 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  viewAngle === view.id ? 'bg-cyan-500 text-slate-950 font-bold shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
                 title={`${view.id} view`}
               >
@@ -260,7 +262,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
             <button
               onClick={() => setViewAngle(viewAngle === 'orbit' ? 'front' : 'orbit')}
               className={`px-2 py-0.5 rounded flex items-center gap-1 transition-all cursor-pointer ${
-                viewAngle === 'orbit' ? 'bg-sky-600 text-white font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                viewAngle === 'orbit' ? 'bg-cyan-500 text-slate-950 font-bold shadow-xs' : 'text-slate-400 hover:text-white'
               }`}
               title="Continuous 360° Perspective Orbit"
             >
@@ -269,34 +271,34 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
             </button>
           </div>
 
-          <div className="px-2 py-0.5 rounded-lg bg-slate-50 border border-slate-200 text-xs hidden lg:flex items-center gap-1">
-            <span className="text-slate-500 text-[10px]">Dose:</span>
-            <strong className="text-slate-900 font-bold text-[11px]">{astronaut.baseline.radiationDose.value} mGy</strong>
+          <div className="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-xs hidden lg:flex items-center gap-1.5">
+            <span className="text-slate-400 text-[10px]">DOSE:</span>
+            <strong className="text-cyan-300 font-mono font-bold text-[11px]">{astronaut.baseline.radiationDose.value} mGy</strong>
           </div>
         </div>
       </div>
 
-      {/* Main 3-Column Studio Layout (Matching Image 1, 4 & 5) */}
+      {/* Main 3-Column Studio Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         
-        {/* Left Flank: Vitals Telemetry & Health Metrics (Inspired by Image 1 & 4) */}
+        {/* Left Flank: Vitals Telemetry & Health Metrics */}
         <div className="lg:col-span-3 space-y-4">
           
           {/* Real-Time Animated Lead II ECG Telemetry Card */}
-          <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-800 flex items-center gap-1.5">
-                <Heart className={`w-3.5 h-3.5 ${cardioStatus.status === 'act' ? 'text-rose-500 animate-heartbeat' : 'text-sky-600'}`} />
+          <div className="p-4 rounded-2xl glass-panel shadow-xl space-y-3">
+            <div className="flex items-center justify-between text-xs font-mono border-b border-slate-800 pb-2">
+              <span className="font-bold text-slate-200 flex items-center gap-1.5">
+                <Heart className={`w-3.5 h-3.5 ${cardioStatus.status === 'act' ? 'text-rose-400 animate-heartbeat' : 'text-cyan-400'}`} />
                 <span>LEAD II ECG TELEMETRY</span>
               </span>
-              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${cardioStatus.status === 'act' ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'}`}>
+              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${cardioStatus.border}`}>
                 {cardioStatus.status === 'act' ? 'TACHYCARDIA' : 'NORMAL SINUS'}
               </span>
             </div>
 
             {/* Simulated Animated ECG Waveform */}
-            <div className="h-16 w-full bg-slate-900 rounded-xl relative overflow-hidden flex items-center justify-center p-1">
-              <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#0284c7_1px,transparent_1px),linear-gradient(to_bottom,#0284c7_1px,transparent_1px)] bg-[size:10px_10px]"></div>
+            <div className="h-16 w-full bg-slate-950/90 rounded-xl relative overflow-hidden border border-slate-800 flex items-center justify-center p-1">
+              <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#06b6d4_1px,transparent_1px),linear-gradient(to_bottom,#06b6d4_1px,transparent_1px)] bg-[size:10px_10px]"></div>
               
               <svg viewBox="0 0 300 60" className="w-full h-full">
                 <path
@@ -314,16 +316,16 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
             {/* Heart Rate & BP Delta Grid */}
             <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-              <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-slate-500 text-[10px] block">PULSE RATE</span>
-                <span className="text-base font-bold text-slate-900">
-                  {currHr} <span className="text-[10px] font-normal text-slate-500">bpm</span>
+              <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                <span className="text-slate-400 text-[10px] block">PULSE RATE</span>
+                <span className="text-base font-bold text-white">
+                  {currHr} <span className="text-[10px] font-normal text-slate-400">bpm</span>
                 </span>
                 <span className="text-[10px] text-slate-500 block">Base: {astronaut.baseline?.hr?.value}</span>
               </div>
-              <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-slate-500 text-[10px] block">BLOOD PRESSURE</span>
-                <span className="text-base font-bold text-slate-900">
+              <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                <span className="text-slate-400 text-[10px] block">BLOOD PRESSURE</span>
+                <span className="text-base font-bold text-white">
                   {currSbp}/{currDbp}
                 </span>
                 <span className="text-[10px] text-slate-500 block">Base: {astronaut.baseline?.bp?.systolic}/{astronaut.baseline?.bp?.diastolic}</span>
@@ -331,85 +333,85 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
             </div>
           </div>
 
-          {/* Core System Telemetry Stream (Matching Image 1 & 4) */}
-          <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3">
-            <div className="text-xs font-mono font-bold text-slate-800 border-b border-slate-100 pb-2 uppercase tracking-wide">
+          {/* Core System Telemetry Stream */}
+          <div className="p-4 rounded-2xl glass-panel shadow-xl space-y-3">
+            <div className="text-xs font-mono font-bold text-slate-300 border-b border-slate-800 pb-2 uppercase tracking-wide">
               Vital Physiological Stream
             </div>
 
             <div className="space-y-2 text-xs">
               {/* SpO2 */}
-              <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
                 <div className="flex items-center gap-2">
-                  <Wind className="w-4 h-4 text-sky-600" />
+                  <Wind className="w-4 h-4 text-cyan-400" />
                   <div>
-                    <span className="text-slate-800 font-semibold block">Blood Oxygen (SpO2)</span>
-                    <span className="text-[10px] text-slate-500 font-mono">Alveolar Diffusion</span>
+                    <span className="text-slate-200 font-semibold block">Blood Oxygen (SpO2)</span>
+                    <span className="text-[10px] text-slate-400 font-mono">Alveolar Diffusion</span>
                   </div>
                 </div>
-                <span className={`font-mono font-bold text-sm ${currSpo2 < 93 ? 'text-rose-600' : 'text-slate-900'}`}>{currSpo2}%</span>
+                <span className={`font-mono font-bold text-sm ${currSpo2 < 93 ? 'text-rose-400' : 'text-emerald-400'}`}>{currSpo2}%</span>
               </div>
 
               {/* Respiratory Rate */}
-              <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-emerald-600" />
+                  <Activity className="w-4 h-4 text-emerald-400" />
                   <div>
-                    <span className="text-slate-800 font-semibold block">Respiration Rate</span>
-                    <span className="text-[10px] text-slate-500 font-mono">Minute Ventilation</span>
+                    <span className="text-slate-200 font-semibold block">Respiration Rate</span>
+                    <span className="text-[10px] text-slate-400 font-mono">Minute Ventilation</span>
                   </div>
                 </div>
-                <span className={`font-mono font-bold text-sm ${currRr >= 22 ? 'text-amber-600' : 'text-slate-900'}`}>{currRr} <span className="text-[10px] font-normal text-slate-500">rpm</span></span>
+                <span className={`font-mono font-bold text-sm ${currRr >= 22 ? 'text-amber-400' : 'text-white'}`}>{currRr} <span className="text-[10px] font-normal text-slate-400">rpm</span></span>
               </div>
 
               {/* Core Temperature */}
-              <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
                 <div className="flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-amber-500" />
+                  <Flame className="w-4 h-4 text-amber-400" />
                   <div>
-                    <span className="text-slate-800 font-semibold block">Core Temperature</span>
-                    <span className="text-[10px] text-slate-500 font-mono">Circadian Rhythm</span>
+                    <span className="text-slate-200 font-semibold block">Core Temperature</span>
+                    <span className="text-[10px] text-slate-400 font-mono">Circadian Rhythm</span>
                   </div>
                 </div>
-                <span className={`font-mono font-bold text-sm ${currTemp >= 38.0 ? 'text-rose-600' : 'text-slate-900'}`}>{currTemp} °C</span>
+                <span className={`font-mono font-bold text-sm ${currTemp >= 38.0 ? 'text-rose-400' : 'text-white'}`}>{currTemp} °C</span>
               </div>
             </div>
           </div>
 
-          {/* NASA Spaceflight Health Metrics (Inspired by Image 1) */}
-          <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2.5">
-            <div className="text-xs font-mono font-bold text-slate-800 border-b border-slate-100 pb-2 uppercase tracking-wide flex items-center justify-between">
+          {/* NASA Spaceflight Health Metrics */}
+          <div className="p-4 rounded-2xl glass-panel shadow-xl space-y-2.5">
+            <div className="text-xs font-mono font-bold text-slate-300 border-b border-slate-800 pb-2 uppercase tracking-wide flex items-center justify-between">
               <span>Spaceflight Health Metrics</span>
-              <span className="text-[10px] text-sky-600 font-bold">NASA HRP</span>
+              <span className="text-[10px] text-cyan-400 font-bold">NASA HRP</span>
             </div>
 
-            <div className="space-y-2 text-xs font-mono">
+            <div className="space-y-2.5 text-xs font-mono">
               <div>
                 <div className="flex justify-between text-[11px] mb-1">
-                  <span className="text-slate-600">Cephalad Fluid Shift:</span>
-                  <span className="font-bold text-sky-700">+28% Venous Pool</span>
+                  <span className="text-slate-400">Cephalad Fluid Shift:</span>
+                  <span className="font-bold text-cyan-300">+28% Venous Pool</span>
                 </div>
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                  <div className="bg-sky-500 h-1.5 rounded-full" style={{ width: '68%' }}></div>
+                <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-1.5 rounded-full" style={{ width: '68%' }}></div>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-[11px] mb-1">
-                  <span className="text-slate-600">Sleep Quality Index:</span>
-                  <span className="font-bold text-emerald-700">85% Restful</span>
+                  <span className="text-slate-400">Sleep Quality Index:</span>
+                  <span className="font-bold text-emerald-400">85% Restful</span>
                 </div>
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
                   <div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: '85%' }}></div>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-[11px] mb-1">
-                  <span className="text-slate-600">Bone Mineral Density:</span>
-                  <span className="font-bold text-amber-700">-1.1% / mo</span>
+                  <span className="text-slate-400">Bone Mineral Density:</span>
+                  <span className="font-bold text-amber-400">-1.1% / mo</span>
                 </div>
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
                   <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: '45%' }}></div>
                 </div>
               </div>
@@ -418,32 +420,38 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
         </div>
 
-        {/* Center Column: The 3D Anatomical Bio-Scan Hologram Stage (Matching Image 1, 3, 4 & 5) */}
-        <div className="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 relative flex flex-col justify-between clinical-grid shadow-xs h-[570px] overflow-hidden">
+        {/* Center Column: The 3D Anatomical Bio-Scan Hologram Stage */}
+        <div className="lg:col-span-6 bg-slate-950/90 border border-slate-800/90 rounded-2xl p-4 relative flex flex-col justify-between shadow-2xl h-[580px] overflow-hidden">
           
+          {/* Ambient Holographic Glow Orb */}
+          <div className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_50%_45%,rgba(6,182,212,0.18)_0%,transparent_65%)]" />
+
           {/* Top HUD Overlay Coordinates */}
-          <div className="w-full flex items-center justify-between text-[11px] font-mono text-slate-500 border-b border-slate-100 pb-2 z-20">
-            <div className="flex items-center gap-1.5 text-sky-700 font-bold">
-              <Crosshair className="w-4 h-4 text-sky-600 animate-spin" style={{ animationDuration: '20s' }} />
+          <div className="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-slate-800/80 pb-2 z-20">
+            <div className="flex items-center gap-1.5 text-cyan-400 font-bold">
+              <Crosshair className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '20s' }} />
               <span>BIO-SCAN // 3D ANATOMICAL BLUEPRINT</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">
+              <span className="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300 font-bold">
                 VIEW: {viewAngle.toUpperCase()}
               </span>
-              <span className="text-emerald-700 font-bold">● ACTIVE SCAN</span>
+              <span className="text-emerald-400 font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                ACTIVE SCAN
+              </span>
             </div>
           </div>
 
-          {/* Center Stage with exact 896/1200 Aspect Ratio matching image */}
+          {/* Center Stage with exact 896/1200 Aspect Ratio */}
           <div className="relative w-full flex-1 flex items-center justify-center my-1 select-none">
             
             {/* Holographic Vertical Scanning Laser Line */}
-            <div className="absolute inset-x-8 top-2 h-0.5 bg-gradient-to-r from-transparent via-sky-400 to-transparent animate-scan-beam pointer-events-none opacity-40 z-20"></div>
+            <div className="absolute inset-x-8 top-2 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-scan-beam pointer-events-none opacity-50 z-20"></div>
 
             {/* Exactly Sized Container maintaining 896/1200 aspect ratio */}
             <div 
-              className="relative w-auto h-[400px] aspect-[896/1200] max-w-full transition-transform duration-500 ease-out"
+              className="relative w-auto h-[410px] aspect-[896/1200] max-w-full transition-transform duration-500 ease-out"
               style={{
                 transform: viewAngle === 'profile' 
                   ? 'rotateY(35deg) scaleX(0.9)' 
@@ -458,7 +466,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
               <img
                 src={modelImg}
                 alt="3D Anatomical Human Model"
-                className="w-full h-full object-contain filter drop-shadow-md pointer-events-none select-none"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(6,182,212,0.25)] pointer-events-none select-none"
               />
 
               {/* Exact-Pixel Coordinate SVG Overlay on 896 x 1200 Canvas */}
@@ -470,9 +478,9 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                 {activeLayer === 'radiation' && (
                   <g className="animate-pulse">
                     <radialGradient id="radShieldGlow" cx="50%" cy="35%" r="35%">
-                      <stop offset="0%" stopColor="#ef4444" stopOpacity="0.45" />
-                      <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#f43f5e" stopOpacity="0.5" />
+                      <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
                     </radialGradient>
                     <ellipse cx="448" cy="380" rx="140" ry="220" fill="url(#radShieldGlow)" />
                   </g>
@@ -518,26 +526,26 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                         cy={organ.y}
                         r={isSelected ? '9.5' : isHovered ? '8.5' : '7'}
                         fill={status.color}
-                        stroke="#ffffff"
+                        stroke="#0f172a"
                         strokeWidth="2.5"
-                        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))"
+                        filter="drop-shadow(0 0 8px rgba(6,182,212,0.8))"
                         className="transition-all"
                       />
                     </g>
                   );
                 })}
 
-                {/* 2. Active Focused Leader Line (HealthCo Standard: Arcs gracefully to the right Diagnostic Panel) */}
+                {/* 2. Active Focused Leader Line */}
                 {activeOrgan && (
                   <g className="transition-all duration-300">
                     <path
                       d={`M ${activeOrgan.x},${activeOrgan.y} C ${activeOrgan.x + 140},${activeOrgan.y} 720,${Math.min(Math.max(activeOrgan.y, 180), 420)} 896,${Math.min(Math.max(activeOrgan.y, 180), 420)}`}
                       fill="none"
                       stroke={activeStatus.color}
-                      strokeWidth="3"
+                      strokeWidth="2.5"
                       strokeDasharray="6,4"
                       strokeLinecap="round"
-                      className="filter drop-shadow-xs animate-pulse"
+                      className="filter drop-shadow-[0_0_6px_rgba(6,182,212,0.8)] animate-pulse"
                     />
 
                     {/* Edge Target Node pointing to the Right Diagnostic Panel */}
@@ -546,7 +554,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                       cy={Math.min(Math.max(activeOrgan.y, 180), 420)}
                       r="6"
                       fill={activeStatus.color}
-                      stroke="#ffffff"
+                      stroke="#0f172a"
                       strokeWidth="2"
                     />
                   </g>
@@ -556,20 +564,20 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
           </div>
 
-          {/* Bottom BMI & Physiological Telemetry Slider (Directly matching Image 4 "HealthCo") */}
-          <div className="w-full mt-1 pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 z-10 text-xs font-mono">
+          {/* Bottom BMI & Physiological Telemetry Bar */}
+          <div className="w-full mt-1 pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 z-10 text-xs font-mono">
             <div className="flex items-center gap-2">
-              <div className="p-1 px-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-slate-500 text-[10px] mr-1">MASS:</span>
-                <strong className="text-slate-900 font-bold">76 kg</strong>
+              <div className="p-1 px-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                <span className="text-slate-400 text-[10px] mr-1">MASS:</span>
+                <strong className="text-white font-bold">76 kg</strong>
               </div>
-              <div className="p-1 px-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                <span className="text-slate-500 text-[10px] mr-1">HEIGHT:</span>
-                <strong className="text-slate-900 font-bold">182 cm (+4.2cm)</strong>
+              <div className="p-1 px-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                <span className="text-slate-400 text-[10px] mr-1">HEIGHT:</span>
+                <strong className="text-white font-bold">182 cm (+4.2cm)</strong>
               </div>
-              <div className="p-1 px-2.5 rounded-lg bg-slate-50 border border-slate-200 hidden sm:block">
-                <span className="text-slate-500 text-[10px] mr-1">BMI:</span>
-                <strong className="text-emerald-700 font-bold">22.9</strong>
+              <div className="p-1 px-2.5 rounded-lg bg-slate-900/80 border border-slate-800 hidden sm:block">
+                <span className="text-slate-400 text-[10px] mr-1">BMI:</span>
+                <strong className="text-emerald-400 font-bold">22.9</strong>
               </div>
             </div>
 
@@ -584,8 +592,8 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     onClick={() => setSelectedRegionId(reg.id)}
                     className={`px-2 py-0.5 rounded-md text-[10px] flex items-center gap-1 transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-sky-50 text-sky-900 border border-sky-300 font-bold shadow-2xs'
-                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                        ? 'bg-cyan-950/80 text-cyan-300 border border-cyan-500/50 font-bold shadow-xs'
+                        : 'bg-slate-900/70 text-slate-400 hover:text-white hover:bg-slate-850 border border-slate-800'
                     }`}
                   >
                     <span>{reg.name.split(' ')[0]}</span>
@@ -598,17 +606,18 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
         </div>
 
-        {/* Right Flank: Focused Diagnostic Drawer + System Health Matrix (Matching Image 1 & 4) */}
+        {/* Right Flank: Focused Diagnostic Drawer + System Health Matrix */}
         <div className="lg:col-span-3 space-y-4">
           
           {/* 1. Region Drawer: Direct target of the 3D model leader line */}
           <div className="relative">
             {/* Visual connector pulse dot aligned with SVG leader line from center stage */}
             <div 
-              className="hidden lg:block absolute -left-3 w-3 h-3 rounded-full border-2 border-white shadow-sm z-30 transition-all duration-300"
+              className="hidden lg:block absolute -left-3 w-3 h-3 rounded-full border-2 border-slate-900 shadow-sm z-30 transition-all duration-300"
               style={{
                 top: '72px',
-                backgroundColor: activeStatus.color
+                backgroundColor: activeStatus.color,
+                boxShadow: `0 0 10px ${activeStatus.color}`
               }}
             />
 
@@ -621,11 +630,11 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
             />
           </div>
 
-          {/* 2. Organ Systems Readiness Overview Matrix (Inspired by Image 1) */}
-          <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2.5">
-            <div className="text-xs font-mono font-bold text-slate-800 border-b border-slate-100 pb-2 uppercase tracking-wide flex items-center justify-between">
+          {/* 2. Organ Systems Readiness Overview Matrix */}
+          <div className="p-3.5 rounded-2xl glass-panel shadow-xl space-y-2.5">
+            <div className="text-xs font-mono font-bold text-slate-300 border-b border-slate-800 pb-2 uppercase tracking-wide flex items-center justify-between">
               <span>System Health Matrix</span>
-              <span className="text-[10px] text-emerald-700 font-bold">WELLNESS: 87%</span>
+              <span className="text-[10px] text-emerald-400 font-bold">WELLNESS: 87%</span>
             </div>
 
             <div className="space-y-1.5 text-xs font-mono">
@@ -633,8 +642,8 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                 { id: 'cardio', name: 'Cardiovascular', status: cardioStatus.label, color: cardioStatus.color, badge: cardioStatus.border },
                 { id: 'respiratory', name: 'Respiratory', status: respStatus.label, color: respStatus.color, badge: respStatus.border },
                 { id: 'digestive', name: 'Gastrointestinal', status: digestiveStatus.label, color: digestiveStatus.color, badge: digestiveStatus.border },
-                { id: 'head-brain', name: 'Nervous System', status: 'NOMINAL', color: '#0284c7', badge: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
-                { id: 'musculoskeletal', name: 'Musculoskeletal', status: 'ARED STABLE', color: '#64748b', badge: 'bg-slate-50 text-slate-700 border-slate-200' },
+                { id: 'head-brain', name: 'Nervous System', status: 'NOMINAL', color: '#06b6d4', badge: 'bg-cyan-950/50 text-cyan-300 border-cyan-500/40' },
+                { id: 'musculoskeletal', name: 'Musculoskeletal', status: 'ARED STABLE', color: '#64748b', badge: 'bg-slate-800/80 text-slate-300 border-slate-700/60' },
                 { id: 'radiation', name: 'Immune & Radiation', status: radiationStatus.label, color: radiationStatus.color, badge: radiationStatus.border }
               ].map((sys) => {
                 const isSelected = selectedRegionId === sys.id;
@@ -650,13 +659,13 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     }}
                     className={`w-full flex items-center justify-between p-1.5 px-2 rounded-lg border text-left transition-all cursor-pointer ${
                       isSelected 
-                        ? 'bg-sky-50/80 border-sky-300 shadow-2xs font-semibold' 
-                        : 'bg-slate-50/70 border-slate-200/80 hover:bg-slate-100/80'
+                        ? 'bg-cyan-950/70 border-cyan-500/50 shadow-xs font-semibold' 
+                        : 'bg-slate-950/60 border-slate-800/80 hover:bg-slate-800/60'
                     }`}
                   >
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: sys.color }}></span>
-                      <span className="text-slate-700 text-[11px] truncate">{sys.name}</span>
+                      <span className="text-slate-200 text-[11px] truncate">{sys.name}</span>
                     </div>
                     <span className={`text-[9px] px-1.5 py-0.5 rounded border font-bold shrink-0 ${sys.badge}`}>
                       {sys.status}
@@ -666,11 +675,11 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
               })}
             </div>
 
-            {/* Performance Circular Ring (Image 1) */}
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+            {/* Performance Circular Ring */}
+            <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
               <div className="text-[11px] font-mono">
-                <span className="text-slate-500 block">CREW EFFICIENCY</span>
-                <span className="text-xs font-bold text-slate-800">Operational Readiness</span>
+                <span className="text-slate-400 block">CREW EFFICIENCY</span>
+                <span className="text-xs font-bold text-white">Operational Readiness</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="relative w-8 h-8 flex items-center justify-center">
@@ -678,18 +687,18 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     <path
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
-                      stroke="#e2e8f0"
+                      stroke="#1e293b"
                       strokeWidth="3.5"
                     />
                     <path
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
-                      stroke="#0284c7"
+                      stroke="#06b6d4"
                       strokeWidth="3.5"
                       strokeDasharray="87, 100"
                     />
                   </svg>
-                  <span className="absolute text-[9px] font-mono font-bold text-sky-700">87%</span>
+                  <span className="absolute text-[9px] font-mono font-bold text-cyan-400">87%</span>
                 </div>
               </div>
             </div>

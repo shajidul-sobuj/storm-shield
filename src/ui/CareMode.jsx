@@ -78,23 +78,23 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
     <div className="space-y-6">
       
       {/* Scenario Header & Switcher */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-white border border-slate-200 shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl glass-panel shadow-xl">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200">
+            <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-500/40">
               CLINICAL DECISION SUPPORT
             </span>
-            <span className="text-xs text-slate-500 font-mono">
-              Patient: <strong className="text-slate-900">{astronaut.name}</strong> ({astronaut.callsign})
+            <span className="text-xs text-slate-400 font-mono">
+              Patient: <strong className="text-white">{astronaut.name}</strong> ({astronaut.callsign})
             </span>
-            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">
+            <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-500/40">
               {selectedScenarioId === 'cardio-scare' ? '[Approval A1: Pending Medical Review]' : '[Approval A2: Pending Medical Review]'}
             </span>
           </div>
-          <h2 className="text-lg font-bold text-slate-900 mt-1">
+          <h2 className="text-lg font-bold text-white mt-1">
             {scenario.title}
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-400 mt-0.5">
             Trigger: {scenario.trigger}
           </p>
         </div>
@@ -106,13 +106,13 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
               setSelectedScenarioId('cardio-scare');
               setCurrentStepIndex(0);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               selectedScenarioId === 'cardio-scare'
-                ? 'bg-rose-50 text-rose-800 border border-rose-300 font-bold'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'
+                ? 'bg-rose-950/80 text-rose-300 border border-rose-500/60 font-bold shadow-md'
+                : 'bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-750 border border-slate-700/60'
             }`}
           >
-            <Heart className="w-3.5 h-3.5 text-rose-600" />
+            <Heart className="w-3.5 h-3.5 text-rose-400" />
             <span>Scenario A (Cardio)</span>
           </button>
           <button
@@ -120,13 +120,13 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
               setSelectedScenarioId('post-storm-illness');
               setCurrentStepIndex(0);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               selectedScenarioId === 'post-storm-illness'
-                ? 'bg-amber-50 text-amber-900 border border-amber-300 font-bold'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'
+                ? 'bg-amber-950/80 text-amber-300 border border-amber-500/60 font-bold shadow-md'
+                : 'bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-750 border border-slate-700/60'
             }`}
           >
-            <Radiation className="w-3.5 h-3.5 text-amber-600" />
+            <Radiation className="w-3.5 h-3.5 text-amber-400" />
             <span>Scenario B (Post-Storm)</span>
           </button>
         </div>
@@ -134,17 +134,17 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
 
       {/* Scenario B Specific: CDC Dose Verification & Differential Diagnosis */}
       {selectedScenarioId === 'post-storm-illness' && scenario.doseVerification && (
-        <div className="p-5 rounded-xl bg-amber-50/70 border border-amber-300 shadow-xs space-y-4">
+        <div className="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/40 shadow-xl space-y-4">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-lg bg-amber-500 text-white shadow-xs">
+              <div className="p-2 rounded-lg bg-amber-500 text-slate-950 shadow-sm">
                 <Radiation className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-amber-900 uppercase tracking-wide">
+                <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wide">
                   1. Mandatory CDC Dose Threshold Verification
                 </h3>
-                <p className="text-xs text-amber-800 mt-0.5">
+                <p className="text-xs text-amber-400 mt-0.5">
                   Check personal dosimeter before treating as radiation prodrome.
                 </p>
               </div>
@@ -152,23 +152,23 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
             <ProvenanceBadge provenance="PUBLISHED" sourceId="cdc-ars-clinicians" />
           </div>
 
-          <div className="p-3.5 rounded-lg bg-white border border-amber-200 text-xs text-slate-700 leading-relaxed font-sans shadow-2xs">
+          <div className="p-3.5 rounded-lg bg-slate-950/80 border border-amber-500/30 text-xs text-slate-300 leading-relaxed font-sans shadow-inner">
             {scenario.doseVerification.arsThresholdDescription}
           </div>
 
           {/* Differential Diagnosis List */}
           <div className="space-y-2">
-            <div className="text-xs font-mono font-semibold text-amber-900 uppercase">
+            <div className="text-xs font-mono font-semibold text-amber-300 uppercase">
               Rule Out Non-Radiation Causes First:
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {scenario.otherCausesToRuleOut?.map((item, idx) => (
-                <div key={idx} className="p-3 rounded-lg bg-white border border-amber-200 space-y-1 text-xs shadow-2xs">
-                  <div className="font-semibold text-slate-900 flex items-center justify-between">
+                <div key={idx} className="p-3 rounded-lg bg-slate-950/80 border border-slate-800 space-y-1 text-xs shadow-sm">
+                  <div className="font-semibold text-white flex items-center justify-between">
                     <span>{item.cause}</span>
                     <ProvenanceBadge provenance="PUBLISHED" sourceId={item.source} compact />
                   </div>
-                  <p className="text-[11px] text-slate-600">{item.indicator}</p>
+                  <p className="text-[11px] text-slate-400">{item.indicator}</p>
                 </div>
               ))}
             </div>
@@ -177,23 +177,23 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
       )}
 
       {/* Immediate First Response Protocol Card */}
-      <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs space-y-3">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-          <div className="text-xs font-mono font-bold text-sky-700 uppercase tracking-wider flex items-center gap-1.5">
-            <ShieldAlert className="w-4 h-4 text-sky-600" />
+      <div className="p-5 rounded-2xl glass-panel shadow-xl space-y-3">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+            <ShieldAlert className="w-4 h-4 text-cyan-400" />
             <span>Immediate First Response Protocol</span>
           </div>
-          <span className="text-xs text-slate-500 font-mono">Execute before triage</span>
+          <span className="text-xs text-slate-400 font-mono">Execute before triage</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {scenario.firstResponse?.map((fr, idx) => (
-            <div key={idx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex flex-col justify-between text-xs space-y-2">
+            <div key={idx} className="p-3.5 rounded-lg bg-slate-950/70 border border-slate-800 flex flex-col justify-between text-xs space-y-2">
               <div className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 border border-sky-300 flex items-center justify-center font-mono text-[10px] shrink-0 font-bold">
+                <span className="w-5 h-5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 flex items-center justify-center font-mono text-[10px] shrink-0 font-bold">
                   {idx + 1}
                 </span>
-                <p className="text-slate-700 leading-relaxed">{fr.text}</p>
+                <p className="text-slate-300 leading-relaxed">{fr.text}</p>
               </div>
               <div className="flex justify-end pt-1">
                 <ProvenanceBadge provenance="PUBLISHED" sourceId={fr.source} compact />
@@ -208,7 +208,7 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
         
         {/* Left: Step-by-Step Care Guide */}
         <div className="lg:col-span-8 space-y-4">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-500">
+          <div className="flex items-center justify-between text-xs font-mono text-slate-400">
             <span>CLINICAL STEPS ({confirmedSteps.length} of {scenario.steps.length} Confirmed)</span>
             <span>Reviewed by: {scenario.reviewedBy}</span>
           </div>
@@ -222,12 +222,12 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
               return (
                 <div
                   key={step.id}
-                  className={`p-4 rounded-xl border transition-all shadow-xs ${
+                  className={`p-4 rounded-xl border transition-all shadow-md ${
                     !allergyCheck.safe
-                      ? 'bg-rose-50/70 border-rose-300'
+                      ? 'bg-rose-950/40 border-rose-500/60'
                       : isConfirmed
-                      ? 'bg-emerald-50/60 border-emerald-300'
-                      : 'bg-white border-slate-200'
+                      ? 'bg-emerald-950/40 border-emerald-500/50'
+                      : 'bg-slate-950/70 border-slate-800'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -237,24 +237,24 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
                           ? 'bg-emerald-600 text-white'
                           : !allergyCheck.safe
                           ? 'bg-rose-600 text-white'
-                          : 'bg-slate-100 text-slate-700 border border-slate-300'
+                          : 'bg-slate-800 text-slate-300 border border-slate-700'
                       }`}>
                         {isConfirmed ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : idx + 1}
                       </span>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-slate-900">{step.title}</h4>
+                          <h4 className="text-sm font-bold text-white">{step.title}</h4>
                           <ProvenanceBadge provenance="PUBLISHED" sourceId={step.source} compact />
                           <button
                             type="button"
                             onClick={() => speakText(`${step.title}. ${step.text}`)}
                             title="Read this step aloud"
-                            className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-mono transition flex items-center gap-1"
+                            className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-mono transition flex items-center gap-1 cursor-pointer"
                           >
                             <span>🔊 Read</span>
                           </button>
                         </div>
-                        <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                        <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                           {step.text}
                         </p>
                       </div>
@@ -265,10 +265,10 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
                       {allergyCheck.safe ? (
                         <button
                           onClick={() => handleConfirmStep(step)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                             isConfirmed
-                              ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold'
-                              : 'bg-sky-600 hover:bg-sky-700 text-white shadow-xs'
+                              ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/50 font-bold'
+                              : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-md'
                           }`}
                         >
                           {isConfirmed ? (
@@ -281,7 +281,7 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
                           )}
                         </button>
                       ) : (
-                        <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-rose-100 text-rose-800 border border-rose-300 font-bold">
+                        <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-rose-950/80 text-rose-300 border border-rose-500/50 font-bold">
                           CONTRAINDICATED
                         </span>
                       )}
@@ -290,20 +290,20 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
 
                   {/* Allergy Warning Alert Banner */}
                   {!allergyCheck.safe && (
-                    <div className="mt-3 p-3 rounded-lg bg-rose-100 border border-rose-300 text-rose-900 text-xs flex items-center gap-2 font-medium">
-                      <AlertTriangle className="w-4 h-4 text-rose-700 shrink-0" />
+                    <div className="mt-3 p-3 rounded-lg bg-rose-950/80 border border-rose-500/60 text-rose-200 text-xs flex items-center gap-2 font-medium">
+                      <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
                       <span>{allergyCheck.warning}</span>
                     </div>
                   )}
 
                   {/* Supply Kit Check Banner */}
                   {step.needsKit?.length > 0 && (
-                    <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono">
-                      <div className="flex items-center gap-1.5 text-slate-500">
-                        <Box className="w-3.5 h-3.5 text-sky-600" />
+                    <div className="mt-2.5 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono">
+                      <div className="flex items-center gap-1.5 text-slate-400">
+                        <Box className="w-3.5 h-3.5 text-cyan-400" />
                         <span>Requires: {step.needsKit.join(', ')}</span>
                       </div>
-                      <span className={kitCheck.available ? 'text-emerald-700 font-semibold' : 'text-rose-700 font-bold'}>
+                      <span className={kitCheck.available ? 'text-emerald-400 font-semibold' : 'text-rose-400 font-bold'}>
                         {kitCheck.available ? 'Supplies Verified Onboard' : 'SUPPLY DEPLETED'}
                       </span>
                     </div>
@@ -314,15 +314,15 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
           </div>
 
           {/* Do Not Instructions */}
-          <div className="p-4 rounded-xl bg-rose-50/50 border border-rose-200 shadow-xs space-y-2">
-            <div className="text-xs font-mono font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5">
-              <Ban className="w-4 h-4 text-rose-600" />
+          <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-900/60 shadow-xl space-y-2">
+            <div className="text-xs font-mono font-bold text-rose-300 uppercase tracking-wider flex items-center gap-1.5">
+              <Ban className="w-4 h-4 text-rose-400" />
               <span>Contraindications & What NOT To Do</span>
             </div>
-            <ul className="space-y-1.5 text-xs text-rose-950">
+            <ul className="space-y-1.5 text-xs text-rose-200">
               {scenario.doNot?.map((dn, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="text-rose-600 font-bold">•</span>
+                  <span className="text-rose-400 font-bold">•</span>
                   <span>{dn.text}</span>
                 </li>
               ))}
@@ -335,17 +335,17 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
         <div className="lg:col-span-4 space-y-4">
           
           {/* Recheck Timer Card */}
-          <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-500 border-b border-slate-100 pb-2">
+          <div className="p-5 rounded-2xl glass-panel shadow-xl space-y-3">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2">
               <span>RECHECK TIMER</span>
-              <Clock className="w-4 h-4 text-sky-600" />
+              <Clock className="w-4 h-4 text-cyan-400" />
             </div>
 
             <div className="text-center py-2">
-              <div className="text-4xl font-mono font-extrabold text-slate-900">
+              <div className="text-4xl font-mono font-extrabold text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]">
                 {formatTimer(timerSeconds)}
               </div>
-              <div className="text-[11px] text-slate-500 font-mono mt-1">
+              <div className="text-[11px] text-slate-400 font-mono mt-1">
                 Interval: {scenario.recheckMinutes} minutes
               </div>
             </div>
@@ -353,7 +353,7 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
             <div className="flex gap-2">
               <button
                 onClick={() => startRecheckTimer(scenario.recheckMinutes)}
-                className="flex-1 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors cursor-pointer shadow-xs"
+                className="flex-1 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition-colors cursor-pointer shadow-md"
               >
                 Start {scenario.recheckMinutes}m Timer
               </button>
@@ -362,7 +362,7 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
                   setTimerSeconds(0);
                   setTimerRunning(false);
                 }}
-                className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 cursor-pointer transition-colors"
+                className="p-2 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 cursor-pointer transition-colors"
                 title="Reset Timer"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -371,15 +371,15 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
           </div>
 
           {/* Worsening Signs to Watch */}
-          <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200 shadow-xs space-y-2">
-            <div className="text-xs font-mono font-bold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+          <div className="p-4 rounded-xl bg-amber-950/30 border border-amber-900/60 shadow-xl space-y-2">
+            <div className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
               <span>Worsening Signs (Red Flags)</span>
             </div>
-            <ul className="space-y-1 text-xs text-amber-950">
+            <ul className="space-y-1 text-xs text-amber-200">
               {scenario.worseningSigns?.map((sign, idx) => (
                 <li key={idx} className="flex items-start gap-1.5">
-                  <span className="text-amber-600 font-bold">›</span>
+                  <span className="text-amber-400 font-bold">›</span>
                   <span>{sign}</span>
                 </li>
               ))}
@@ -387,14 +387,14 @@ export default function CareMode({ astronaut, activeScenarioId = 'cardio-scare',
           </div>
 
           {/* Hold Plan */}
-          <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs space-y-2">
-            <div className="text-xs font-mono font-bold text-slate-800 uppercase tracking-wider">
+          <div className="p-4 rounded-xl glass-panel shadow-xl space-y-2">
+            <div className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
               Hold Plan & Telemetry Cache
             </div>
-            <ul className="space-y-1 text-xs text-slate-600">
+            <ul className="space-y-1 text-xs text-slate-400">
               {scenario.holdPlan?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-1.5">
-                  <span className="text-sky-600 font-bold">•</span>
+                  <span className="text-cyan-400 font-bold">•</span>
                   <span>{item}</span>
                 </li>
               ))}
