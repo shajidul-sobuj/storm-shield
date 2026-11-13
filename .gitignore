@@ -5,3 +5,15 @@ dist-ssr
 .DS_Store
 .env
 .env.*
+
+# Video, audio & media renders
+*.mp4
+*.wav
+*.mp3
+*.avi
+*.mov
+*.mkv
+space-apps-video/output/
+space-apps-video/assets/clips/
+space-apps-video/assets/ui/
+space-apps-video/**/__pycache__/

@@ -18,9 +18,9 @@ def create_master_audio():
         ("C2.mp3", 120800),
         ("C3.mp3", 136800),
         ("D1.mp3", 158500),
-        ("D2.mp3", 179000),
-        ("D3.mp3", 199500),
-        ("D4.mp3", 210000)
+        ("D2.mp3", 178500),
+        ("D3.mp3", 201500),
+        ("D4.mp3", 211000)
     ]
     
     # First, let's assemble all voice clips into a single timed voice stream

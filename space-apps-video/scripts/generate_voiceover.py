@@ -60,7 +60,7 @@ CUES = [
     {
         "id": "D2",
         "start": 176.0,
-        "text": "What changes is total situational clarity. Our deterministic engine has passed forty-four automated unit tests with zero unanchored data. And this innovation extends beyond space: the same offline architecture can bring life-saving decision support to Antarctic research bases, naval vessels, and remote disaster zones on Earth."
+        "text": "What changes is total situational clarity. Our deterministic engine has passed forty-seven automated unit tests with zero unanchored data. And this innovation extends beyond space: the same offline architecture can bring life-saving decision support to Antarctic research bases, naval vessels, and remote disaster zones on Earth."
     },
     {
         "id": "D3",
