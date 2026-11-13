@@ -19,6 +19,7 @@ import {
   LifeBuoy
 } from 'lucide-react';
 import ProvenanceBadge from './ProvenanceBadge.jsx';
+import LiveTelemetryDeck from './LiveTelemetryDeck.jsx';
 import { assessAstronaut } from '../engine/assess.js';
 import { mockBioMonitor } from '../device/mockBioMonitor.js';
 import { AnomalyTracker } from '../engine/anomaly.js';
@@ -31,7 +32,8 @@ export default function Overview({
   onLaunchCare, 
   onLaunchRetrace, 
   onLaunchSelfSupport,
-  onOpenStorm 
+  onOpenStorm,
+  onUpdateVitals
 }) {
   const assessment = assessAstronaut(astronaut.current, astronaut.baseline);
 
@@ -219,6 +221,15 @@ export default function Overview({
             ALL SYSTEMS NOMINAL
           </span>
         </div>
+      )}
+
+      {/* INTERACTIVE REAL-TIME TELEMETRY & PATIENT SIMULATOR DECK */}
+      {onUpdateVitals && (
+        <LiveTelemetryDeck
+          astronaut={astronaut}
+          onUpdateVitals={onUpdateVitals}
+          onLaunchCare={onLaunchCare}
+        />
       )}
 
       {/* FEATURED: CSA Bio-Monitor Wearable Live Stream & Scripted Anomaly Trigger */}

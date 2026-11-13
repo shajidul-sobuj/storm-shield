@@ -224,6 +224,7 @@ export default function App() {
             onLaunchRetrace={handleLaunchRetrace}
             onLaunchSelfSupport={() => setTab('self-support')}
             onOpenStorm={() => setTab('storm-monitor')}
+            onUpdateVitals={handleUpdateVitals}
           />
         )}
 
