@@ -13,7 +13,6 @@ dist-ssr
 *.avi
 *.mov
 *.mkv
-space-apps-video/output/
-space-apps-video/assets/clips/
-space-apps-video/assets/ui/
-space-apps-video/**/__pycache__/
+space-apps-video/
+space-app-video/
+
