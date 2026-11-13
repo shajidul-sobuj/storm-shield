@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HeartPulse, Check, AlertCircle, RefreshCw, Save, Wifi, Droplet, Wind } from 'lucide-react';
 import ProvenanceBadge from './ProvenanceBadge.jsx';
 import { mockBioMonitor } from '../device/mockBioMonitor.js';
 
 export default function VitalsEntry({ astronaut, onUpdateVitals }) {
+  const getVital = (val, fallback) => {
+    if (val === undefined || val === null) return fallback;
+    if (typeof val === 'object' && val.value !== undefined) return val.value;
+    return val;
+  };
+
   const [systolic, setSystolic] = useState(astronaut.current?.bp?.systolic || 120);
   const [diastolic, setDiastolic] = useState(astronaut.current?.bp?.diastolic || 80);
-  const [heartRate, setHeartRate] = useState(typeof astronaut.current?.hr === 'object' ? astronaut.current.hr.value : astronaut.current?.hr || 70);
-  const [glucose, setGlucose] = useState(typeof astronaut.current?.glucose === 'object' ? astronaut.current.glucose.value : astronaut.current?.glucose || 90);
-  const [temperature, setTemperature] = useState(typeof astronaut.current?.temp === 'object' ? astronaut.current.temp.value : astronaut.current?.temp || 36.6);
-  const [sleep, setSleep] = useState(typeof astronaut.current?.sleep === 'object' ? astronaut.current.sleep.value : astronaut.current?.sleep || 7.0);
-  const [mood, setMood] = useState(typeof astronaut.current?.mood === 'object' ? astronaut.current.mood.value : astronaut.current?.mood || 4.0);
-  const [spo2, setSpo2] = useState(astronaut.current?.spo2?.value || 98);
-  const [rr, setRr] = useState(astronaut.current?.rr?.value || 15);
+  const [heartRate, setHeartRate] = useState(getVital(astronaut.current?.hr, 70));
+  const [glucose, setGlucose] = useState(getVital(astronaut.current?.glucose, 90));
+  const [temperature, setTemperature] = useState(getVital(astronaut.current?.temp, 36.6));
+  const [sleep, setSleep] = useState(getVital(astronaut.current?.sleep, 7.0));
+  const [mood, setMood] = useState(getVital(astronaut.current?.mood, 4.0));
+  const [spo2, setSpo2] = useState(getVital(astronaut.current?.spo2, 98));
+  const [rr, setRr] = useState(getVital(astronaut.current?.rr, 15));
   const [selectedSymptoms, setSelectedSymptoms] = useState(astronaut.current?.symptoms || []);
   const [savedNotice, setSavedNotice] = useState(false);
   const [fetchNotice, setFetchNotice] = useState(false);
+
+  // Sync state whenever astronaut changes
+  useEffect(() => {
+    setSystolic(astronaut.current?.bp?.systolic || 120);
+    setDiastolic(astronaut.current?.bp?.diastolic || 80);
+    setHeartRate(getVital(astronaut.current?.hr, 70));
+    setGlucose(getVital(astronaut.current?.glucose, 90));
+    setTemperature(getVital(astronaut.current?.temp, 36.6));
+    setSleep(getVital(astronaut.current?.sleep, 7.0));
+    setMood(getVital(astronaut.current?.mood, 4.0));
+    setSpo2(getVital(astronaut.current?.spo2, 98));
+    setRr(getVital(astronaut.current?.rr, 15));
+    setSelectedSymptoms(astronaut.current?.symptoms || []);
+  }, [astronaut]);
 
   const availableSymptoms = [
     { id: 'chest-discomfort', label: 'Chest Discomfort / Tightness', severity: 'critical' },

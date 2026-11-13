@@ -36,6 +36,19 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
   const [orbitAngle, setOrbitAngle] = useState(0);
 
   const selectedRegion = regionsData.find(r => r.id === selectedRegionId) || regionsData[0];
+  
+  const getVital = (val, fallback) => {
+    if (val === undefined || val === null) return fallback;
+    if (typeof val === 'object' && val.value !== undefined) return val.value;
+    return val;
+  };
+
+  const currHr = getVital(astronaut.current?.hr, 74);
+  const currSbp = astronaut.current?.bp?.systolic || 120;
+  const currDbp = astronaut.current?.bp?.diastolic || 80;
+  const currSpo2 = getVital(astronaut.current?.spo2, 98);
+  const currRr = getVital(astronaut.current?.rr, 16);
+  const currTemp = getVital(astronaut.current?.temp, 36.7);
   const symptoms = astronaut.current?.symptoms || [];
 
   // Orbit rotation animation
@@ -51,22 +64,102 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
     return () => cancelAnimationFrame(animId);
   }, [viewAngle]);
 
-  // Zone status evaluation
+  // Zone status evaluation based on true clinical bounds + symptoms
   const getZoneStatus = (regionId) => {
-    if (regionId === 'cardio' && symptoms.includes('chest-discomfort')) {
+    if (regionId === 'cardio') {
+      if (symptoms.includes('chest-discomfort') || currHr >= 120 || currSbp >= 160 || currDbp >= 100) {
+        return {
+          status: 'act',
+          color: '#ef4444',
+          label: 'ACT REQUIRED',
+          border: 'border-rose-400 bg-rose-50 text-rose-800'
+        };
+      }
+      if (currHr >= 100 || currSbp >= 140 || currDbp >= 90) {
+        return {
+          status: 'watch',
+          color: '#f59e0b',
+          label: 'WATCH',
+          border: 'border-amber-400 bg-amber-50 text-amber-800'
+        };
+      }
       return {
-        status: 'act',
-        color: '#ef4444',
-        label: 'ACT REQUIRED',
-        border: 'border-rose-400 bg-rose-50 text-rose-800'
+        status: 'nominal',
+        color: '#0284c7',
+        label: 'NOMINAL',
+        border: 'border-sky-300 bg-sky-50 text-sky-800'
       };
     }
-    if (regionId === 'digestive' && (symptoms.includes('nausea') || symptoms.includes('vomiting'))) {
+    if (regionId === 'respiratory') {
+      if (symptoms.includes('shortness-of-breath') || currSpo2 < 90 || currRr >= 28) {
+        return {
+          status: 'act',
+          color: '#ef4444',
+          label: 'ACT REQUIRED',
+          border: 'border-rose-400 bg-rose-50 text-rose-800'
+        };
+      }
+      if (currSpo2 <= 94 || currRr >= 22) {
+        return {
+          status: 'watch',
+          color: '#f59e0b',
+          label: 'WATCH',
+          border: 'border-amber-400 bg-amber-50 text-amber-800'
+        };
+      }
       return {
-        status: 'watch',
-        color: '#f59e0b',
-        label: 'WATCH',
-        border: 'border-amber-400 bg-amber-50 text-amber-800'
+        status: 'nominal',
+        color: '#0284c7',
+        label: 'HEALTHY',
+        border: 'border-emerald-300 bg-emerald-50 text-emerald-800'
+      };
+    }
+    if (regionId === 'digestive') {
+      if (symptoms.includes('repeated-vomiting')) {
+        return {
+          status: 'act',
+          color: '#ef4444',
+          label: 'ACT REQUIRED',
+          border: 'border-rose-400 bg-rose-50 text-rose-800'
+        };
+      }
+      if (symptoms.includes('nausea') || symptoms.includes('vomiting')) {
+        return {
+          status: 'watch',
+          color: '#f59e0b',
+          label: 'WATCH / PRODROME',
+          border: 'border-amber-400 bg-amber-50 text-amber-800'
+        };
+      }
+      return {
+        status: 'nominal',
+        color: '#0284c7',
+        label: 'NOMINAL',
+        border: 'border-sky-300 bg-sky-50 text-sky-800'
+      };
+    }
+    if (regionId === 'radiation') {
+      if (currTemp >= 38.3) {
+        return {
+          status: 'act',
+          color: '#ef4444',
+          label: 'ACT REQUIRED',
+          border: 'border-rose-400 bg-rose-50 text-rose-800'
+        };
+      }
+      if (currTemp >= 37.6) {
+        return {
+          status: 'watch',
+          color: '#f59e0b',
+          label: 'WATCH',
+          border: 'border-amber-400 bg-amber-50 text-amber-800'
+        };
+      }
+      return {
+        status: 'nominal',
+        color: '#0284c7',
+        label: 'MONITORING',
+        border: 'border-sky-300 bg-sky-50 text-sky-800'
       };
     }
     return {
@@ -79,14 +172,16 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
   const cardioStatus = getZoneStatus('cardio');
   const digestiveStatus = getZoneStatus('digestive');
+  const respStatus = getZoneStatus('respiratory');
+  const radiationStatus = getZoneStatus('radiation');
 
   // Organ target coordinates mapped to the 896 x 1200 image space
   const organCoords = {
     'head-brain': { x: 448, y: 120, side: 'right', name: 'Cranial Vault & Brain', metric: 'ICP: 14 mmHg (Nominal)', desc: 'Intracranial pressure & cerebral perfusion' },
     'eyes': { x: 448, y: 150, side: 'right', name: 'Optic Disc & SANS', metric: 'Grade 0 (Clear)', desc: 'Posterior globe flattening check' },
-    'cardio': { x: 454, y: 310, side: 'left', name: 'Heart & Great Vessels', metric: `${astronaut.current?.hr?.value || 104} bpm · ${astronaut.current?.bp?.systolic || 148}/${astronaut.current?.bp?.diastolic || 96} mmHg`, desc: 'Tachycardia & elevated pressure alert' },
-    'respiratory': { x: 400, y: 310, side: 'left', name: 'Pulmonary Lungs', metric: 'SpO2 98.5% · 16 rpm', desc: 'Bilateral alveolar ventilation clear' },
-    'digestive': { x: 448, y: 480, side: 'left', name: 'GI Tract & Prodrome', metric: 'Nausea Watch (Post-Storm)', desc: 'Acute radiation prodrome monitoring' },
+    'cardio': { x: 454, y: 310, side: 'left', name: 'Heart & Great Vessels', metric: `${currHr} bpm · ${currSbp}/${currDbp} mmHg`, desc: currHr >= 100 ? 'Sinus tachycardia alert' : 'Cardiac rhythm nominal' },
+    'respiratory': { x: 400, y: 310, side: 'left', name: 'Pulmonary Lungs', metric: `SpO2 ${currSpo2}% · ${currRr} rpm`, desc: currSpo2 < 93 ? 'Hypoxemia warning' : 'Bilateral alveolar ventilation clear' },
+    'digestive': { x: 448, y: 480, side: 'left', name: 'GI Tract & Prodrome', metric: symptoms.includes('nausea') ? 'Nausea Watch (Post-Storm)' : 'Motility nominal', desc: 'Acute radiation prodrome monitoring' },
     'musculoskeletal': { x: 448, y: 400, side: 'right', name: 'Spinal Axis & Bones', metric: '+4.2 cm Decompression', desc: 'Microgravity vertebral elongation' }
   };
 
@@ -213,7 +308,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                 />
               </svg>
               <div className="absolute top-1.5 right-2 text-[10px] font-mono text-cyan-300 font-bold">
-                {astronaut.current?.hr?.value || astronaut.current?.hr || 74} BPM
+                {currHr} BPM
               </div>
             </div>
 
@@ -222,14 +317,14 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
               <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="text-slate-500 text-[10px] block">PULSE RATE</span>
                 <span className="text-base font-bold text-slate-900">
-                  {astronaut.current?.hr?.value || astronaut.current?.hr} <span className="text-[10px] font-normal text-slate-500">bpm</span>
+                  {currHr} <span className="text-[10px] font-normal text-slate-500">bpm</span>
                 </span>
                 <span className="text-[10px] text-slate-500 block">Base: {astronaut.baseline?.hr?.value}</span>
               </div>
               <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="text-slate-500 text-[10px] block">BLOOD PRESSURE</span>
                 <span className="text-base font-bold text-slate-900">
-                  {astronaut.current?.bp?.systolic}/{astronaut.current?.bp?.diastolic}
+                  {currSbp}/{currDbp}
                 </span>
                 <span className="text-[10px] text-slate-500 block">Base: {astronaut.baseline?.bp?.systolic}/{astronaut.baseline?.bp?.diastolic}</span>
               </div>
@@ -252,7 +347,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     <span className="text-[10px] text-slate-500 font-mono">Alveolar Diffusion</span>
                   </div>
                 </div>
-                <span className="font-mono font-bold text-slate-900 text-sm">98.5%</span>
+                <span className={`font-mono font-bold text-sm ${currSpo2 < 93 ? 'text-rose-600' : 'text-slate-900'}`}>{currSpo2}%</span>
               </div>
 
               {/* Respiratory Rate */}
@@ -264,7 +359,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     <span className="text-[10px] text-slate-500 font-mono">Minute Ventilation</span>
                   </div>
                 </div>
-                <span className="font-mono font-bold text-slate-900 text-sm">16 <span className="text-[10px] font-normal text-slate-500">rpm</span></span>
+                <span className={`font-mono font-bold text-sm ${currRr >= 22 ? 'text-amber-600' : 'text-slate-900'}`}>{currRr} <span className="text-[10px] font-normal text-slate-500">rpm</span></span>
               </div>
 
               {/* Core Temperature */}
@@ -276,7 +371,7 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
                     <span className="text-[10px] text-slate-500 font-mono">Circadian Rhythm</span>
                   </div>
                 </div>
-                <span className="font-mono font-bold text-slate-900 text-sm">36.7 °C</span>
+                <span className={`font-mono font-bold text-sm ${currTemp >= 38.0 ? 'text-rose-600' : 'text-slate-900'}`}>{currTemp} °C</span>
               </div>
             </div>
           </div>
@@ -535,12 +630,12 @@ export default function HealthTwin({ astronaut, onLaunchCare, onLaunchRetrace })
 
             <div className="space-y-1.5 text-xs font-mono">
               {[
-                { id: 'cardio', name: 'Cardiovascular', status: cardioStatus.status === 'act' ? 'ACT REQUIRED' : 'HEALTHY', color: cardioStatus.color, badge: cardioStatus.border },
-                { id: 'respiratory', name: 'Respiratory', status: 'HEALTHY', color: '#0284c7', badge: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
-                { id: 'digestive', name: 'Gastrointestinal', status: digestiveStatus.status === 'watch' ? 'WATCH / PRODROME' : 'HEALTHY', color: digestiveStatus.color, badge: digestiveStatus.border },
-                { id: 'head-brain', name: 'Nervous System', status: 'HEALTHY', color: '#0284c7', badge: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
+                { id: 'cardio', name: 'Cardiovascular', status: cardioStatus.label, color: cardioStatus.color, badge: cardioStatus.border },
+                { id: 'respiratory', name: 'Respiratory', status: respStatus.label, color: respStatus.color, badge: respStatus.border },
+                { id: 'digestive', name: 'Gastrointestinal', status: digestiveStatus.label, color: digestiveStatus.color, badge: digestiveStatus.border },
+                { id: 'head-brain', name: 'Nervous System', status: 'NOMINAL', color: '#0284c7', badge: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
                 { id: 'musculoskeletal', name: 'Musculoskeletal', status: 'ARED STABLE', color: '#64748b', badge: 'bg-slate-50 text-slate-700 border-slate-200' },
-                { id: 'radiation', name: 'Immune & Radiation', status: 'MONITORING', color: '#0284c7', badge: 'bg-sky-50 text-sky-700 border-sky-200' }
+                { id: 'radiation', name: 'Immune & Radiation', status: radiationStatus.label, color: radiationStatus.color, badge: radiationStatus.border }
               ].map((sys) => {
                 const isSelected = selectedRegionId === sys.id;
                 return (

@@ -56,7 +56,7 @@ export default function LiveTelemetryDeck({
     setRr(currentRr);
     setTemp(currentTemp);
     setGlucose(currentGlucose);
-  }, [astronaut.id]);
+  }, [astronaut.id, currentHr, currentSbp, currentDbp, currentSpo2, currentRr, currentTemp, currentGlucose]);
 
   // Push updates immediately to parent and mockBioMonitor
   const emitUpdate = (overrides = {}) => {

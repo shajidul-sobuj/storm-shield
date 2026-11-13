@@ -5,14 +5,47 @@ import ProvenanceBadge from './ProvenanceBadge.jsx';
 export default function RegionDrawer({ region, astronaut, onClose, onLaunchCare, onLaunchRetrace }) {
   if (!region) return null;
 
+  const getVital = (val, fallback) => {
+    if (val === undefined || val === null) return fallback;
+    if (typeof val === 'object' && val.value !== undefined) return val.value;
+    return val;
+  };
+
+  const currHr = getVital(astronaut.current?.hr, 74);
+  const currSbp = astronaut.current?.bp?.systolic || 120;
+  const currDbp = astronaut.current?.bp?.diastolic || 80;
+  const currSpo2 = getVital(astronaut.current?.spo2, 98);
+  const currRr = getVital(astronaut.current?.rr, 16);
+  const symptoms = astronaut.current?.symptoms || [];
+
   // Determine region status based on astronaut current vitals and symptoms
   const getRegionStatus = () => {
-    const symptoms = astronaut.current?.symptoms || [];
-    if (region.id === 'cardio' && symptoms.includes('chest-discomfort')) {
-      return { status: 'act', label: 'ACT REQUIRED', color: 'text-rose-700 bg-rose-50 border-rose-300 font-bold' };
+    if (region.id === 'cardio') {
+      if (symptoms.includes('chest-discomfort') || currHr >= 120 || currSbp >= 160 || currDbp >= 100) {
+        return { status: 'act', label: 'ACT REQUIRED', color: 'text-rose-700 bg-rose-50 border-rose-300 font-bold' };
+      }
+      if (currHr >= 100 || currSbp >= 140 || currDbp >= 90) {
+        return { status: 'watch', label: 'WATCH', color: 'text-amber-800 bg-amber-50 border-amber-300 font-bold' };
+      }
+      return { status: 'nominal', label: 'NOMINAL', color: 'text-emerald-800 bg-emerald-50 border-emerald-300 font-bold' };
     }
-    if (region.id === 'digestive' && (symptoms.includes('nausea') || symptoms.includes('vomiting'))) {
-      return { status: 'watch', label: 'WATCH', color: 'text-amber-800 bg-amber-50 border-amber-300 font-bold' };
+    if (region.id === 'digestive') {
+      if (symptoms.includes('repeated-vomiting')) {
+        return { status: 'act', label: 'ACT REQUIRED', color: 'text-rose-700 bg-rose-50 border-rose-300 font-bold' };
+      }
+      if (symptoms.includes('nausea') || symptoms.includes('vomiting')) {
+        return { status: 'watch', label: 'WATCH / PRODROME', color: 'text-amber-800 bg-amber-50 border-amber-300 font-bold' };
+      }
+      return { status: 'nominal', label: 'NOMINAL', color: 'text-emerald-800 bg-emerald-50 border-emerald-300 font-bold' };
+    }
+    if (region.id === 'respiratory') {
+      if (symptoms.includes('shortness-of-breath') || currSpo2 < 90 || currRr >= 28) {
+        return { status: 'act', label: 'ACT REQUIRED', color: 'text-rose-700 bg-rose-50 border-rose-300 font-bold' };
+      }
+      if (currSpo2 <= 94 || currRr >= 22) {
+        return { status: 'watch', label: 'WATCH', color: 'text-amber-800 bg-amber-50 border-amber-300 font-bold' };
+      }
+      return { status: 'nominal', label: 'NOMINAL', color: 'text-emerald-800 bg-emerald-50 border-emerald-300 font-bold' };
     }
     return { status: 'nominal', label: 'NOMINAL', color: 'text-emerald-800 bg-emerald-50 border-emerald-300 font-bold' };
   };
@@ -60,14 +93,14 @@ export default function RegionDrawer({ region, astronaut, onClose, onLaunchCare,
             <div className="p-1.5 rounded bg-white border border-rose-100">
               <span className="text-[10px] text-slate-500 block">PULSE RATE</span>
               <span className="text-sm font-bold text-rose-700">
-                {astronaut.current?.hr?.value || astronaut.current?.hr} bpm
+                {currHr} bpm
               </span>
               <span className="text-[9px] text-slate-500 block">Base: {astronaut.baseline?.hr?.value}</span>
             </div>
             <div className="p-1.5 rounded bg-white border border-rose-100">
               <span className="text-[10px] text-slate-500 block">BLOOD PRESS.</span>
               <span className="text-sm font-bold text-rose-700">
-                {astronaut.current?.bp?.systolic}/{astronaut.current?.bp?.diastolic}
+                {currSbp}/{currDbp}
               </span>
               <span className="text-[9px] text-slate-500 block">Base: {astronaut.baseline?.bp?.systolic}/{astronaut.baseline?.bp?.diastolic}</span>
             </div>

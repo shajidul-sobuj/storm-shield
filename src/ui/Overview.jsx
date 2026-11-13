@@ -77,6 +77,12 @@ export default function Overview({
     };
   }, [astronaut.id]);
 
+  // Synchronize mockBioMonitor immediately whenever astronaut vitals update
+  useEffect(() => {
+    mockBioMonitor.setAstronaut(astronaut);
+    setLiveSample(mockBioMonitor.generateSample());
+  }, [astronaut]);
+
   const handleToggleAnomaly = () => {
     const nextState = !isAnomalyActive;
     setIsAnomalyActive(nextState);
@@ -92,25 +98,25 @@ export default function Overview({
   const bpDeltaSys = currentBP.systolic - baseBP.systolic;
   const bpDeltaDia = currentBP.diastolic - baseBP.diastolic;
 
-  const currentHR = typeof astronaut.current?.hr === 'object' ? astronaut.current.hr.value : astronaut.current.hr || 70;
+  const currentHR = typeof astronaut.current?.hr === 'object' ? astronaut.current.hr.value : (astronaut.current?.hr !== undefined ? astronaut.current.hr : 70);
   const baseHR = astronaut.baseline?.hr?.value || 70;
   const hrDelta = currentHR - baseHR;
 
-  const currentGlucose = typeof astronaut.current?.glucose === 'object' ? astronaut.current.glucose.value : astronaut.current.glucose || 90;
+  const currentGlucose = typeof astronaut.current?.glucose === 'object' ? astronaut.current.glucose.value : (astronaut.current?.glucose !== undefined ? astronaut.current.glucose : 90);
   const baseGlucose = astronaut.baseline?.glucose?.value || 90;
 
-  const currentTemp = typeof astronaut.current?.temp === 'object' ? astronaut.current.temp.value : astronaut.current.temp || 36.6;
+  const currentTemp = typeof astronaut.current?.temp === 'object' ? astronaut.current.temp.value : (astronaut.current?.temp !== undefined ? astronaut.current.temp : 36.6);
   const baseTemp = astronaut.baseline?.temp?.value || 36.6;
 
-  const currentSleep = typeof astronaut.current?.sleep === 'object' ? astronaut.current.sleep.value : astronaut.current.sleep || 7.0;
+  const currentSleep = typeof astronaut.current?.sleep === 'object' ? astronaut.current.sleep.value : (astronaut.current?.sleep !== undefined ? astronaut.current.sleep : 7.0);
   const baseSleep = astronaut.baseline?.sleep?.value || 7.0;
 
-  const currentMood = typeof astronaut.current?.mood === 'object' ? astronaut.current.mood.value : astronaut.current.mood || 4.0;
+  const currentMood = typeof astronaut.current?.mood === 'object' ? astronaut.current.mood.value : (astronaut.current?.mood !== undefined ? astronaut.current.mood : 4.0);
 
-  const currentSpo2 = astronaut.current?.spo2?.value || 98;
+  const currentSpo2 = typeof astronaut.current?.spo2 === 'object' ? astronaut.current.spo2.value : (astronaut.current?.spo2 !== undefined ? astronaut.current.spo2 : 98);
   const baseSpo2 = astronaut.baseline?.spo2?.value || 98;
 
-  const currentRr = astronaut.current?.rr?.value || 15;
+  const currentRr = typeof astronaut.current?.rr === 'object' ? astronaut.current.rr.value : (astronaut.current?.rr !== undefined ? astronaut.current.rr : 15);
   const baseRr = astronaut.baseline?.rr?.value || 14;
 
   return (
