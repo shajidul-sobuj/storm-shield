@@ -57,8 +57,9 @@ export default function CrewAlertModal({ currentCrewId = 'crew-1', onSwitchToCar
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
-                setMuted(!muted);
-                if (!muted) alertSystem.playAlertSound(alert.escalated);
+                const nextMuted = !muted;
+                setMuted(nextMuted);
+                if (!nextMuted) alertSystem.playAlertSound(alert.escalated);
               }}
               title="Test / Mute Alert Sound"
               className="p-1.5 rounded-lg bg-black/20 hover:bg-black/30 text-xs font-mono"
@@ -159,6 +160,7 @@ export default function CrewAlertModal({ currentCrewId = 'crew-1', onSwitchToCar
               {onSwitchToSelfSupport && (
                 <button
                   onClick={() => {
+                    handleDismiss();
                     onSwitchToSelfSupport();
                   }}
                   className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm transition"
@@ -172,6 +174,7 @@ export default function CrewAlertModal({ currentCrewId = 'crew-1', onSwitchToCar
               {onSwitchToCare && (
                 <button
                   onClick={() => {
+                    handleDismiss();
                     onSwitchToCare();
                   }}
                   className="px-4 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-sm border border-indigo-200 transition"

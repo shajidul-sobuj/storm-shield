@@ -67,14 +67,23 @@ describe('CREW ALERT & CHECK-IN DEAD-MAN TIMER (A6 & A7 Verification)', () => {
 
     expect(alerts.activeAlert.escalated).toBe(true);
     expect(alerts.activeAlert.reason).toContain('PATIENT UNRESPONSIVE');
+
+    // When patient taps "I'm OK", it de-escalates!
+    alerts.recordCheckIn();
+    expect(alerts.activeAlert.escalated).toBe(false);
+    expect(alerts.checkInSecondsRemaining).toBe(10);
   });
 
-  it('dismisses active alert properly', () => {
-    alerts.raiseAlert({ from: 'Alex Vance' });
+  it('dismisses active alert properly and terminates check-in timer', () => {
+    alerts.raiseAlert({ from: 'Alex Vance', checkInSeconds: 10 });
     expect(alerts.activeAlert).not.toBeNull();
 
     alerts.dismissAlert(false);
     expect(alerts.activeAlert).toBeNull();
     expect(alerts.checkInSecondsRemaining).toBe(0);
+
+    // Advancing timers should not cause any crashes or re-escalation
+    vi.advanceTimersByTime(15000);
+    expect(alerts.activeAlert).toBeNull();
   });
 });

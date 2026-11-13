@@ -42,12 +42,23 @@ export default function Overview({
   const [isAnomalyActive, setIsAnomalyActive] = useState(false);
   const [anomalyProgress, setAnomalyProgress] = useState({ count: 0, status: 'nominal', reason: null });
   const trackerRef = useRef(new AnomalyTracker({ persistenceWindow: 3 }));
+  const hasAlertedRef = useRef(false);
+  const alertDismissedRef = useRef(false);
 
   useEffect(() => {
     mockBioMonitor.setAstronaut(astronaut);
     trackerRef.current.reset();
     setIsAnomalyActive(false);
     setAnomalyProgress({ count: 0, status: 'nominal', reason: null });
+    hasAlertedRef.current = false;
+    alertDismissedRef.current = false;
+
+    // Track when user dismisses an alert so we never re-trigger within the same episode
+    const unsubAlert = alertSystem.subscribe((state) => {
+      if (!state.activeAlert && hasAlertedRef.current) {
+        alertDismissedRef.current = true;
+      }
+    });
 
     const unsubscribe = mockBioMonitor.subscribe((sample) => {
       setLiveSample(sample);
@@ -58,14 +69,26 @@ export default function Overview({
         reason: res.reason
       });
 
-      // If Persistence Rule triggers Act, automatically raise crew alert!
-      if (res.persistenceSatisfied && !alertSystem.activeAlert) {
+      // If condition normalizes back to nominal (0 violations), reset the dismissal latch for future episodes
+      if (res.consecutiveActCount === 0) {
+        hasAlertedRef.current = false;
+        alertDismissedRef.current = false;
+      }
+
+      // If Persistence Rule triggers Act, automatically raise crew alert:
+      // BUT ONLY when:
+      // 1. Scripted anomaly is active (user clicked "Simulate Scripted Anomaly")
+      // 2. We have not already alerted for this episode (hasAlertedRef.current)
+      // 3. The user has not dismissed this episode (alertDismissedRef.current)
+      // 4. There is no currently active alert modal already open
+      if (res.persistenceSatisfied && isAnomalyActive && !hasAlertedRef.current && !alertDismissedRef.current && !alertSystem.activeAlert) {
+        hasAlertedRef.current = true;
         alertSystem.raiseAlert({
           from: `${astronaut.name} (${astronaut.callsign})`,
           kind: 'medical',
           reason: `Bio-Monitor Sustained Anomaly: ${res.reason}`,
           location: 'Crew Quarters / Hab A',
-          checkInSeconds: 10
+          checkInSeconds: 20
         });
       }
     });
@@ -74,8 +97,9 @@ export default function Overview({
 
     return () => {
       unsubscribe();
+      unsubAlert();
     };
-  }, [astronaut.id]);
+  }, [astronaut.id, isAnomalyActive]);
 
   // Synchronize mockBioMonitor immediately whenever astronaut vitals update
   useEffect(() => {
@@ -87,10 +111,10 @@ export default function Overview({
     const nextState = !isAnomalyActive;
     setIsAnomalyActive(nextState);
     mockBioMonitor.triggerScriptedAnomaly(nextState);
-    if (!nextState) {
-      trackerRef.current.reset();
-      setAnomalyProgress({ count: 0, status: 'nominal', reason: null });
-    }
+    trackerRef.current.reset();
+    setAnomalyProgress({ count: 0, status: 'nominal', reason: null });
+    hasAlertedRef.current = false;
+    alertDismissedRef.current = false;
   };
 
   const currentBP = astronaut.current?.bp || { systolic: 120, diastolic: 80 };
