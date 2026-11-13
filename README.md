@@ -5,8 +5,9 @@
 **Team Extokened:** Sajidul Islam Sobuj & Yarin  
 **Live Demo:** *Zero-backend, static client-side web application*
 
-[![Tests](https://img.shields.io/badge/Vitest-25%20Passed-emerald)](https://vitest.dev)
+[![Tests](https://img.shields.io/badge/Vitest-44%20Passed-emerald)](https://vitest.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![AI Declaration](https://img.shields.io/badge/AI%20Declaration-Disclosed%20%26%20Transparent-purple)](AI%20uses%20and%20declearation.md)
 [![Zero Illustrative Data](https://img.shields.io/badge/Illustrative%20Data-0%20(100%25%20Cited)-cyan)](src/content/sources.json)
 [![Standard](https://img.shields.io/badge/NASA--STD--3001-Compliant-orange)](https://www.nasa.gov)
 
@@ -99,6 +100,7 @@ Storm Shield is engineered as a **pure frontend, zero-backend, offline-first** w
 storm-shield/
 ├── LICENSE                         # MIT License
 ├── README.md                       # Documentation & Project Guide
+├── AI uses and declearation.md     # Official AI usage & ethical compliance declaration
 ├── docs/
 │   ├── AI-USE-LOG.md               # Continuous audit log of AI assistance
 │   ├── Storm-Shield-Concept-Note.md
@@ -111,8 +113,10 @@ storm-shield/
 │   ├── content/                    # Cited clinical & crew JSON datasets
 │   │   ├── crew.json               # 3 astronaut profiles (ANCHORED baselines & allergies)
 │   │   ├── regions.json            # 8 anatomical zones mapped to space hazards
-│   │   ├── indicators.json         # 6 core vitals with reference boundaries
+│   │   ├── indicators.json         # 8 core vitals with reference boundaries
 │   │   ├── kit.json                # Medical kit inventory & contraindications
+│   │   ├── approvals.json          # Medical approval register (A1-A7)
+│   │   ├── assistant-library.json  # Grounded Q&A knowledge base
 │   │   ├── sources.json            # Master citation & license registry
 │   │   └── scenarios/              # cardio.json & post-storm.json
 │   ├── engine/                     # Decoupled, deterministic, unit-tested logic
@@ -121,9 +125,20 @@ storm-shield/
 │   │   ├── storm.js                # NOAA S-scale and Artemis I shelter attenuation
 │   │   ├── care.js                 # Supply-aware scenario navigator
 │   │   ├── retrace.js              # ABCDE red flags & loss-minimising ladder
-│   │   └── handoff.js              # 30-second flight surgeon briefing generator
+│   │   ├── handoff.js              # 30-second flight surgeon briefing generator
+│   │   ├── alerts.js               # BroadcastChannel crew alert bus & procedural siren
+│   │   └── anomaly.js              # Statistical anomaly detector & persistence rule
+│   ├── device/                     # Wearable feed adapter & CSA Bio-Monitor emulator
+│   │   ├── adapter.js              # Sensor interface & anomaly detector integration
+│   │   └── mockBioMonitor.js       # Scripted wearable tick stream
+│   ├── assistant/                  # Voice and grounded Q&A engine
+│   │   ├── commands.js             # Spoken command parser (next, repeat, alert crew)
+│   │   ├── library.js              # Exact/regex grounded keyword search
+│   │   ├── answer.js               # Boundary checker & emergency interception
+│   │   ├── speak.js                # Web Speech API speech synthesis
+│   │   └── listen.js               # Web Speech API voice recognition
 │   ├── ui/                         # Mission control React components
-│   └── tests/                      # Automated Vitest suites (25 tests passing)
+│   └── tests/                      # Automated Vitest suites (44 tests passing)
 ```
 
 ---
@@ -145,7 +160,7 @@ npm install
 ```bash
 npm test
 ```
-*Executes all 25 unit tests across baseline comparison, triage escalation, NOAA storm mapping, kit supply checks, allergy contraindication blocking, and the zero-illustrative-data provenance gate.*
+*Executes all 44 unit tests across 10 test suites (baseline comparison, triage escalation, NOAA storm mapping, kit supply checks, allergy contraindication blocking, and the zero-illustrative-data provenance gate, CSA Bio-Monitor anomaly persistence, crew alerts, and voice assistant grounding).*
 
 ### Start Local Development Server
 ```bash
