@@ -1,8 +1,8 @@
 # STORM SHIELD 🛡️
 ### Autonomous Health Monitoring & Solar Radiation Decision Support for Deep Space Exploration
-**NASA Space Apps Challenge 2026 · Bangladesh**  
+**NASA Space Apps Challenge 2026 · Bangladesh · Theme: The Next Frontier**  
 *Challenge: Create Health Monitoring Software for Astronauts on Space Missions*  
-**Team Extokened:** Sajidul Islam Sobuj & Yarin  
+**Team Extokened:** Kazi Sajidul Islam Sobuj & Qazi Ferdowsi Jahan Yarin (Daffodil International University)  
 **Live Demo:** *Zero-backend, static client-side web application*
 
 [![Tests](https://img.shields.io/badge/Vitest-44%20Passed-emerald)](https://vitest.dev)
@@ -29,7 +29,7 @@ During long-duration crewed missions to the Moon and Mars, astronauts face the f
 ## 2. Core Capabilities
 
 ### ⚡ 1. Storm Alert & Replay (Solar Particle Events)
-- Ingests satellite energetic proton flux ($\ge 10\text{ MeV}$) telemetry.
+- Ingests satellite energetic proton flux ($\ge 10\text{ MeV}$) telemetry from NOAA SWPC and NASA CCMC DONKI.
 - Classifies space-weather severity across NOAA Radiation Storm Scales: **S0 (Quiet), S1 (Minor Watch), S2 (Moderate Warning), S3-S5 (Strong to Extreme Shelter Order)**.
 - Models physical radiation attenuation inside the spacecraft: includes Artemis I Orion measurements demonstrating **~4.0x dose reduction** inside the central storm shelter (water walls / logistics cargo).
 - Automates the **Post-Storm Mandatory Crew Body Check** upon egress.
@@ -74,7 +74,7 @@ When unexpected emergencies occur outside pre-computed scenarios:
 
 ### 📋 5. Flight Surgeon Medical Handoff
 - Formatted according to NASA EIMO specifications.
-- Consenses complex events into a 1-page briefing readable by an Earth flight surgeon in 30 seconds.
+- Condenses complex events into a 1-page briefing readable by an Earth flight surgeon in 30 seconds.
 - Includes baseline vs current telemetry table, cumulative absorbed dose, active space-weather status, timestamped interventions log, and copy/print exports.
 
 ---
@@ -92,23 +92,27 @@ Every number and clinical recommendation carries an explicit provenance tag link
 
 ---
 
-## 4. Architecture & Technical Design
+## 4. Architecture & Repository Structure
 
 Storm Shield is engineered as a **pure frontend, zero-backend, offline-first** web application. It requires no server, no cloud database, and no login, guaranteeing that it operates flawlessly during deep-space communication blackouts or internet outages.
 
 ```
 storm-shield/
-├── LICENSE                         # MIT License
-├── README.md                       # Documentation & Project Guide
+├── LICENSE                         # MIT License (Team Extokened)
+├── README.md                       # Comprehensive Documentation & Architecture Guide
 ├── AI uses and declearation.md     # Official AI usage & ethical compliance declaration
 ├── docs/
-│   ├── AI-USE-LOG.md               # Continuous audit log of AI assistance
-│   ├── Storm-Shield-Concept-Note.md
+│   ├── product-spec.md             # Complete 378-line Product Specification & Design Contract
+│   ├── concept-note.md             # Original Concept Note
+│   ├── implementation-plan.md      # Hackathon Implementation Plan & Roadmap
+│   ├── Storm-Shield-Concept-Note.md # Detailed Concept Note (Version 3)
 │   ├── Storm-Shield-Implementation-Idea.md
-│   └── Storm-Shield-Roadmap-v3.md
+│   ├── Storm-Shield-Roadmap-v3.md
+│   ├── AI-USE-LOG.md               # Continuous audit log of AI assistance
+│   └── Sobuj-Work-Plan.md
 ├── data/
 │   ├── processed/storm-replay.json # Real NOAA GOES-16 energetic proton flux dataset
-│   └── README.md                   # Data provenance table
+│   └── README.md                   # Data provenance table & pipeline notes
 ├── src/
 │   ├── content/                    # Cited clinical & crew JSON datasets
 │   │   ├── crew.json               # 3 astronaut profiles (ANCHORED baselines & allergies)
@@ -151,7 +155,7 @@ storm-shield/
 
 ### Installation
 ```bash
-git clone https://github.com/Sobuj1828/storm-shield.git
+git clone https://github.com/shajidul-sobuj/storm-shield.git
 cd storm-shield
 npm install
 ```
@@ -196,10 +200,10 @@ npm run build
 
 ---
 
-## 8. Authors & Acknowledgments
+## 8. Authors & Team Extokened
 
-- **Sajidul Islam Sobuj** (Software architecture, engine algorithms, frontend engineering, test suites, and data pipeline)
-- **Yarin** (Clinical literature curation, scenario review, presentation, and narrative)
+- **Kazi Sajidul Islam Sobuj** (Software architecture, engine algorithms, frontend engineering, test suites, and data pipeline · 2nd-year student at Daffodil International University, Bangladesh)
+- **Qazi Ferdowsi Jahan Yarin** (Clinical literature curation, scenario review, research, presentation, and narrative · 2nd-year student at Daffodil International University, Bangladesh)
 - **Team Extokened · NASA Space Apps Challenge 2026 (Dhaka, Bangladesh)**
 
 *Special thanks to NASA, NOAA Space Weather Prediction Center, and the CDC for maintaining open, public-domain scientific datasets and clinical literature.*

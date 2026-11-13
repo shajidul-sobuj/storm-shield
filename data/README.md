@@ -4,9 +4,9 @@
 
 This directory contains the space-weather, dosimetry, and astronaut physiological baseline datasets used by Storm Shield. In strict compliance with the project guidelines, all data carries a clear provenance label:
 
-- **`REAL`**: Public measured telemetry from NASA CCMC / DONKI, NOAA SWPC, or NASA OSDR RadLab.
-- **`PUBLISHED`**: Exact clinical reference thresholds and guidelines published by CDC, NIH MedlinePlus, or NASA standards.
-- **`ANCHORED`**: Synthetic astronaut profiles strictly generated within physiological bounds established by peer-reviewed human spaceflight publications.
+- **`REAL`**: Public measured telemetry from NASA CCMC / DONKI (solar particle events, flares, CMEs, shocks, notifications), NOAA SWPC (proton flux, alerts), or NASA OSDR RadLab.
+- **`PUBLISHED`**: Exact clinical reference thresholds and guidelines published by CDC, NIH MedlinePlus, or NASA standards (e.g. NASA-STD-3001).
+- **`ANCHORED`**: Synthetic astronaut profiles strictly generated within physiological bounds established by peer-reviewed human spaceflight publications (all personal astronaut biometrics are simulated; real astronaut medical data is private).
 - **`ILLUSTRATIVE`**: Placeholder metrics (zero instances in production demo build).
 
 ---
@@ -28,6 +28,6 @@ This directory contains the space-weather, dosimetry, and astronaut physiologica
 
 ## Data Pipeline
 
-1. **Space Weather:** Raw satellite telemetry from NOAA SWPC and NASA DONKI is parsed to extract energetic proton flux (pfu for >= 10 MeV).
+1. **Space Weather:** Raw satellite telemetry from NOAA SWPC and NASA DONKI is parsed to extract energetic proton flux (pfu for $\ge 10\text{ MeV}$).
 2. **Threshold Conversion:** Engine module `storm.js` maps flux to NOAA S1 through S5 scales.
-3. **Clinical Guardrails:** Radiation dosages are cross-referenced with CDC whole-body acute radiation sickness thresholds (>= 700 mGy for prodrome) to prevent misdiagnosis.
+3. **Clinical Guardrails:** Radiation dosages are cross-referenced with CDC whole-body acute radiation sickness thresholds ($\ge 700\text{ mGy}$ for prodrome) to prevent misdiagnosis.
