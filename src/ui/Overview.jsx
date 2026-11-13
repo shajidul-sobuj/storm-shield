@@ -735,29 +735,63 @@ export default function Overview({
         </div>
       </div>
 
-      {/* Cumulative Radiation & Space Weather Card */}
-      <div className="glass-panel rounded-2xl p-6 border border-slate-700/70 hover:border-indigo-500/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-white">
-        <div className="flex items-center gap-4">
-          <div className="p-3.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-            <Radiation className="w-6 h-6 animate-pulse" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm font-bold text-white tracking-wide">Cumulative Mission Radiation Dosimetry</h4>
-              <ProvenanceBadge provenance="REAL" sourceId="radlab-iss-2025" />
+      {/* Cumulative Radiation & Live Space Weather Telemetry Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        
+        {/* Left: Cumulative Dosimetry */}
+        <div className="lg:col-span-6 glass-panel rounded-2xl p-5 border border-slate-700/70 hover:border-indigo-500/50 shadow-xl flex items-center justify-between gap-4 text-white">
+          <div className="flex items-center gap-3.5">
+            <div className="p-3 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+              <Radiation className="w-5 h-5 animate-pulse" />
             </div>
-            <p className="text-xs text-slate-300 mt-1">
-              Current total absorbed dose: <strong className="text-cyan-400 font-bold">{astronaut.baseline.radiationDose.value} mGy</strong>. (NASA-STD-3001 career constraint: 600 mGy).
-            </p>
+            <div>
+              <div className="flex items-center gap-2">
+                <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">Cumulative Mission Dosimetry</h4>
+                <ProvenanceBadge provenance="REAL" sourceId="radlab-iss-2025" compact />
+              </div>
+              <p className="text-xs text-slate-300 mt-0.5">
+                Absorbed dose: <strong className="text-cyan-400 font-bold">{astronaut.baseline.radiationDose.value} mGy</strong> <span className="text-slate-400 text-[11px]">(Career limit: 600 mGy)</span>
+              </p>
+            </div>
           </div>
+          <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 shrink-0">
+            NOMINAL
+          </span>
         </div>
-        <button
-          onClick={onOpenStorm}
-          className="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-slate-700 text-xs font-mono font-bold transition-all cursor-pointer shadow-md flex items-center gap-2 hover:border-cyan-500/40"
-        >
-          <Zap className="w-3.5 h-3.5 text-amber-400" />
-          <span>View Solar Storm Replay</span>
-        </button>
+
+        {/* Right: Live NOAA & NASA Space Weather Telemetry */}
+        <div className="lg:col-span-6 glass-panel rounded-2xl p-5 border border-slate-700/70 hover:border-cyan-500/50 shadow-xl flex items-center justify-between gap-4 text-white">
+          <div className="flex items-center gap-3.5">
+            <div className={`p-3 rounded-xl border ${
+              stormStatus.severity === 'shelter'
+                ? 'bg-rose-950/80 border-rose-500/50 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.3)] animate-pulse'
+                : 'bg-emerald-950/60 border-emerald-500/40 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
+            }`}>
+              <Zap className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h4 className="text-xs sm:text-sm font-bold text-white tracking-wide">Live Space Weather Telemetry</h4>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-[10px] font-mono text-emerald-300">GOES-18</span>
+              </div>
+              <p className="text-xs text-slate-300 mt-0.5">
+                Proton flux: <strong className="text-white font-bold">{stormStatus.flux} pfu</strong> ({stormStatus.level || 'S0'}) · <span className="text-slate-400 text-[11px]">NASA DONKI Sync</span>
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onOpenStorm}
+            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-mono font-bold transition-all cursor-pointer shadow-md flex items-center gap-1.5 shrink-0"
+          >
+            <span>Live Monitor</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
       </div>
 
     </div>
