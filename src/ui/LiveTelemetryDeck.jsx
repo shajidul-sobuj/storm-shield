@@ -82,7 +82,7 @@ export default function LiveTelemetryDeck({
       id: 'nominal',
       name: 'Nominal Rest',
       badge: 'NOMINAL',
-      badgeClass: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+      badgeClass: 'bg-emerald-950/60 text-emerald-300 border-emerald-500/40',
       data: { hr: 68, sbp: 118, dbp: 76, spo2: 99, rr: 14, temp: 36.6, glucose: 92, symptoms: [] },
       desc: 'Normal spaceflight resting baseline.'
     },
@@ -90,7 +90,7 @@ export default function LiveTelemetryDeck({
       id: 'exertion',
       name: 'EVA Workload',
       badge: 'WATCH',
-      badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+      badgeClass: 'bg-amber-950/60 text-amber-300 border-amber-500/40',
       data: { hr: 122, sbp: 142, dbp: 88, spo2: 96, rr: 24, temp: 37.2, glucose: 110, symptoms: ['fatigue'] },
       desc: 'Post-spacewalk strenuous exertion.'
     },
@@ -98,7 +98,7 @@ export default function LiveTelemetryDeck({
       id: 'cardio',
       name: 'Cardio Distress',
       badge: 'ACT ALERT',
-      badgeClass: 'bg-rose-500/20 text-rose-400 border-rose-500/30 animate-pulse',
+      badgeClass: 'bg-rose-950/60 text-rose-300 border-rose-500/40 animate-pulse',
       data: { hr: 138, sbp: 168, dbp: 104, spo2: 91, rr: 26, temp: 36.8, glucose: 104, symptoms: ['chest-discomfort', 'shortness-of-breath'] },
       desc: 'Acute angina & cephalad fluid overload.'
     },
@@ -106,7 +106,7 @@ export default function LiveTelemetryDeck({
       id: 'hypoxia',
       name: 'Cabin Hypoxia',
       badge: 'CRITICAL',
-      badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/30 animate-pulse',
+      badgeClass: 'bg-purple-950/60 text-purple-300 border-purple-500/40 animate-pulse',
       data: { hr: 126, sbp: 102, dbp: 62, spo2: 82, rr: 32, temp: 35.6, glucose: 88, symptoms: ['dizziness', 'shortness-of-breath'] },
       desc: 'Depressurization / breathing gas leak.'
     },
@@ -114,7 +114,7 @@ export default function LiveTelemetryDeck({
       id: 'solar',
       name: 'Radiation Prodrome',
       badge: 'ACT ALERT',
-      badgeClass: 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+      badgeClass: 'bg-rose-950/60 text-rose-300 border-rose-500/40',
       data: { hr: 112, sbp: 146, dbp: 92, spo2: 94, rr: 22, temp: 38.1, glucose: 118, symptoms: ['repeated-vomiting', 'nausea'] },
       desc: 'Post-solar storm acute radiation prodrome.'
     }
@@ -176,7 +176,7 @@ export default function LiveTelemetryDeck({
     const midY = height / 2;
 
     // Clear background grid
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#050811';
     ctx.fillRect(0, 0, width, height);
 
     // Draw faint oscilloscope grid
@@ -236,7 +236,7 @@ export default function LiveTelemetryDeck({
       const targetY = midY + yOffset;
 
       // Sweep line
-      ctx.fillStyle = '#0f172a';
+      ctx.fillStyle = '#050811';
       ctx.fillRect((x + 1) % width, 0, 8, height); // erase ahead
 
       // Redraw grid line that was erased
@@ -251,9 +251,9 @@ export default function LiveTelemetryDeck({
       }
 
       // Draw ECG glowing point
-      ctx.strokeStyle = hr >= 100 ? '#f43f5e' : (spo2 < 93 ? '#fbbf24' : '#10b981');
+      ctx.strokeStyle = hr >= 100 ? '#f43f5e' : (spo2 < 93 ? '#fbbf24' : '#06b6d4');
       ctx.lineWidth = 2.5;
-      ctx.shadowColor = hr >= 100 ? '#f43f5e' : '#10b981';
+      ctx.shadowColor = hr >= 100 ? '#f43f5e' : '#06b6d4';
       ctx.shadowBlur = 6;
 
       ctx.beginPath();
@@ -270,12 +270,12 @@ export default function LiveTelemetryDeck({
   }, [hr, spo2, allowJitter]);
 
   return (
-    <div className="rounded-2xl bg-slate-900 border border-slate-700/80 text-white shadow-xl overflow-hidden font-sans transition-all">
+    <div className="glass-panel text-white shadow-2xl rounded-2xl overflow-hidden font-sans transition-all">
       
       {/* Top Header & Collapsible Toggle */}
-      <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700/80 flex flex-wrap items-center justify-between gap-3">
+      <div className="p-4 sm:p-5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-sky-500/20 border border-sky-400/30 text-sky-400">
+          <div className="p-2.5 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-400">
             <Sliders className="w-5 h-5" />
           </div>
           <div>
@@ -283,11 +283,11 @@ export default function LiveTelemetryDeck({
               <h3 className="font-bold text-white text-base sm:text-lg flex items-center gap-2">
                 <span>Interactive Telemetry & Patient Simulator</span>
               </h3>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950/70 text-cyan-300 border border-cyan-500/40 animate-pulse">
                 LIVE REACTIVE ENGINE
               </span>
             </div>
-            <p className="text-xs text-slate-300 mt-0.5">
+            <p className="text-xs text-slate-400 mt-0.5">
               Drag any slider or tap a scenario. Telemetry, deltas, and triage cascade dynamically across the entire webapp in real time.
             </p>
           </div>
@@ -300,10 +300,10 @@ export default function LiveTelemetryDeck({
               setAllowJitter(next);
               mockBioMonitor.setAllowJitter(next);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition border flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition border flex items-center gap-1.5 cursor-pointer ${
               allowJitter 
-                ? 'bg-slate-800 text-slate-200 border-slate-600' 
-                : 'bg-indigo-600 text-white border-indigo-500'
+                ? 'bg-slate-850 text-slate-300 border-slate-700 hover:text-white' 
+                : 'bg-cyan-600 text-white border-cyan-500 shadow-sm'
             }`}
             title="Toggle natural micro-jitter vs locked manual values"
           >
@@ -313,7 +313,7 @@ export default function LiveTelemetryDeck({
 
           <button
             onClick={resetToBaseline}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-600 text-xs font-mono font-bold transition flex items-center gap-1.5"
+            className="px-3 py-1.5 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 text-xs font-mono font-bold transition flex items-center gap-1.5 cursor-pointer"
             title="Reset to astronaut's nominal baseline"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -322,7 +322,7 @@ export default function LiveTelemetryDeck({
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-600 transition"
+            className="p-1.5 rounded-lg bg-slate-850 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition cursor-pointer"
           >
             {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
@@ -336,7 +336,7 @@ export default function LiveTelemetryDeck({
           <div>
             <div className="flex items-center justify-between mb-2.5 text-xs font-mono text-slate-400 font-bold">
               <span>ONE-CLICK MISSION CLINICAL PRESETS:</span>
-              <span className="text-[11px] text-sky-400">Instantly drives live patient state</span>
+              <span className="text-[11px] text-cyan-400">Instantly drives live patient state</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
@@ -346,10 +346,10 @@ export default function LiveTelemetryDeck({
                   <button
                     key={p.id}
                     onClick={() => applyPreset(p)}
-                    className={`p-3 rounded-xl border text-left transition flex flex-col justify-between gap-2 ${
+                    className={`p-3 rounded-xl border text-left transition flex flex-col justify-between gap-2 cursor-pointer ${
                       isSelected
-                        ? 'bg-slate-800 border-sky-400 ring-2 ring-sky-400/30'
-                        : 'bg-slate-800/60 hover:bg-slate-800 border-slate-700'
+                        ? 'bg-slate-800/90 border-cyan-400 ring-2 ring-cyan-400/30 shadow-lg'
+                        : 'bg-slate-950/60 hover:bg-slate-850/80 border-slate-800'
                     }`}
                   >
                     <div>
@@ -364,7 +364,7 @@ export default function LiveTelemetryDeck({
                       </p>
                     </div>
 
-                    <div className="text-[10px] font-mono text-slate-300 pt-1 border-t border-slate-700/60 flex items-center justify-between">
+                    <div className="text-[10px] font-mono text-slate-400 pt-1 border-t border-slate-800 flex items-center justify-between">
                       <span>HR {p.data.hr}</span>
                       <span>SpO2 {p.data.spo2}%</span>
                     </div>
@@ -375,10 +375,10 @@ export default function LiveTelemetryDeck({
           </div>
 
           {/* 2. Live Dynamic Oscilloscope ECG Waveform Monitor */}
-          <div className="rounded-xl bg-slate-950 p-4 border border-slate-800 shadow-inner flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="rounded-xl bg-slate-950/90 p-4 border border-slate-800 shadow-inner flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="w-full sm:w-2/3 space-y-1.5">
               <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
                   <Activity className="w-4 h-4 animate-pulse" />
                   LEAD II ELECTROCARDIOGRAM (DYNAMIC SWEEP)
                 </span>
@@ -401,10 +401,10 @@ export default function LiveTelemetryDeck({
                 <span className="text-xs text-slate-400 font-mono">BPM</span>
               </div>
               <div className="text-right">
-                <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
+                <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${
                   hr >= 100 
-                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' 
-                    : (hr < 55 ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-300')
+                    ? 'bg-rose-950/60 text-rose-300 border-rose-500/40' 
+                    : (hr < 55 ? 'bg-amber-950/60 text-amber-300 border-amber-500/40' : 'bg-emerald-950/60 text-emerald-300 border-emerald-500/40')
                 }`}>
                   {hr >= 100 ? 'SINUS TACHYCARDIA' : (hr < 55 ? 'BRADYCARDIA' : 'NORMAL SINUS RHYTHM')}
                 </span>
@@ -416,7 +416,7 @@ export default function LiveTelemetryDeck({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2">
             
             {/* Heart Rate Slider */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Heart className="w-4 h-4 text-rose-500" />
@@ -446,13 +446,13 @@ export default function LiveTelemetryDeck({
             </div>
 
             {/* Systolic Blood Pressure */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <Activity className="w-4 h-4 text-sky-400" />
+                  <Activity className="w-4 h-4 text-cyan-400" />
                   Systolic BP
                 </span>
-                <span className="font-mono font-bold text-lg text-sky-400">{sbp} <span className="text-xs text-slate-400">mmHg</span></span>
+                <span className="font-mono font-bold text-lg text-cyan-400">{sbp} <span className="text-xs text-slate-400">mmHg</span></span>
               </div>
               <input
                 type="range"
@@ -466,7 +466,7 @@ export default function LiveTelemetryDeck({
                   setActivePreset(null);
                   emitUpdate({ sbp: val });
                 }}
-                className="w-full accent-sky-500 cursor-pointer"
+                className="w-full accent-cyan-400 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-400">
                 <span>80 Hypo</span>
@@ -476,7 +476,7 @@ export default function LiveTelemetryDeck({
             </div>
 
             {/* Diastolic Blood Pressure */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Activity className="w-4 h-4 text-teal-400" />
@@ -496,7 +496,7 @@ export default function LiveTelemetryDeck({
                   setActivePreset(null);
                   emitUpdate({ dbp: val });
                 }}
-                className="w-full accent-teal-500 cursor-pointer"
+                className="w-full accent-teal-400 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-400">
                 <span>50 Low</span>
@@ -506,10 +506,10 @@ export default function LiveTelemetryDeck({
             </div>
 
             {/* Blood Oxygen SpO2 */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <Droplet className="w-4 h-4 text-sky-400" />
+                  <Droplet className="w-4 h-4 text-cyan-400" />
                   Oxygen Saturation (SpO2)
                 </span>
                 <span className={`font-mono font-bold text-lg ${spo2 < 93 ? 'text-rose-400' : 'text-emerald-400'}`}>
@@ -528,7 +528,7 @@ export default function LiveTelemetryDeck({
                   setActivePreset(null);
                   emitUpdate({ spo2: val });
                 }}
-                className="w-full accent-sky-400 cursor-pointer"
+                className="w-full accent-cyan-400 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-400">
                 <span>75% Cyanosis</span>
@@ -538,7 +538,7 @@ export default function LiveTelemetryDeck({
             </div>
 
             {/* Respiration Rate */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Wind className="w-4 h-4 text-teal-400" />
@@ -568,13 +568,13 @@ export default function LiveTelemetryDeck({
             </div>
 
             {/* Temperature */}
-            <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+            <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-slate-700/80 transition-all space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <Thermometer className="w-4 h-4 text-orange-400" />
+                  <Thermometer className="w-4 h-4 text-amber-400" />
                   Body Temperature
                 </span>
-                <span className="font-mono font-bold text-lg text-orange-400">{temp} <span className="text-xs text-slate-400">°C</span></span>
+                <span className="font-mono font-bold text-lg text-amber-400">{temp} <span className="text-xs text-slate-400">°C</span></span>
               </div>
               <input
                 type="range"
@@ -588,7 +588,7 @@ export default function LiveTelemetryDeck({
                   setActivePreset(null);
                   emitUpdate({ temp: val });
                 }}
-                className="w-full accent-orange-400 cursor-pointer"
+                className="w-full accent-amber-400 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-400">
                 <span>35.0 Hypothermia</span>
@@ -609,7 +609,7 @@ export default function LiveTelemetryDeck({
               {onLaunchCare && (
                 <button
                   onClick={() => onLaunchCare('cardio-scare')}
-                  className="px-3.5 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow transition flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-bold text-xs shadow-lg shadow-rose-950/50 transition-all flex items-center gap-1.5 cursor-pointer"
                 >
                   <Flame className="w-3.5 h-3.5" />
                   <span>Launch Care Mode with These Vitals</span>

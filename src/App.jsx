@@ -179,7 +179,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-sky-600 selection:text-white relative">
+    <div className="min-h-screen bg-[#050811] text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black relative space-grid">
+      
+      {/* Ambient Aerospace Glow Orbs */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none -z-0"></div>
+      <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-3xl pointer-events-none -z-0"></div>
       
       {/* Global Crew Alert Broadcast Modal (Synchronized across tabs) */}
       <CrewAlertModal
@@ -214,7 +218,7 @@ export default function App() {
       />
 
       {/* Main Mission Content Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
         {currentTab === 'overview' && (
           <Overview
             astronaut={selectedCrew}
@@ -291,15 +295,19 @@ export default function App() {
         )}
       </main>
 
-      {/* Spaceflight Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 text-xs font-mono text-slate-500">
+      {/* Spaceflight Mission Command Footer */}
+      <footer className="bg-[#070c18]/90 backdrop-blur-md border-t border-slate-800/80 py-4 text-xs font-mono text-slate-400 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-            <span className="font-semibold text-slate-700">STORM SHIELD · TEAM EXTOKENED (NASA SPACE APPS CHALLENGE 2026)</span>
+          <div className="flex items-center gap-2.5">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span className="font-semibold text-slate-200">STORM SHIELD · TEAM EXTOKENED</span>
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-400">NASA SPACE APPS CHALLENGE 2026 · THE NEXT FRONTIER</span>
           </div>
-          <div className="text-[11px] text-slate-500">
-            Student Decision Support Prototype · Autonomy Level 2: Human Acts · Powered by CDC, NASA HRP, NOAA SWPC & CSA Bio-Monitor
+          <div className="text-[11px] text-slate-400 flex items-center gap-3">
+            <span>Autonomy Level 2: Human Acts</span>
+            <span className="text-slate-600">·</span>
+            <span className="text-cyan-400/90 font-medium">NASA HRP · NOAA SWPC · CDC · CSA Bio-Monitor</span>
           </div>
         </div>
       </footer>

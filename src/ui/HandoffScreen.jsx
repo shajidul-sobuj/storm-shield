@@ -28,19 +28,19 @@ export default function HandoffScreen({ astronaut, groundLink, careLogs, stormSt
     <div className="space-y-6">
       
       {/* Top Banner */}
-      <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-700">
+      <div className="p-5 rounded-2xl glass-panel shadow-xl flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="p-3 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-400">
             <FileText className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-slate-900">Flight Surgeon Medical Handoff</h2>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 font-bold">
+              <h2 className="text-xl font-bold text-white">Flight Surgeon Medical Handoff</h2>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/70 text-cyan-300 border border-cyan-500/40 font-bold">
                 NASA EIMO STANDARD
               </span>
             </div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400 mt-0.5">
               Condensed 30-second structured clinical briefing for Earth Mission Control.
             </p>
           </div>
@@ -49,14 +49,14 @@ export default function HandoffScreen({ astronaut, groundLink, careLogs, stormSt
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopyJson}
-            className="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono flex items-center gap-1.5 border border-slate-200 transition-colors cursor-pointer"
+            className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-mono flex items-center gap-1.5 border border-slate-700 transition-colors cursor-pointer"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied Packet' : 'Copy Telemetry'}</span>
           </button>
           <button
             onClick={handlePrint}
-            className="px-3.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+            className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs font-mono flex items-center gap-1.5 transition-all cursor-pointer shadow-md"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print Report</span>
@@ -65,75 +65,75 @@ export default function HandoffScreen({ astronaut, groundLink, careLogs, stormSt
       </div>
 
       {/* The Printable 1-Page Medical Briefing Document */}
-      <div className="p-8 rounded-xl bg-white border border-slate-200 shadow-xs space-y-6 font-sans print:bg-white print:text-black">
+      <div className="p-8 rounded-2xl glass-panel shadow-2xl space-y-6 font-sans text-slate-200 print:bg-white print:text-black">
         
         {/* Document Header */}
-        <div className="border-b-2 border-sky-500 pb-4 flex flex-wrap items-start justify-between gap-4">
+        <div className="border-b-2 border-cyan-500 pb-4 flex flex-wrap items-start justify-between gap-4">
           <div>
-            <div className="text-[11px] font-mono tracking-widest text-sky-700 font-bold uppercase">
+            <div className="text-[11px] font-mono tracking-widest text-cyan-400 font-bold uppercase">
               NASA HUMAN RESEARCH PROGRAM · EIMO BRIEFING
             </div>
-            <h1 className="text-xl font-bold text-slate-900 mt-1">
+            <h1 className="text-xl font-bold text-white mt-1">
               PATIENT CLINICAL SUMMARY: {handoff.patient.name.toUpperCase()}
             </h1>
-            <div className="text-xs text-slate-500 font-mono mt-0.5">
-              Callsign: {handoff.patient.callsign} · Role: {handoff.patient.role} · Mission Day: {handoff.meta.missionElapsedDay}
+            <div className="text-xs text-slate-400 font-mono mt-0.5">
+              Callsign: <strong className="text-cyan-300">{handoff.patient.callsign}</strong> · Role: {handoff.patient.role} · Mission Day: SOL {handoff.meta.missionElapsedDay}
             </div>
           </div>
 
           <div className="text-right text-xs font-mono space-y-1">
             <div className="flex items-center justify-end gap-1.5">
-              <Radio className="w-3.5 h-3.5 text-slate-500" />
-              <span className="text-slate-600">Link Status: <strong className="text-slate-900">{handoff.meta.groundLinkStatus}</strong></span>
+              <Radio className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="text-slate-400">Link Status: <strong className="text-white">{handoff.meta.groundLinkStatus}</strong></span>
             </div>
-            <div className="text-slate-500 text-[11px]">Timestamp: {handoff.meta.generatedAt.split('T')[0]} {handoff.meta.generatedAt.split('T')[1].substring(0,8)} UTC</div>
+            <div className="text-slate-400 text-[11px]">Timestamp: {handoff.meta.generatedAt.split('T')[0]} {handoff.meta.generatedAt.split('T')[1].substring(0,8)} UTC</div>
           </div>
         </div>
 
         {/* Demographics & Space Weather Quick Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-3.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono">
           <div>
-            <span className="text-slate-500 block text-[10px]">BLOOD TYPE:</span>
-            <span className="text-slate-900 font-bold">{handoff.patient.bloodType}</span>
+            <span className="text-slate-400 block text-[10px]">BLOOD TYPE:</span>
+            <span className="text-white font-bold">{handoff.patient.bloodType}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-[10px]">ALLERGIES:</span>
-            <span className="text-amber-800 font-bold">{handoff.patient.allergies}</span>
+            <span className="text-slate-400 block text-[10px]">ALLERGIES:</span>
+            <span className="text-rose-400 font-bold">{handoff.patient.allergies}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-[10px]">SPACE WEATHER:</span>
-            <span className="text-sky-800 font-bold">{handoff.spaceWeatherContext.noaaStormLevel} ({handoff.spaceWeatherContext.protonFluxPfu} pfu)</span>
+            <span className="text-slate-400 block text-[10px]">SPACE WEATHER:</span>
+            <span className="text-cyan-300 font-bold">{handoff.spaceWeatherContext.noaaStormLevel} ({handoff.spaceWeatherContext.protonFluxPfu} pfu)</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-[10px]">SHELTER STATUS:</span>
-            <span className="text-slate-900 font-bold">{handoff.spaceWeatherContext.shelterProtocolActive ? 'ACTIVE' : 'STANDBY'}</span>
+            <span className="text-slate-400 block text-[10px]">SHELTER STATUS:</span>
+            <span className="text-white font-bold">{handoff.spaceWeatherContext.shelterProtocolActive ? 'ACTIVE (Water Walls)' : 'STANDBY'}</span>
           </div>
         </div>
 
         {/* Objective Physiological Telemetry Table */}
         <div className="space-y-2">
-          <div className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
+          <div className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
             <span>Objective Physiological Metrics (Baseline vs Current)</span>
             <ProvenanceBadge provenance="ANCHORED" sourceId="nasa-hrp-cardio" compact />
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
-              <thead className="bg-slate-50 text-slate-600 font-mono text-[11px]">
+          <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/80">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-slate-950 text-slate-400 font-mono text-[11px] border-b border-slate-800">
                 <tr>
-                  <th className="p-2.5">Telemetry Parameter</th>
-                  <th className="p-2.5">Astronaut Baseline</th>
-                  <th className="p-2.5">Current Value</th>
-                  <th className="p-2.5">Provenance</th>
+                  <th className="p-3">Telemetry Parameter</th>
+                  <th className="p-3">Astronaut Baseline</th>
+                  <th className="p-3">Current Value</th>
+                  <th className="p-3">Provenance</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 font-mono">
+              <tbody className="divide-y divide-slate-800/60 font-mono text-slate-300">
                 {handoff.clinicalVitalsTable.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/60">
-                    <td className="p-2.5 font-medium text-slate-800">{row.vital}</td>
-                    <td className="p-2.5 text-slate-500">{row.baseline}</td>
-                    <td className="p-2.5 font-bold text-slate-900">{row.current}</td>
-                    <td className="p-2.5 text-slate-500 text-[10px]">{row.provenance}</td>
+                  <tr key={idx} className="hover:bg-slate-850/50">
+                    <td className="p-3 font-medium text-white">{row.vital}</td>
+                    <td className="p-3 text-slate-400">{row.baseline}</td>
+                    <td className="p-3 font-bold text-cyan-300">{row.current}</td>
+                    <td className="p-3 text-slate-400 text-[10px]">{row.provenance}</td>
                   </tr>
                 ))}
               </tbody>
@@ -143,47 +143,47 @@ export default function HandoffScreen({ astronaut, groundLink, careLogs, stormSt
 
         {/* Chief Complaint & Symptoms */}
         <div className="space-y-1.5 text-xs">
-          <div className="font-mono text-slate-600 uppercase text-[11px] font-bold">
+          <div className="font-mono text-slate-400 uppercase text-[11px] font-bold">
             Chief Complaint & Observable Symptoms:
           </div>
-          <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-slate-800">
+          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-200">
             {handoff.chiefComplaint}
           </div>
         </div>
 
         {/* Clinical Interventions Logged */}
         <div className="space-y-2 text-xs">
-          <div className="font-mono text-slate-600 uppercase text-[11px] font-bold">
+          <div className="font-mono text-slate-400 uppercase text-[11px] font-bold">
             Autonomous Interventions Executed in Flight:
           </div>
           {careLogs.length > 0 ? (
             <div className="space-y-1.5">
               {careLogs.map((log, idx) => (
-                <div key={idx} className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-xs font-mono">
+                <div key={idx} className="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between text-xs font-mono">
                   <div className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span className="text-slate-800">{log.actionDescription}</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-white">{log.actionDescription}</span>
                   </div>
-                  <span className="text-slate-500 text-[11px]">{log.timestamp.split('T')[1].substring(0,8)} UTC</span>
+                  <span className="text-slate-400 text-[11px]">{log.timestamp.split('T')[1].substring(0,8)} UTC</span>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 italic">
+            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 text-slate-400 italic">
               No guided pharmaceutical interventions executed during current watch.
             </div>
           )}
         </div>
 
         {/* Flight Surgeon Action Prompts */}
-        <div className="p-4 rounded-xl bg-sky-50/70 border border-sky-200 space-y-2 text-xs">
-          <div className="font-mono font-bold text-sky-800 uppercase text-[11px]">
+        <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/40 space-y-2 text-xs">
+          <div className="font-mono font-bold text-cyan-300 uppercase text-[11px]">
             Flight Surgeon Direct Action Prompts (Earth Ground Review):
           </div>
-          <ul className="space-y-1 text-slate-700">
+          <ul className="space-y-1 text-slate-200">
             {handoff.surgeonActionRequired.map((act, i) => (
               <li key={i} className="flex items-start gap-1.5">
-                <span className="text-sky-600 font-bold">›</span>
+                <span className="text-cyan-400 font-bold">›</span>
                 <span>{act}</span>
               </li>
             ))}
@@ -191,7 +191,7 @@ export default function HandoffScreen({ astronaut, groundLink, careLogs, stormSt
         </div>
 
         {/* Footer */}
-        <div className="pt-3 border-t border-slate-200 text-center text-[10px] font-mono text-slate-400">
+        <div className="pt-3 border-t border-slate-800 text-center text-[10px] font-mono text-slate-500">
           STORM SHIELD · STUDENT PROTOTYPE · NASA SPACE APPS CHALLENGE 2026 · ALL CITATIONS VERIFIED
         </div>
 

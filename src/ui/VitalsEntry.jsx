@@ -90,24 +90,24 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
   const baseRr = astronaut.baseline?.rr?.value || 14;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 font-sans animate-fade-in">
+    <div className="max-w-4xl mx-auto space-y-6 font-sans animate-fade-in text-slate-200">
       
       {/* Title & Hardware Fetch Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl bg-white border border-slate-200 shadow-xs gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-2xl glass-panel shadow-xl gap-4">
         <div className="flex items-center gap-3.5">
-          <div className="p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-700">
+          <div className="p-3 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-400">
             <HeartPulse className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-white">
                 Vitals & Telemetry Log: {astronaut.name}
               </h2>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-100 text-amber-900 border border-amber-300 font-bold">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950/80 text-amber-300 border border-amber-500/40 font-bold">
                 [Approval A3]
               </span>
             </div>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs text-slate-400 mt-0.5">
               8 Physiological metrics (Challenge statement + Bio-Monitor smart vest streams).
             </p>
           </div>
@@ -117,9 +117,9 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
           <button
             type="button"
             onClick={handleFetchFromWearable}
-            className="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold font-mono transition flex items-center gap-1.5 shadow-xs"
+            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-bold font-mono transition flex items-center gap-1.5 shadow-md cursor-pointer"
           >
-            <Wifi className="w-3.5 h-3.5 text-emerald-400" />
+            <Wifi className="w-3.5 h-3.5 text-white" />
             <span>Fetch from Bio-Monitor</span>
           </button>
           <ProvenanceBadge provenance="ANCHORED" sourceId="nasa-std-3001" />
@@ -127,15 +127,15 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
       </div>
 
       {fetchNotice && (
-        <div className="p-3.5 rounded-lg bg-sky-50 border border-sky-300 text-sky-900 text-xs flex items-center gap-2 font-mono font-medium shadow-xs">
-          <Wifi className="w-4 h-4 text-sky-600 shrink-0" />
+        <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs flex items-center gap-2 font-mono font-medium shadow-md">
+          <Wifi className="w-4 h-4 text-cyan-400 shrink-0" />
           <span>Synchronized live readings from CSA Bio-Monitor wearable stream.</span>
         </div>
       )}
 
       {savedNotice && (
-        <div className="p-3.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-2 font-mono font-medium shadow-xs">
-          <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 font-mono font-medium shadow-md">
+          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>Telemetry updated and re-evaluated by clinical triage engine.</span>
         </div>
       )}
@@ -144,9 +144,9 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
       <form onSubmit={handleSave} className="space-y-6">
         
         {/* Vitals Inputs Grid */}
-        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs space-y-5">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <h3 className="text-xs font-mono font-bold text-sky-800 uppercase tracking-wider">
+        <div className="p-6 rounded-2xl glass-panel shadow-xl space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
               1. Core Physiological Measurements (8 Indicators)
             </h3>
             <span className="text-[11px] text-slate-400 font-mono">
@@ -158,47 +158,47 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
             
             {/* Systolic BP */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Systolic BP (mmHg)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Base: {baseBP.systolic}</span>
+                <span className="text-[10px] text-slate-500 font-mono">Base: {baseBP.systolic}</span>
               </label>
               <input
                 type="number"
                 value={systolic}
                 onChange={(e) => setSystolic(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-amber-700 font-mono block">Estimated</span>
+              <span className="text-[10px] text-amber-400 font-mono block">Estimated</span>
             </div>
 
             {/* Diastolic BP */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Diastolic BP (mmHg)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Base: {baseBP.diastolic}</span>
+                <span className="text-[10px] text-slate-500 font-mono">Base: {baseBP.diastolic}</span>
               </label>
               <input
                 type="number"
                 value={diastolic}
                 onChange={(e) => setDiastolic(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-amber-700 font-mono block">Estimated</span>
+              <span className="text-[10px] text-amber-400 font-mono block">Estimated</span>
             </div>
 
             {/* Heart Rate */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Heart Rate (bpm)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Base: {baseHR}</span>
+                <span className="text-[10px] text-slate-500 font-mono">Base: {baseHR}</span>
               </label>
               <input
                 type="number"
                 value={heartRate}
                 onChange={(e) => setHeartRate(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
               <span className="text-[10px] text-slate-400 font-mono block">Bio-Monitor / Pulse</span>
@@ -206,9 +206,9 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
 
             {/* Blood Oxygen (SpO2) */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>SpO2 (%)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Base: {baseSpo2}%</span>
+                <span className="text-[10px] text-slate-500 font-mono">Base: {baseSpo2}%</span>
               </label>
               <input
                 type="number"
@@ -216,17 +216,17 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
                 max="100"
                 value={spo2}
                 onChange={(e) => setSpo2(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-sky-700 font-mono block">Pulse Oximeter</span>
+              <span className="text-[10px] text-cyan-400 font-mono block">Pulse Oximeter</span>
             </div>
 
             {/* Breathing Rate (RR) */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Breathing Rate (brpm)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Base: {baseRr}</span>
+                <span className="text-[10px] text-slate-500 font-mono">Base: {baseRr}</span>
               </label>
               <input
                 type="number"
@@ -234,68 +234,68 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
                 max="45"
                 value={rr}
                 onChange={(e) => setRr(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-teal-700 font-mono block">Thoracic Band</span>
+              <span className="text-[10px] text-teal-400 font-mono block">Thoracic Band</span>
             </div>
 
             {/* Blood Glucose */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Blood Glucose (mg/dL)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Norm: 70-110</span>
+                <span className="text-[10px] text-slate-500 font-mono">Norm: 70-110</span>
               </label>
               <input
                 type="number"
                 value={glucose}
                 onChange={(e) => setGlucose(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-amber-600 font-mono block">Manual strip assay</span>
+              <span className="text-[10px] text-amber-400 font-mono block">Manual strip assay</span>
             </div>
 
             {/* Temperature */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Core Temperature (°C)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Norm: 36.5</span>
+                <span className="text-[10px] text-slate-500 font-mono">Norm: 36.5</span>
               </label>
               <input
                 type="number"
                 step="0.1"
                 value={temperature}
                 onChange={(e) => setTemperature(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-teal-700 font-mono block">Tympanic / Oral Probe</span>
+              <span className="text-[10px] text-teal-400 font-mono block">Tympanic / Oral Probe</span>
             </div>
 
             {/* Sleep */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 flex justify-between">
+              <label className="text-xs font-semibold text-slate-300 flex justify-between">
                 <span>Sleep Duration (hrs)</span>
-                <span className="text-[10px] text-slate-400 font-mono">Target: 7.0-8.5</span>
+                <span className="text-[10px] text-slate-500 font-mono">Target: 7.0-8.5</span>
               </label>
               <input
                 type="number"
                 step="0.5"
                 value={sleep}
                 onChange={(e) => setSleep(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:bg-white focus:border-sky-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-cyan-500 focus:outline-none"
                 required
               />
-              <span className="text-[10px] text-indigo-700 font-mono block">Actigraphy / Log</span>
+              <span className="text-[10px] text-indigo-400 font-mono block">Actigraphy / Log</span>
             </div>
 
           </div>
 
           {/* Mood Slider */}
-          <div className="pt-3 border-t border-slate-100">
-            <div className="flex justify-between items-center text-xs font-semibold text-slate-700 mb-1.5">
-              <span>Cognitive & Mood Score: <strong className="text-sky-700 font-mono text-sm">{mood} / 5.0</strong></span>
+          <div className="pt-3 border-t border-slate-800">
+            <div className="flex justify-between items-center text-xs font-semibold text-slate-300 mb-1.5">
+              <span>Cognitive & Mood Score: <strong className="text-cyan-400 font-mono text-sm">{mood} / 5.0</strong></span>
               <span className="text-[11px] text-slate-400 font-normal">1: Exhausted - 5: Calm & Focused</span>
             </div>
             <input
@@ -305,18 +305,18 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
               step="0.5"
               value={mood}
               onChange={(e) => setMood(e.target.value)}
-              className="w-full accent-sky-600 cursor-pointer"
+              className="w-full accent-cyan-400 cursor-pointer"
             />
           </div>
 
         </div>
 
         {/* Symptoms Checklist */}
-        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-xs space-y-4">
-          <h3 className="text-xs font-mono font-bold text-sky-800 uppercase tracking-wider border-b border-slate-100 pb-2">
+        <div className="p-6 rounded-2xl glass-panel shadow-xl space-y-4">
+          <h3 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider border-b border-slate-800 pb-2">
             2. Report Observable Symptoms
           </h3>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-400">
             Select any symptoms experienced in the past 4 hours. Critical symptoms automatically trigger Care Mode advisories.
           </p>
 
@@ -328,17 +328,17 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
                   type="button"
                   key={symp.id}
                   onClick={() => toggleSymptom(symp.id)}
-                  className={`p-3 rounded-lg border text-left text-xs transition-all flex items-center justify-between cursor-pointer ${
+                  className={`p-3 rounded-xl border text-left text-xs transition-all flex items-center justify-between cursor-pointer ${
                     active
                       ? symp.severity === 'critical'
-                        ? 'bg-rose-50 border-rose-300 text-rose-800 font-semibold'
-                        : 'bg-amber-50 border-amber-300 text-amber-800 font-semibold'
-                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
+                        ? 'bg-rose-950/80 border-rose-500/60 text-rose-300 font-semibold shadow-md'
+                        : 'bg-amber-950/80 border-amber-500/60 text-amber-300 font-semibold shadow-md'
+                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-white hover:bg-slate-850'
                   }`}
                 >
                   <span>{symp.label}</span>
                   <span className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 ${
-                    active ? 'bg-sky-600 border-sky-600 text-white' : 'border-slate-300 bg-white'
+                    active ? 'bg-cyan-500 border-cyan-500 text-slate-950' : 'border-slate-700 bg-slate-900'
                   }`}>
                     {active && <Check className="w-3 h-3 stroke-[3]" />}
                   </span>
@@ -352,7 +352,7 @@ export default function VitalsEntry({ astronaut, onUpdateVitals }) {
         <div className="flex items-center justify-end">
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-xs cursor-pointer"
+            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-cyan-950/50 cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Update Telemetry & Re-Assess</span>

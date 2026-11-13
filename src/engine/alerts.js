@@ -128,12 +128,13 @@ export class AlertSystem {
    * Create and broadcast a new crew alert.
    */
   raiseAlert({ from = 'Astronaut', kind = 'medical', reason = 'Vitals deviation', location = 'Habitat Module Alpha', checkInSeconds = null }) {
-    const timerLength = checkInSeconds || (this.isDemoSpeed ? 10 : 60);
+    const timerLength = checkInSeconds || (this.isDemoSpeed ? 20 : 60);
     const alert = {
       id: `alert-${Date.now()}`,
       from,
       kind,
       reason,
+      originalReason: reason,
       location,
       time: new Date().toISOString(),
       acks: [],
@@ -168,9 +169,14 @@ export class AlertSystem {
 
   /**
    * Patient resets the dead-man check-in timer by tapping "I'm OK".
+   * Also de-escalates patient unresponsive status if it had escalated.
    */
   recordCheckIn() {
     if (!this.activeAlert) return;
+    this.activeAlert.escalated = false;
+    if (this.activeAlert.originalReason) {
+      this.activeAlert.reason = this.activeAlert.originalReason;
+    }
     this.checkInSecondsRemaining = this.activeAlert.checkInSeconds || this.checkInInterval;
     this._notify();
     this._broadcast('CHECKIN_OK', { alertId: this.activeAlert.id });
@@ -179,12 +185,14 @@ export class AlertSystem {
   _startCheckInTimer(seconds) {
     if (this.checkInTimer) {
       clearInterval(this.checkInTimer);
+      this.checkInTimer = null;
     }
     this.checkInSecondsRemaining = seconds;
 
     this.checkInTimer = setInterval(() => {
       if (!this.activeAlert) {
         clearInterval(this.checkInTimer);
+        this.checkInTimer = null;
         return;
       }
 
@@ -192,6 +200,7 @@ export class AlertSystem {
       if (this.checkInSecondsRemaining <= 0) {
         // ESCALATION: Patient has not checked in!
         this.activeAlert.escalated = true;
+        this.activeAlert.originalReason = this.activeAlert.originalReason || this.activeAlert.reason;
         this.activeAlert.reason = `PATIENT UNRESPONSIVE: Check-in silence timeout exceeded (${seconds}s). Urgent crew dispatch required!`;
         this.playAlertSound(true);
         this.checkInSecondsRemaining = seconds; // reset cycle
@@ -205,10 +214,13 @@ export class AlertSystem {
       clearInterval(this.checkInTimer);
       this.checkInTimer = null;
     }
+    const dismissedId = this.activeAlert ? this.activeAlert.id : null;
     this.activeAlert = null;
     this.checkInSecondsRemaining = 0;
+    this.lastDismissedAt = Date.now();
+    this.lastDismissedId = dismissedId;
     if (broadcast) {
-      this._broadcast('DISMISS_ALERT', {});
+      this._broadcast('DISMISS_ALERT', { alertId: dismissedId });
     }
     this._notify();
   }
